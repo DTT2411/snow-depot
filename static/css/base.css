@@ -20,6 +20,11 @@ body {
     background-size: cover;
     color: var(--primary-color);
     font-family: var(--main-font);
+    margin: 0; /* Remove default browser margin to avoid top gap */
+}
+
+h1, h2 {
+    font: var(--headings-font);
 }
 
 /* from Bulma */
@@ -32,7 +37,7 @@ body {
 }
 
 #header-logo {
-    font: var(--headings-font);
+    font-family: var(--headings-font), sans-serif;
     font-size: large;  
     color: var(--primary-color);
 }
@@ -43,6 +48,12 @@ body {
 
 .logo-font {
     text-transform: uppercase;
+    font-family: var(--headings-font), sans-serif;
+}
+
+/* Apply headings font to heading elements */
+h1, .h1 {
+    font-family: var(--headings-font), sans-serif;
 }
 
 .main-logo-link {
@@ -105,16 +116,17 @@ body {
 /* Base styles for layout adjustments */
 
 /* Ensure page content isn't overlapped by the fixed navbar */
-@media (max-width: 991.98px) {
-body {
-padding-top: 80px; /* Adjust if header height changes on mobile */
-}
-/* Reduce top heading size on small screens */
-body h1:first-of-type {
-font-size: 2rem;
-line-height: 1.2;
-}
-}
+@media (max-width: 992px) {
+    body {
+        padding-top: 0; /* Header is sticky on small screens; no extra top padding needed */
+    }
+    
+    /* Reduce top heading size on small screens */
+    #lead-text-header {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    }
 
 @media (min-width: 992px) {
   body {
