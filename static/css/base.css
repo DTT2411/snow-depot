@@ -1,0 +1,123 @@
+/* Google Font import */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lexend+Mega:wght@100..900&display=swap');
+
+/* VARIABLES */
+:root {
+    --headings-font: "Lexend Mega", cursive;
+    --main-font: "DM Sans", sans-serif;
+    --primary-color: #1C3738; /* Gunmetal */
+    --secondary-color: #4D4847; /* Davy's Gray */
+    --tertiary-color: #8BAAAD; /* Cadet Gray */
+    --highlight-color: #F4FFF8; /* Mint cream */
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: url('/media/snow-depot-hero-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--primary-color);
+    font-family: var(--main-font);
+}
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+#header-logo {
+    font: var(--headings-font);
+    font-size: large;  
+    color: var(--primary-color);
+}
+
+.navbar {
+    background-color: var(--highlight-color);
+}
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
+
+/* Base styles for layout adjustments */
+
+/* Ensure page content isn't overlapped by the fixed navbar */
+@media (max-width: 991.98px) {
+body {
+padding-top: 80px; /* Adjust if header height changes on mobile */
+}
+/* Reduce top heading size on small screens */
+body h1:first-of-type {
+font-size: 2rem;
+line-height: 1.2;
+}
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 70px; /* Space for fixed header on larger screens */
+  }
+}
