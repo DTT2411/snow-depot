@@ -23,9 +23,11 @@ body {
     margin: 0; /* Remove default browser margin to avoid top gap */
 }
 
-h1, h2 {
-    font: var(--headings-font);
+h1, h2, .dropdown-category {
+    font-family: var(--headings-font);
+    color: var(--primary-color);
 }
+
 
 /* from Bulma */
 .icon {
@@ -34,12 +36,6 @@ h1, h2 {
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
-}
-
-#header-logo {
-    font-family: var(--headings-font), sans-serif;
-    font-size: large;  
-    color: var(--primary-color);
 }
 
 .navbar {
@@ -127,6 +123,15 @@ h1, .h1 {
         line-height: 1.2;
     }
     }
+
+/* Reduce logo size on small screens so it fits alongside the burger icon */
+@media (max-width: 768px) {
+  #header-logo {
+    font-size: 1.25rem; /* roughly h5 size */
+    margin: 0;
+    line-height: 1.2;
+  }
+}
 
 @media (min-width: 992px) {
   body {
