@@ -1,6 +1,36 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
-<h1 class="display-4 text-success">Bootstrap works!</h1>
+    <div class="container">
+        <div class="row h-100">
+            <div class="col">
+                <h1 class="display-4 text-black">About Snow Depot</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Etiam sollicitudin dolor eget sodales ornare. Sed vel ex
+                    ac risus molestie cursus. Vivamus consequat nisi quis 
+                    massa feugiat, sed gravida eros ornare. Integer non turpis 
+                    vel eros hendrerit sollicitudin a ac quam. Sed a felis in erat 
+                    sollicitudin euismod. Donec quis posuere ipsum. Proin vel 
+                    hendrerit libero. Ut non ante et sem elementum laoreet nec quis 
+                    tellus. Suspendisse ornare risus odio, eu ultrices metus condimentum 
+                    eget.
+                </p>
+                <div class="my-5">
+                    <h4>
+                        <a href="" class="shop-now-button btn btn-lg">Shop Now</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
