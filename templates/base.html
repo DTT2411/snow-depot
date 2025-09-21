@@ -88,11 +88,10 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="mobileAllProductsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products</a>
               <div class="dropdown-menu border-0" aria-labelledby="mobileAllProductsDropdown">
-                  <a class="dropdown-item" href="#">By price</a>
-                  <a class="dropdown-item" href="#">By rating</a>
-                  <a class="dropdown-item" href="#">By name</a>
-                  <a class="dropdown-item" href="#">By category</a>
-                  <a class="dropdown-item" href="#">By reviews</a>
+                  <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By price</a>
+                  <a class="dropdown-item" href="{% url 'products' %}?sort=rating&direction=desc">By rating</a>
+                  <a class="dropdown-item" href="{% url 'products' %}?sort=name&direction=asc">By name</a>
+                  <a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">By category</a>
                   <a class="dropdown-item" href="{% url 'products' %}">All Products</a>
               </div>
             </li>
@@ -142,11 +141,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="allProductsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products</a>
             <div class="dropdown-menu border-0" aria-labelledby="allProductsDropdown">
-                <a class="dropdown-item" href="#">By price</a>
-                <a class="dropdown-item" href="#">By rating</a>
-                <a class="dropdown-item" href="#">By name</a>
-                <a class="dropdown-item" href="#">By category</a>
-                <a class="dropdown-item" href="#">By reviews</a>
+                <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By price</a>
+                <a class="dropdown-item" href="{% url 'products' %}?sort=rating&direction=desc">By rating</a>
+                <a class="dropdown-item" href="{% url 'products' %}?sort=name&direction=asc">By name</a>
+                <a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">By category</a>
                 <a class="dropdown-item" href="{% url 'products' %}">All Products</a>
             </div>
           </li>
