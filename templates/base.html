@@ -101,10 +101,10 @@
                 Equipment
               </a>
               <div class="dropdown-menu border-0" aria-labelledby="mobileEquipDropdown">
-                <a class="dropdown-item" href="#">Skis</a>
-                <a class="dropdown-item" href="#">Boots</a>
-                <a class="dropdown-item" href="#">Poles</a>
-                <a class="dropdown-item" href="#">All Equipment</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=skis">Skis</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=boots">Boots</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=poles">Poles</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=equipment">All Equipment</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -112,13 +112,13 @@
                 Skiwear
               </a>
               <div class="dropdown-menu border-0" aria-labelledby="mobileSkiwearDropdown">
-                <a class="dropdown-item" href="#">Jackets</a>
-                <a class="dropdown-item" href="#">Ski Pants</a>
-                <a class="dropdown-item" href="#">Underlayers</a>
-                <a class="dropdown-item" href="#">Gloves</a>
-                <a class="dropdown-item" href="#">Goggles</a>
-                <a class="dropdown-item" href="#">Helmets</a>
-                <a class="dropdown-item" href="#">All Skiwear</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=jackets">Jackets</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-pants">Ski Pants</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=underlayers">Underlayers</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=gloves">Gloves</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=goggles">Goggles</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=helmets">Helmets</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=skiwear">All Skiwear</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -126,10 +126,10 @@
                 Accessories
               </a>
               <div class="dropdown-menu border-0" aria-labelledby="mobileAccessoriesDropdown">
-                <a class="dropdown-item" href="#">Ski Cameras</a>
-                <a class="dropdown-item" href="#">Backpacks</a>
-                <a class="dropdown-item" href="#">Off-piste Safety</a>
-                <a class="dropdown-item" href="#">All Accessories</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-cameras">Ski Cameras</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=backpacks">Backpacks</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=off-piste-safety">Off-piste Safety</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=accessories">All Accessories</a>
               </div>
             </li>
           </ul>
@@ -153,31 +153,31 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="equipDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipment</a>
             <div class="dropdown-menu border-0" aria-labelledby="equipDropdown">
-                <a class="dropdown-item" href="#">Skis</a>
-                <a class="dropdown-item" href="#">Boots</a>
-                <a class="dropdown-item" href="#">Poles</a>
-                <a class="dropdown-item" href="#">All Equipment</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=skis">Skis</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=boots">Boots</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=poles">Poles</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=equipment">All Equipment</a>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="skiwearDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Skiwear</a>
             <div class="dropdown-menu border-0" aria-labelledby="skiwearDropdown">
-                <a class="dropdown-item" href="#">Jackets</a>
-                <a class="dropdown-item" href="#">Ski Pants</a>
-                <a class="dropdown-item" href="#">Underlayers</a>
-                <a class="dropdown-item" href="#">Gloves</a>
-                <a class="dropdown-item" href="#">Goggles</a>
-                <a class="dropdown-item" href="#">Helmets</a>
-                <a class="dropdown-item" href="#">All Skiwear</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=jackets">Jackets</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-pants">Ski Pants</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=underlayers">Underlayers</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=gloves">Gloves</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=goggles">Goggles</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=helmets">Helmets</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=skiwear">All Skiwear</a>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="accessoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accessories</a>
             <div class="dropdown-menu border-0" aria-labelledby="accessoriesDropdown">
-                <a class="dropdown-item" href="#">Ski Cameras</a>
-                <a class="dropdown-item" href="#">Backpacks</a>
-                <a class="dropdown-item" href="#">Off-piste Safety</a>
-                <a class="dropdown-item" href="#">All Accessories</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-cameras">Ski Cameras</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=backpacks">Backpacks</a>
+                <a class="dropdown-item" href="{% url 'products' %}?subcategory=off-piste-safety">Off-piste Safety</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=accessories">All Accessories</a>
             </div>
           </li>
         </ul>
