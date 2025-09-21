@@ -28,7 +28,6 @@ h1, h2, .dropdown-category {
     color: var(--primary-color);
 }
 
-
 /* from Bulma */
 .icon {
     align-items: center;
@@ -45,6 +44,11 @@ h1, h2, .dropdown-category {
 .logo-font {
     text-transform: uppercase;
     font-family: var(--headings-font), sans-serif;
+}
+
+.highlight-font {
+    color: var(--highlight-color);
+    font-weight: bold;
 }
 
 /* Apply headings font to heading elements */
