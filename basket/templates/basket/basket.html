@@ -21,7 +21,91 @@
         <div class="row">
             <div class="col">
                 {% if basket_items %}
-                    <div class="table-responsive"></div>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-center d-none d-md-table-cell">Qty</th>
+                                    <th class="text-right d-none d-md-table-cell">Price</th>
+                                    <th class="text-right d-none d-md-table-cell">Line total</th>
+                                    <th class="d-none d-md-table-cell"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in basket_items %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            {% if item.product.image %}
+                                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid mr-2" style="width: 50px; height: 50px; object-fit: cover;">
+                                            {% endif %}
+                                            <div>
+                                                <div class="text-truncate">{{ item.product.name }}</div>
+                                                <small class="text-muted d-none d-md-block">Category: {{ item.product.category.friendly_name }}</small><br class="d-none d-md-block">
+                                                <small class="text-muted d-none d-md-block">Subcategory: {{ item.product.subcategory.friendly_name }}</small>
+                                                <div class="d-block d-md-none mt-1">
+                                                    <div class="d-flex justify-content-between">
+                                                        <small class="text-muted">Price</small><small>£{{ item.product.price }}</small>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <small class="text-muted">Total</small><small>£{{ item.line_total }}</small>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-between mt-2">
+                                                        <form method="POST" action="{% url 'remove_from_basket' item.product.id %}" class="mb-0 mr-2">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn btn-link btn-sm text-danger p-0 mr-2">Remove</button>
+                                                        </form>
+                                                        <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center mb-0">
+                                                            {% csrf_token %}
+                                                            <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2" style="width: 70px;">
+                                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center d-none d-md-table-cell">
+                                        <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center justify-content-center">
+                                            {% csrf_token %}
+                                            <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2" style="width: 70px;">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                                        </form>
+                                    </td>
+                                    <td class="text-right d-none d-md-table-cell">£{{ item.product.price }}</td>
+                                    <td class="text-right d-none d-md-table-cell">£{{ item.line_total }}</td>
+                                    <td class="text-right d-none d-md-table-cell">
+                                        <form method="POST" action="{% url 'remove_from_basket' item.product.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-link text-danger">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td class="text-right font-weight-bold">Subtotal:</td>
+                                    <td class="text-right">£{{ total }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td class="text-right font-weight-bold">Delivery:</td>
+                                    <td class="text-right">£{{ delivery }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td class="text-right font-weight-bold">Grand Total:</td>
+                                    <td class="text-right">£{{ grand_total }}</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 {% else %}
                     <p class="lead mb-5">Your basket is empty.</p>
                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black">

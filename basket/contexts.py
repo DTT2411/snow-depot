@@ -1,18 +1,37 @@
 from decimal import Decimal
 from django.conf import settings
 
+from products.models import Product
+
 
 def basket_contents(request):
     """
-    Context processor for making the basket contents available on all pages of the site
+    Build basket items and totals from the session for global template access
     """
     basket_items = []
-    total = 0
+    total = Decimal('0.00')
     item_count = 0
 
-    delivery = total * Decimal(settings.DELIVERY_PERCENTAGE)
+    basket = request.session.get('basket', {})
 
-    grand_total = delivery + total
+    for item_id, quantity in basket.items():
+        try:
+            product = Product.objects.get(pk=item_id)
+        except Product.DoesNotExist:
+            # Skip invalid product ids that might linger in the session
+            continue
+        line_total = product.price * quantity
+        total += line_total
+        item_count += quantity
+        basket_items.append({
+            'item_id': item_id,
+            'quantity': quantity,
+            'product': product,
+            'line_total': line_total,
+        })
+
+    delivery = (total * Decimal(settings.DELIVERY_PERCENTAGE) / Decimal('100')) if total > 0 else Decimal('0.00')
+    grand_total = total + delivery
 
     context = {
         'basket_items': basket_items,
