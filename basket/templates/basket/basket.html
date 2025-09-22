@@ -41,17 +41,17 @@
                                                 <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid mr-2" style="width: 50px; height: 50px; object-fit: cover;">
                                             {% endif %}
                                             <div>
-                                                <div class="text-truncate">{{ item.product.name }}</div>
-                                                <small class="text-muted d-none d-md-block">Category: {{ item.product.category.friendly_name }}</small><br class="d-none d-md-block">
+                                                <div>{{ item.product.name }}</div>
+                                                <small class="text-muted d-none d-md-block">Category: {{ item.product.category.friendly_name }}</small>
                                                 <small class="text-muted d-none d-md-block">Subcategory: {{ item.product.subcategory.friendly_name }}</small>
                                                 <div class="d-block d-md-none mt-1">
-                                                    <div class="d-flex justify-content-between">
-                                                        <small class="text-muted">Price</small><small>£{{ item.product.price }}</small>
+                                                    <div class="d-flex">
+                                                        <small class="text-muted mr-2">Price</small><small>£{{ item.product.price }}</small>
                                                     </div>
-                                                    <div class="d-flex justify-content-between">
-                                                        <small class="text-muted">Total</small><small>£{{ item.line_total }}</small>
+                                                    <div class="d-flex">
+                                                        <small class="text-muted mr-2">Total</small><small>£{{ item.line_total }}</small>
                                                     </div>
-                                                    <div class="d-flex align-items-center justify-content-between mt-2">
+                                                    <div class="d-flex align-items-center mt-2">
                                                         <form method="POST" action="{% url 'remove_from_basket' item.product.id %}" class="mb-0 mr-2">
                                                             {% csrf_token %}
                                                             <button type="submit" class="btn btn-link btn-sm text-danger p-0 mr-2">Remove</button>
@@ -59,7 +59,7 @@
                                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center mb-0">
                                                             {% csrf_token %}
                                                             <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2" style="width: 70px;">
-                                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                                                            <button type="submit" class="btn btn-sm rounded-0 border-black">Update</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -70,7 +70,7 @@
                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center text-center justify-content-center">
                                             {% csrf_token %}
                                             <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2" style="width: 70px;">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                                            <button type="submit" class="btn btn-sm rounded-0 border-black">Update</button>
                                         </form>
                                     </td>
                                     <td class="text-right d-none d-md-table-cell">£{{ item.product.price }}</td>
@@ -94,7 +94,7 @@
                 {% else %}
                     <p class="lead mb-5">Your basket is empty.</p>
                 {% endif %}
-                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-2">
+                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-2 mb-3">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
