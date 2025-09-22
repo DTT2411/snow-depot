@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 from django.conf import settings
 
 from products.models import Product
@@ -30,8 +30,8 @@ def basket_contents(request):
             'line_total': line_total,
         })
 
-    delivery = (total * Decimal(settings.DELIVERY_PERCENTAGE) / Decimal('100')) if total > 0 else Decimal('0.00')
-    grand_total = total + delivery
+    delivery = ((total * Decimal(settings.DELIVERY_PERCENTAGE) / Decimal('100')) if total > 0 else Decimal('0.00')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    grand_total = (total + delivery).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
 
     context = {
         'basket_items': basket_items,

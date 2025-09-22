@@ -67,7 +67,7 @@
                                         </div>
                                     </td>
                                     <td class="text-center d-none d-md-table-cell">
-                                        <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center justify-content-center">
+                                        <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center text-center justify-content-center">
                                             {% csrf_token %}
                                             <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2" style="width: 70px;">
                                             <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
@@ -84,37 +84,22 @@
                                 </tr>
                                 {% endfor %}
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td class="text-right font-weight-bold">Subtotal:</td>
-                                    <td class="text-right">£{{ total }}</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td class="text-right font-weight-bold">Delivery:</td>
-                                    <td class="text-right">£{{ delivery }}</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td class="text-right font-weight-bold">Grand Total:</td>
-                                    <td class="text-right">£{{ grand_total }}</td>
-                                    <td></td>
-                                </tr>
-                            </tfoot>
                         </table>
+                        <div class="d-block text-left mt-3">
+                            <div class="small"><strong>Subtotal:</strong> £{{ total }}</div>
+                            <div class="small"><strong>Delivery:</strong> £{{ delivery }}</div>
+                            <div class="mt-1"><strong>Grand Total:</strong> £{{ grand_total }}</div>
+                        </div>
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your basket is empty.</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span>Keep Shopping</span>
-                    </a>
                 {% endif %}
+                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-2">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span>Keep Shopping</span>
+                </a>
             </div>
         </div>
     </div>
