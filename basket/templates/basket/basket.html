@@ -41,7 +41,7 @@
                                                 <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid mr-2 basket-product-image">
                                             {% endif %}
                                             <div>
-                                                <div>{{ item.product.name }}</div>
+                                                <div><a href="{% url 'product_detail' item.product.id %}" class="text-black">{{ item.product.name }}</a></div>
                                                 <small class="text-muted d-none d-md-block">Category: {{ item.product.category.friendly_name }}</small>
                                                 <small class="text-muted d-none d-md-block">Subcategory: {{ item.product.subcategory.friendly_name }}</small>
                                                 <div class="d-block d-md-none mt-1">
@@ -54,7 +54,7 @@
                                                     <div class="d-flex align-items-center mt-2">
                                                         <form method="POST" action="{% url 'remove_from_basket' item.product.id %}" class="mb-0 mr-2">
                                                             {% csrf_token %}
-                                                            <button type="submit" class="btn btn-link btn-sm text-danger p-0 mr-2">Remove</button>
+                                                            <button type="submit" class="btn btn-link btn-sm text-danger p-0 mr-2 border-danger rounded-0">Remove</button>
                                                         </form>
                                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center mb-0">
                                                             {% csrf_token %}
@@ -94,11 +94,17 @@
                 {% else %}
                     <p class="lead mb-5">Your basket is empty.</p>
                 {% endif %}
-                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-2 mb-3">
+                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-2 mb-2">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
                     <span>Keep Shopping</span>
+                </a>
+                <a href="" class="btn btn-black rounded-0">
+                    <span class="icon">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <span>Checkout</span>
                 </a>
             </div>
         </div>
