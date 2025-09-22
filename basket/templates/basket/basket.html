@@ -38,7 +38,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             {% if item.product.image %}
-                                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid mr-2" style="width: 50px; height: 50px; object-fit: cover;">
+                                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid mr-2 basket-product-image">
                                             {% endif %}
                                             <div>
                                                 <div>{{ item.product.name }}</div>
@@ -58,7 +58,7 @@
                                                         </form>
                                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center mb-0">
                                                             {% csrf_token %}
-                                                            <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2" style="width: 70px;">
+                                                            <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2">
                                                             <button type="submit" class="btn btn-sm rounded-0 border-black">Update</button>
                                                         </form>
                                                     </div>
@@ -69,7 +69,7 @@
                                     <td class="text-center d-none d-md-table-cell">
                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center text-center justify-content-center">
                                             {% csrf_token %}
-                                            <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2" style="width: 70px;">
+                                            <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2 basket-qty-input">
                                             <button type="submit" class="btn btn-sm rounded-0 border-black">Update</button>
                                         </form>
                                     </td>

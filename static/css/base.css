@@ -37,6 +37,16 @@ h1, h2, .dropdown-category {
     width: 1.5rem;
 }
 
+.basket-product-image {
+    width: 45px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.basket-qty-input {
+    width: 50px;
+}
+
 .navbar {
     background-color: var(--highlight-color);
 }

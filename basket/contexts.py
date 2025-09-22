@@ -6,7 +6,7 @@ from products.models import Product
 
 def basket_contents(request):
     """
-    Build basket items and totals from the session for global template access
+    Gets the basket items and totals from the session for global access
     """
     basket_items = []
     total = Decimal('0.00')
@@ -18,11 +18,12 @@ def basket_contents(request):
         try:
             product = Product.objects.get(pk=item_id)
         except Product.DoesNotExist:
-            # Skip invalid product ids that might linger in the session
+            # Skip invalid product ids that might linger in the session after admin change/deletion
             continue
         line_total = product.price * quantity
         total += line_total
         item_count += quantity
+        # Creates a dictionary of current session basket items
         basket_items.append({
             'item_id': item_id,
             'quantity': quantity,
@@ -30,6 +31,7 @@ def basket_contents(request):
             'line_total': line_total,
         })
 
+    # Decimal quantize method is used to round up the delivery & grand total to 2 decimal places
     delivery = ((total * Decimal(settings.DELIVERY_PERCENTAGE) / Decimal('100')) if total > 0 else Decimal('0.00')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
     grand_total = (total + delivery).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
 
