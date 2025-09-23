@@ -42,6 +42,18 @@
                                             {% endif %}
                                             <div>
                                                 <div><a href="{% url 'product_detail' item.product.id %}" class="text-black">{{ item.product.name }}</a></div>
+                                                {% if item.product.has_sizes %}
+                                                <small class="text-muted d-none d-md-block">Size: {{ item.size|upper }}</small>
+                                                {% endif %}
+                                                {% if item.product.has_boot_sizes %}
+                                                <small class="text-muted d-none d-md-block">Size (UK): {{ item.boot_size|upper }}</small>
+                                                {% endif %}
+                                                {% if item.product.has_ski_lengths %}
+                                                <small class="text-muted d-none d-md-block">Length (cm): {{ item.ski_length|upper }}</small>
+                                                {% endif %}
+                                                {% if item.product.has_pole_lengths %}
+                                                <small class="text-muted d-none d-md-block">Length (cm): {{ item.pole_length|upper }}</small>
+                                                {% endif %}
                                                 <small class="text-muted d-none d-md-block">Category: {{ item.product.category.friendly_name }}</small>
                                                 <small class="text-muted d-none d-md-block">Subcategory: {{ item.product.subcategory.friendly_name }}</small>
                                                 <div class="d-block d-md-none mt-1">

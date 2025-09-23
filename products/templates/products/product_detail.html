@@ -53,11 +53,11 @@
 
                     <form method="POST" action="{% url 'add_to_basket' product.id %}" class="mt-3">
                         {% csrf_token %}
-                        <div class="form-row align-items-center">
+                        <div class="form-row align-items-end">
                             {% with product.has_sizes as s %}
                             {% if s %}
-                            <p><strong>Size:  </strong></p>
                             <div class="col-auto">
+                                <label for="product_size_id">Size</label>
                                 <select name="product_size" id="product_size_id" class="form-control form-control-sm rounded-0 border-black">
                                     <option value="xs">XS</option>
                                     <option value="s">S</option>
@@ -70,8 +70,8 @@
                             {% endwith %}
                             {% with product.has_boot_sizes as bs %}
                             {% if bs %}
-                            <p><strong>Size (UK):  </strong></p>
                             <div class="col-auto">
+                                <label for="product_boot_size_id">Size (UK)</label>
                                 <select name="product_boot_size" id="product_boot_size_id" class="form-control form-control-sm rounded-0 border-black">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -93,8 +93,8 @@
                             {% endwith %}
                             {% with product.has_ski_lengths as sl %}
                             {% if sl %}
-                            <p><strong>Length (cm):  </strong></p>
                             <div class="col-auto">
+                                <label for="product_ski_length_id">Length (cm)</label>
                                 <select name="product_ski_length" id="product_ski_length_id" class="form-control form-control-sm rounded-0 border-black">
                                     <option value="130">130</option>
                                     <option value="135">135</option>
@@ -117,8 +117,8 @@
                             {% endwith %}
                             {% with product.has_pole_lengths as pl %}
                             {% if pl %}
-                            <p><strong>Length (cm):  </strong></p>
                             <div class="col-auto">
+                                <label for="product_pole_length_id">Length (cm)</label>
                                 <select name="product_pole_length" id="product_pole_length_id" class="form-control form-control-sm rounded-0 border-black">
                                     <option value="80">80</option>
                                     <option value="85">85</option>
@@ -136,7 +136,7 @@
                             {% endif %}
                             {% endwith %}
                             <div class="col-auto">
-                                <label class="sr-only" for="id_qty_{{ product.id }}">Quantity</label>
+                                <label for="id_qty_{{ product.id }}">Quantity</label>
                                 <input id="id_qty_{{ product.id }}" name="quantity" type="number" min="1" max="99" value="1" class="form-control form-control-sm rounded-0 border-black">
                             </div>
                             <div class="col-auto">
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                     </form>
-                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-2">
+                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-4">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
