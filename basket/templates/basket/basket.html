@@ -43,16 +43,16 @@
                                             <div>
                                                 <div><a href="{% url 'product_detail' item.product.id %}" class="text-black">{{ item.product.name }}</a></div>
                                                 {% if item.product.has_sizes %}
-                                                <small class="text-muted d-none d-md-block">Size: {{ item.size|upper }}</small>
+                                                <small class="text-muted">Size: {{ item.size|upper }}</small>
                                                 {% endif %}
                                                 {% if item.product.has_boot_sizes %}
-                                                <small class="text-muted d-none d-md-block">Size (UK): {{ item.boot_size|upper }}</small>
+                                                <small class="text-muted">Size (UK): {{ item.boot_size }}</small>
                                                 {% endif %}
                                                 {% if item.product.has_ski_lengths %}
-                                                <small class="text-muted d-none d-md-block">Length (cm): {{ item.ski_length|upper }}</small>
+                                                <small class="text-muted">Length (cm): {{ item.ski_length }}</small>
                                                 {% endif %}
                                                 {% if item.product.has_pole_lengths %}
-                                                <small class="text-muted d-none d-md-block">Length (cm): {{ item.pole_length|upper }}</small>
+                                                <small class="text-muted">Length (cm): {{ item.pole_length }}</small>
                                                 {% endif %}
                                                 <small class="text-muted d-none d-md-block">Category: {{ item.product.category.friendly_name }}</small>
                                                 <small class="text-muted d-none d-md-block">Subcategory: {{ item.product.subcategory.friendly_name }}</small>
@@ -66,7 +66,7 @@
                                                     <div class="d-flex align-items-center mt-2">
                                                         <form method="POST" action="{% url 'remove_from_basket' item.product.id %}" class="mb-0 mr-2">
                                                             {% csrf_token %}
-                                                            <button type="submit" class="btn btn-link btn-sm text-danger p-0 mr-2 border-danger rounded-0">Remove</button>
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-0 mr-2">Remove</button>
                                                         </form>
                                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center mb-0">
                                                             {% csrf_token %}

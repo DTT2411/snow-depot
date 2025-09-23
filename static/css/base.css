@@ -102,8 +102,8 @@ h1, .h1 {
 
 /* Basket page */
 .basket-product-image {
-    width: 45px;
-    height: 60px;
+    width: 80px;
+    height: 120px;
     object-fit: cover;
 }
 
@@ -140,12 +140,6 @@ h1, .h1 {
 
 
 @media (min-width: 768px) {
-    .basket-product-image {
-        width: 80px;
-        height: 120px;
-        object-fit: cover;
-    }
-
     /* Align basket product info to the top of the row on md+ screens */
     .basket-product-image + div {
         align-self: flex-start;
