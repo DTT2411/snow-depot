@@ -138,18 +138,19 @@ h1, .h1 {
 
 /* Base styles for layout adjustments */
 
-/* Ensure page content isn't overlapped by the fixed navbar */
-@media (max-width: 992px) {
-    body {
-        padding-top: 0; /* Header is sticky on small screens; no extra top padding needed */
+
+@media (min-width: 768px) {
+    .basket-product-image {
+        width: 80px;
+        height: 120px;
+        object-fit: cover;
     }
-    
-    /* Reduce top heading size on small screens */
-    #lead-text-header {
-        font-size: 2rem;
-        line-height: 1.2;
+
+    /* Align basket product info to the top of the row on md+ screens */
+    .basket-product-image + div {
+        align-self: flex-start;
     }
-    }
+}
 
 /* Reduce logo size on small screens so it fits alongside the burger icon */
 @media (max-width: 768px) {
@@ -163,5 +164,18 @@ h1, .h1 {
 @media (min-width: 992px) {
     body {
         padding-top: 70px; /* Space for fixed header on larger screens */
+    }
+}
+
+/* Ensure page content isn't overlapped by the fixed navbar */
+@media (max-width: 992px) {
+    body {
+        padding-top: 0; /* Header is sticky on small screens; no extra top padding needed */
+    }
+    
+    /* Reduce top heading size on small screens */
+    #lead-text-header {
+        font-size: 2rem;
+        line-height: 1.2;
     }
 }
