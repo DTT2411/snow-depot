@@ -53,7 +53,6 @@ h1, h2, .dropdown-category {
     font-weight: bold;
 }
 
-/* Apply headings font to heading elements */
 h1, .h1 {
     font-family: var(--headings-font), sans-serif;
 }
@@ -117,9 +116,9 @@ h1, .h1 {
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
+    .container {
+        max-width: 80%;
+    }
 }
 
 /* fixed top navbar only on medium and up */
@@ -154,15 +153,15 @@ h1, .h1 {
 
 /* Reduce logo size on small screens so it fits alongside the burger icon */
 @media (max-width: 768px) {
-  #header-logo {
-    font-size: 1.25rem; /* roughly h5 size */
-    margin: 0;
-    line-height: 1.2;
-  }
+    #header-logo {
+        font-size: 1.25rem; /* roughly h5 size */
+        margin: 0;
+        line-height: 1.2;
+    }
 }
 
 @media (min-width: 992px) {
-  body {
-    padding-top: 70px; /* Space for fixed header on larger screens */
-  }
+    body {
+        padding-top: 70px; /* Space for fixed header on larger screens */
+    }
 }
