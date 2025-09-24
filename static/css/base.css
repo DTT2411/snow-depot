@@ -163,8 +163,6 @@ h1, .h1 {
 }
 
 /* Base styles for layout adjustments */
-
-
 @media (min-width: 768px) {
     /* Align basket product info to the top of the row on md+ screens */
     .basket-product-image + div {
@@ -197,5 +195,12 @@ h1, .h1 {
     #lead-text-header {
         font-size: 2rem;
         line-height: 1.2;
+    }
+}
+
+/* Align and prevent wrapping of basket link between 992px and 1236px */
+@media (min-width: 992px) and (max-width: 1236px) {
+    .navbar .nav-link {
+        white-space: nowrap; 
     }
 }

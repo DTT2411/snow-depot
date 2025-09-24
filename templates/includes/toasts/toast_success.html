@@ -23,7 +23,7 @@
             <div class="mb-2">{{ message }}</div>
             <div class="mt-2 pt-2 border-top d-flex align-items-center">
                 <a href="{{ request.session.last_added.basket_url }}" class="btn btn-sm btn-outline-black rounded-0 border-black mr-2">Go to basket</a>
-                <a href="{{ request.session.last_added.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout</a>
+                <a href="{{ request.session.last_added.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout<span class="icon"><i class="fas fa-lock"></i></span></a>
             </div>
         {% elif 'updated_product' in message.tags and request.session.last_updated %}
             <div class="d-flex align-items-center mb-2">
@@ -38,7 +38,7 @@
             <div class="mb-2">{{ message }}</div>
             <div class="mt-2 pt-2 border-top d-flex align-items-center">
                 <a href="{{ request.session.last_updated.basket_url }}" class="btn btn-sm btn-outline-black rounded-0 border-black mr-2">Go to basket</a>
-                <a href="{{ request.session.last_updated.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout</a>
+                <a href="{{ request.session.last_updated.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout<span class="icon"><i class="fas fa-lock"></i></span></a>
             </div>
         {% else %}
             {{ message }}
