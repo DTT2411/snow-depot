@@ -21,6 +21,10 @@
         <div class="row">
             <div class="col">
                 {% if basket_items %}
+                    {{ basket_items }}
+                    <br>
+                    <br>
+                    {{ request.session.basket }}
                     <div class="table-responsive">
                         <table class="table table-sm">
                             <thead>
