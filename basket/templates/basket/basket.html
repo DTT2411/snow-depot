@@ -70,10 +70,18 @@
                                                     <div class="d-flex align-items-center mt-2">
                                                         <form method="POST" action="{% url 'remove_from_basket' item.product.id %}" class="mb-0 mr-2">
                                                             {% csrf_token %}
+                                                            {% if item.size %}<input type="hidden" name="product_size" value="{{ item.size }}">{% endif %}
+                                                            {% if item.boot_size %}<input type="hidden" name="product_boot_size" value="{{ item.boot_size }}">{% endif %}
+                                                            {% if item.ski_length %}<input type="hidden" name="product_ski_length" value="{{ item.ski_length }}">{% endif %}
+                                                            {% if item.pole_length %}<input type="hidden" name="product_pole_length" value="{{ item.pole_length }}">{% endif %}
                                                             <button type="submit" class="btn btn-sm btn-outline-danger rounded-0 mr-2">Remove</button>
                                                         </form>
                                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center mb-0">
                                                             {% csrf_token %}
+                                                            {% if item.size %}<input type="hidden" name="product_size" value="{{ item.size }}">{% endif %}
+                                                            {% if item.boot_size %}<input type="hidden" name="product_boot_size" value="{{ item.boot_size }}">{% endif %}
+                                                            {% if item.ski_length %}<input type="hidden" name="product_ski_length" value="{{ item.ski_length }}">{% endif %}
+                                                            {% if item.pole_length %}<input type="hidden" name="product_pole_length" value="{{ item.pole_length }}">{% endif %}
                                                             <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2">
                                                             <button type="submit" class="btn btn-sm rounded-0 btn-black">Update</button>
                                                         </form>
@@ -85,6 +93,10 @@
                                     <td class="text-center d-none d-md-table-cell">
                                         <form method="POST" action="{% url 'adjust_basket' item.product.id %}" class="d-flex align-items-center text-center justify-content-center">
                                             {% csrf_token %}
+                                            {% if item.size %}<input type="hidden" name="product_size" value="{{ item.size }}">{% endif %}
+                                            {% if item.boot_size %}<input type="hidden" name="product_boot_size" value="{{ item.boot_size }}">{% endif %}
+                                            {% if item.ski_length %}<input type="hidden" name="product_ski_length" value="{{ item.ski_length }}">{% endif %}
+                                            {% if item.pole_length %}<input type="hidden" name="product_pole_length" value="{{ item.pole_length }}">{% endif %}
                                             <input type="number" name="quantity" min="0" max="99" value="{{ item.quantity }}" class="form-control form-control-sm rounded-0 border-black mr-2 basket-qty-input">
                                             <button type="submit" class="btn btn-sm rounded-0 btn-black">Update</button>
                                         </form>
@@ -94,6 +106,10 @@
                                     <td class="text-right d-none d-md-table-cell">
                                         <form method="POST" action="{% url 'remove_from_basket' item.product.id %}">
                                             {% csrf_token %}
+                                            {% if item.size %}<input type="hidden" name="product_size" value="{{ item.size }}">{% endif %}
+                                            {% if item.boot_size %}<input type="hidden" name="product_boot_size" value="{{ item.boot_size }}">{% endif %}
+                                            {% if item.ski_length %}<input type="hidden" name="product_ski_length" value="{{ item.ski_length }}">{% endif %}
+                                            {% if item.pole_length %}<input type="hidden" name="product_pole_length" value="{{ item.pole_length }}">{% endif %}
                                             <button type="submit" class="btn btn-sm btn-link text-danger border-danger rounded-0">Remove</button>
                                         </form>
                                     </td>
