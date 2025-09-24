@@ -137,7 +137,8 @@ def adjust_basket(request, product_id):
 
     item_data = basket.get(pid)
 
-    def update_sizing(map_key: str, size_value: str):
+    #  Private method for updating basket items with sizes
+    def _update_sizing(map_key: str, size_value: str):
         nonlocal item_data  # Allows ressigning of item_data after quantity is adjusted
         if not isinstance(item_data, dict):
             item_data = {}
@@ -169,13 +170,13 @@ def adjust_basket(request, product_id):
                 basket.pop(pid, None)
 
     if size:
-        update_sizing('items_by_size', size)
+        _update_sizing('items_by_size', size)
     elif boot_size:
-        update_sizing('items_by_boot_size', boot_size)
+        _update_sizing('items_by_boot_size', boot_size)
     elif ski_length:
-        update_sizing('items_by_ski_length', ski_length)
+        _update_sizing('items_by_ski_length', ski_length)
     elif pole_length:
-        update_sizing('items_by_pole_length', pole_length)
+        _update_sizing('items_by_pole_length', pole_length)
     else:
         # No sizing provided
         if isinstance(item_data, int):
@@ -224,7 +225,8 @@ def remove_from_basket(request, product_id):
     if pid in basket:
         item_data = basket.get(pid)
 
-        def remove_sizing(map_key: str, size_value: str):
+        #  Private method for removing basket items with sizes
+        def _remove_sizing(map_key: str, size_value: str):
             nonlocal item_data  # Allows ressigning of item_data after item is removed
             if not isinstance(item_data, dict):
                 return False
@@ -246,13 +248,13 @@ def remove_from_basket(request, product_id):
 
         removed = False
         if size:
-            removed = remove_sizing('items_by_size', size)
+            removed = _remove_sizing('items_by_size', size)
         elif boot_size:
-            removed = remove_sizing('items_by_boot_size', boot_size)
+            removed = _remove_sizing('items_by_boot_size', boot_size)
         elif ski_length:
-            removed = remove_sizing('items_by_ski_length', ski_length)
+            removed = _remove_sizing('items_by_ski_length', ski_length)
         elif pole_length:
-            removed = remove_sizing('items_by_pole_length', pole_length)
+            removed = _remove_sizing('items_by_pole_length', pole_length)
         else:
             # No sizing provided
             if isinstance(item_data, int):
