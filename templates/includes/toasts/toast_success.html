@@ -40,6 +40,21 @@
                 <a href="{{ request.session.last_updated.basket_url }}" class="btn btn-sm btn-outline-black rounded-0 border-black mr-2">Go to basket</a>
                 <a href="{{ request.session.last_updated.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout<span class="icon"><i class="fas fa-lock"></i></span></a>
             </div>
+        {% elif 'removed_product' in message.tags and request.session.last_removed %}
+            <div class="d-flex align-items-center mb-2">
+                {% if request.session.last_removed.image_url %}
+                    <img src="{{ request.session.last_removed.image_url }}" alt="{{ request.session.last_removed.name }}" class="mr-2 toast-product-image">
+                {% endif %}
+                <div>
+                    <div class="font-weight-bold">{{ request.session.last_removed.name }}</div>
+                    <small class="text-muted">£{{ request.session.last_removed.price }}</small>
+                </div>
+            </div>
+            <div class="mb-2">{{ message }}</div>
+            <div class="mt-2 pt-2 border-top d-flex align-items-center">
+                <a href="{{ request.session.last_removed.basket_url }}" class="btn btn-sm btn-outline-black rounded-0 border-black mr-2">Go to basket</a>
+                <a href="{{ request.session.last_removed.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout<span class="icon"><i class="fas fa-lock"></i></span></a>
+            </div>
         {% else %}
             {{ message }}
         {% endif %}

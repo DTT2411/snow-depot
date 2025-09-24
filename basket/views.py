@@ -155,7 +155,7 @@ def adjust_basket(request, product_id):
         else:
             if size_value in mapping:
                 mapping.pop(size_value)
-            messages.success(request, 'Item removed from basket.')
+            messages.success(request, f'{product.name} removed from basket.')
         if mapping:
             item_data[map_key] = mapping
             basket[pid] = item_data
@@ -191,7 +191,7 @@ def adjust_basket(request, product_id):
                 messages.success(request, f'{product.name} quantity updated to {quantity}.', extra_tags='updated_product')
             else:
                 basket.pop(pid, None)
-                messages.success(request, 'Item removed from basket.')
+                messages.success(request, f'{product.name} removed from basket.', extra_tags='removed_product')
 
     request.session['basket'] = basket
     return redirect('view_basket')
@@ -207,6 +207,14 @@ def remove_from_basket(request, product_id):
     """
     basket = request.session.get('basket', {})
     pid = str(product_id)
+
+    # Resolve product and URLs for removal toast
+    product = get_object_or_404(Product, pk=product_id)
+    basket_url = reverse('view_basket')
+    try:
+        checkout_url = reverse('checkout')
+    except NoReverseMatch:
+        checkout_url = '#'
 
     size = request.POST.get('product_size')
     boot_size = request.POST.get('product_boot_size')
@@ -253,6 +261,13 @@ def remove_from_basket(request, product_id):
 
         if removed:
             request.session['basket'] = basket
-            messages.success(request, 'Item removed from basket.')
+            request.session['last_removed'] = {
+                'name': product.name,
+                'price': str(product.price),
+                'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+                'basket_url': basket_url,
+                'checkout_url': checkout_url,
+            }
+            messages.success(request, f'Removed "{product.name}" from your basket.', extra_tags='removed_product')
 
     return redirect('view_basket')
