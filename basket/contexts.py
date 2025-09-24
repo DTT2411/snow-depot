@@ -6,7 +6,15 @@ from products.models import Product
 
 def basket_contents(request):
     """
-    Gets the basket items and totals from the session for global access
+    Build and return the basket context used across templates.
+
+    - Reads the session-based basket and normalizes its contents into a
+      list of basket_items that templates can iterate over. Supports both
+      sized and non-sized products.
+    - Calculates running totals (subtotal, delivery, grand total) and the
+      overall item_count.
+    - Returns a context dict with basket_items and totals for rendering in
+      the header, basket and checkout pages.
     """
     basket_items = []
     total = Decimal('0.00')
