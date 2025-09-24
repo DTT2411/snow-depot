@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.utils.html import format_html
+from django.urls import NoReverseMatch
 
 from products.models import Product
 
@@ -46,6 +48,20 @@ def add_to_basket(request, product_id):
     ski_length = request.POST.get('product_ski_length')
     pole_length = request.POST.get('product_pole_length')
 
+    # Prepare context for toast rendering on addition
+    basket_url = reverse('view_basket')
+    try:
+        checkout_url = reverse('checkout')
+    except NoReverseMatch:
+        checkout_url = '#'
+    request.session['last_added'] = {
+        'name': product.name,
+        'price': str(product.price),
+        'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+        'basket_url': basket_url,
+        'checkout_url': checkout_url,
+    }
+
     # Handle first provided sizing (priority: size -> boot_size -> ski_length -> pole_length)
     sizings = [
         (size, 'items_by_size', 'size'),
@@ -61,11 +77,19 @@ def add_to_basket(request, product_id):
             mapping[size_value] = mapping.get(size_value, 0) + quantity
             item_record[map_key] = mapping
             basket[pid] = item_record
-            messages.success(request, f'Added {quantity} × "{product.name}" ({label} {size_value}) to your basket.')
+            messages.success(
+                request,
+                f'Added {quantity} × "{product.name}" ({label} {size_value.upper()}) to your basket.',
+                extra_tags='added_product'
+            )
             break
     else:
         basket[pid] = basket.get(pid, 0) + quantity
-        messages.success(request, f'Added {quantity} × "{product.name}" to your basket.')
+        messages.success(
+            request,
+            f'Added {quantity} × "{product.name}" to your basket.',
+            extra_tags='added_product'
+        )
 
     request.session['basket'] = basket
 
@@ -97,6 +121,14 @@ def adjust_basket(request, product_id):
     if pid not in basket:
         return redirect('view_basket')
 
+    # Prepare context for toast rendering on update
+    product = get_object_or_404(Product, pk=product_id)
+    basket_url = reverse('view_basket')
+    try:
+        checkout_url = reverse('checkout')
+    except NoReverseMatch:
+        checkout_url = '#'
+
     # Sizing attributes from form
     size = request.POST.get('product_size')
     boot_size = request.POST.get('product_boot_size')
@@ -112,7 +144,14 @@ def adjust_basket(request, product_id):
         mapping = item_data.get(map_key, {})
         if quantity > 0:
             mapping[size_value] = quantity
-            messages.success(request, 'Basket updated.')
+            request.session['last_updated'] = {
+                'name': product.name,
+                'price': str(product.price),
+                'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+                'basket_url': basket_url,
+                'checkout_url': checkout_url,
+            }
+            messages.success(request, f'{product.name} quantity updated to {quantity}.', extra_tags='updated_product')
         else:
             if size_value in mapping:
                 mapping.pop(size_value)
@@ -142,7 +181,14 @@ def adjust_basket(request, product_id):
         if isinstance(item_data, int):
             if quantity > 0:
                 basket[pid] = quantity
-                messages.success(request, 'Basket updated.')
+                request.session['last_updated'] = {
+                    'name': product.name,
+                    'price': str(product.price),
+                    'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+                    'basket_url': basket_url,
+                    'checkout_url': checkout_url,
+                }
+                messages.success(request, f'{product.name} quantity updated to {quantity}.', extra_tags='updated_product')
             else:
                 basket.pop(pid, None)
                 messages.success(request, 'Item removed from basket.')

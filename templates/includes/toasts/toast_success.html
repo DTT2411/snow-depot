@@ -1,15 +1,47 @@
+{% load static %}
 <div class="toast custom toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
     <div class="arrow-up arrow-success"></div>
     <div class="w-100 toast-capper bg-success"></div>
     <div class="toast-header">
-    <img src="..." class="rounded mr-2" alt="...">
+        <i class="fa-solid fa-check mr-2"></i>
         <strong class="mr-auto text-success">Success!</strong>
-        <small>Just Now</small>
         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="toast-body">
-        {{ message }}
+        {% if 'added_product' in message.tags and request.session.last_added %}
+            <div class="d-flex align-items-center mb-2">
+                {% if request.session.last_added.image_url %}
+                    <img src="{{ request.session.last_added.image_url }}" alt="{{ request.session.last_added.name }}" class="mr-2 toast-product-image">
+                {% endif %}
+                <div>
+                    <div class="font-weight-bold">{{ request.session.last_added.name }}</div>
+                    <small class="text-muted">£{{ request.session.last_added.price }}</small>
+                </div>
+            </div>
+            <div class="mb-2">{{ message }}</div>
+            <div class="mt-2 pt-2 border-top d-flex align-items-center">
+                <a href="{{ request.session.last_added.basket_url }}" class="btn btn-sm btn-outline-black rounded-0 border-black mr-2">Go to basket</a>
+                <a href="{{ request.session.last_added.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout</a>
+            </div>
+        {% elif 'updated_product' in message.tags and request.session.last_updated %}
+            <div class="d-flex align-items-center mb-2">
+                {% if request.session.last_updated.image_url %}
+                    <img src="{{ request.session.last_updated.image_url }}" alt="{{ request.session.last_updated.name }}" class="mr-2 toast-product-image">
+                {% endif %}
+                <div>
+                    <div class="font-weight-bold">{{ request.session.last_updated.name }}</div>
+                    <small class="text-muted">£{{ request.session.last_updated.price }}</small>
+                </div>
+            </div>
+            <div class="mb-2">{{ message }}</div>
+            <div class="mt-2 pt-2 border-top d-flex align-items-center">
+                <a href="{{ request.session.last_updated.basket_url }}" class="btn btn-sm btn-outline-black rounded-0 border-black mr-2">Go to basket</a>
+                <a href="{{ request.session.last_updated.checkout_url }}" class="btn btn-sm btn-black rounded-0">Go to checkout</a>
+            </div>
+        {% else %}
+            {{ message }}
+        {% endif %}
     </div>
 </div>
