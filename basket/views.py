@@ -75,9 +75,12 @@ def add_to_basket(request, product_id):
 
 def adjust_basket(request, product_id):
     """
-    Adjust the quantity of the specified product or its specific sizing to the given amount.
-    - If a sizing (size/boot_size/ski_length/pole_length) is provided, update that mapping.
-    - If no sizing is provided and the product is non-sized, update the plain quantity.
+    Adjust the quantity of the specified product or its specific sizing to the
+    given amount.
+    - If a sizing (size/boot_size/ski_length/pole_length) is provided, update
+      that mapping.
+    - If no sizing is provided and the product is non-sized, update the plain
+      quantity.
     - If quantity <= 0, remove the item of that specific sizing.
     """
     if request.method != 'POST':
@@ -103,7 +106,7 @@ def adjust_basket(request, product_id):
     item_data = basket.get(pid)
 
     def update_sizing(map_key: str, size_value: str):
-        nonlocal item_data
+        nonlocal item_data  # Allows ressigning of item_data after quantity is adjusted
         if not isinstance(item_data, dict):
             item_data = {}
         mapping = item_data.get(map_key, {})
@@ -143,17 +146,6 @@ def adjust_basket(request, product_id):
             else:
                 basket.pop(pid, None)
                 messages.success(request, 'Item removed from basket.')
-        elif isinstance(item_data, dict):
-            # Try to update unambiguously if only one sizing and one key exist
-            for mk in ('items_by_size', 'items_by_boot_size', 'items_by_ski_length', 'items_by_pole_length'):
-                if mk in item_data:
-                    keys = list(item_data[mk].keys())
-                    if len(keys) == 1:
-                        update_sizing(mk, keys[0])
-                        break
-            else:
-                # Ambiguous: cannot determine which sizing to update
-                messages.warning(request, 'Please resubmit specifying the sizing to update.')
 
     request.session['basket'] = basket
     return redirect('view_basket')
@@ -161,10 +153,11 @@ def adjust_basket(request, product_id):
 
 def remove_from_basket(request, product_id):
     """
-    Remove the specified product or a specific sizing from the basket.
-    - If a sizing is provided (size/boot_size/ski_length/pole_length), remove only that entry.
-    - If no sizing is provided and the item is non-sized, remove the whole product.
-    - If no sizing is provided but multiple sizing exist, do not remove all; warn the user.
+    Remove the specified product (of a specified sizing, where appropriate)
+    from the basket.
+    - If a sizing is provided (size/boot_size/ski_length/pole_length), remove
+      only the entry of that given size.
+    - If the item is non-sized, remove the whole product.
     """
     basket = request.session.get('basket', {})
     pid = str(product_id)
@@ -178,7 +171,7 @@ def remove_from_basket(request, product_id):
         item_data = basket.get(pid)
 
         def remove_sizing(map_key: str, size_value: str):
-            nonlocal item_data
+            nonlocal item_data  # Allows ressigning of item_data after item is removed
             if not isinstance(item_data, dict):
                 return False
             mapping = item_data.get(map_key, {})
@@ -211,15 +204,6 @@ def remove_from_basket(request, product_id):
             if isinstance(item_data, int):
                 basket.pop(pid)
                 removed = True
-            elif isinstance(item_data, dict):
-                # If unambiguous (only one sizing key with a single entry), remove that one
-                for mk in ('items_by_size', 'items_by_boot_size', 'items_by_ski_length', 'items_by_pole_length'):
-                    if mk in item_data and isinstance(item_data[mk], dict) and len(item_data[mk]) == 1:
-                        only_key = next(iter(item_data[mk]))
-                        removed = remove_sizing(mk, only_key)
-                        break
-                if not removed:
-                    messages.warning(request, 'Please try removing again; specify the size/length to remove.')
 
         if removed:
             request.session['basket'] = basket
