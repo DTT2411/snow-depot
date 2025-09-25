@@ -32,8 +32,38 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body p-0">
-                        <h4 class="mb-3">Order #{{ order.order_number }}</h4>
-                        <table class="table table-sm">
+                        <h4 class="mb-1">Order #{{ order.order_number }}</h4>
+
+                        <h5 class="mb-2">Delivery Details</h5>
+                        <table class="table table-sm mb-2 success-table">
+                            <tbody>
+                                <tr>
+                                    <th class="small text-muted">Name</th>
+                                    <td class="small text-right">{{ order.full_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="small text-muted">Email</th>
+                                    <td class="small text-right">{{ order.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="small text-muted">Phone</th>
+                                    <td class="small text-right">{{ order.phone_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="small text-muted">Address</th>
+                                    <td class="small text-right">
+                                        {{ order.street_address1 }}<br>
+                                        {% if order.street_address2 %}{{ order.street_address2 }}<br>{% endif %}
+                                        {{ order.town_or_city }}{% if order.county %}, {{ order.county }}{% endif %}<br>
+                                        {% if order.postcode %}{{ order.postcode }}<br>{% endif %}
+                                        {{ order.country }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5 class="mb-2">Items</h5>
+                        <table class="table table-sm success-table">
                             <thead>
                                 <tr>
                                     <th class="small text-muted">Item</th>

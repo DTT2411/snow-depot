@@ -38,3 +38,7 @@
     border: 1px solid #1C3738;
     border-radius: 0;
 }
+
+.success-table {
+  max-width: 800px;
+}
