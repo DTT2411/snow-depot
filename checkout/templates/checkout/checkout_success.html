@@ -29,7 +29,64 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-6"></div>
+            <div class="col-12">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <h4 class="mb-3">Order #{{ order.order_number }}</h4>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="small text-muted">Item</th>
+                                    <th class="text-right small text-muted">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for line in order.lineitems.all %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            {% if line.product.image %}
+                                                <img src="{{ line.product.image.url }}" alt="{{ line.product.name }}" class="img-fluid mr-2" style="width: 50px;">
+                                            {% else %}
+                                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ line.product.name }}" class="img-fluid mr-2" style="width: 50px;">
+                                            {% endif %}
+                                            <div>
+                                                <div class="text-break"><a href="{% url 'product_detail' line.product.id %}" class="text-black">{{ line.product.name }}</a></div>
+                                                {% if line.product_size %}
+                                                    <small class="text-muted">Size: {{ line.product_size|upper }}</small>
+                                                {% elif line.product_boot_size %}
+                                                    <small class="text-muted">Size(UK): {{ line.product_boot_size }}</small>
+                                                {% elif line.product_ski_length %}
+                                                    <small class="text-muted">Length(cm): {{ line.product_ski_length }}</small>
+                                                {% elif line.product_pole_length %}
+                                                    <small class="text-muted">Length(cm): {{ line.product_pole_length }}</small>
+                                                {% endif %}
+                                                <div><small class="text-muted">Qty: {{ line.quantity }} × £{{ line.product.price }}</small></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">£{{ line.lineitem_total }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="small"><strong>Subtotal</strong></td>
+                                    <td class="text-right small">£{{ order.order_total }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="small"><strong>Delivery</strong></td>
+                                    <td class="text-right small">£{{ order.delivery_cost }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-right"><strong>£{{ order.grand_total }}</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 border-black mt-4">
             <span class="icon">
