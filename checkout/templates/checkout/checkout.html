@@ -82,10 +82,10 @@
             <div class="col-12 col-lg-6">
                 <h5 class="mb-3">Order Form</h5>
                 <p>Fill out the form below to submit your order.</p>
-                <form method="post" action="{% url 'checkout' %}" class="mt-3">
+                <form method="post" action="{% url 'checkout' %}" class="mt-3" id="payment-form">
                     {% csrf_token %}
                     <fieldset class="rounded px-3 py-3 mb-4">
-                        <legend class="fieldset-label small text-muted px-2 w-auto">Your Details</legend>
+                        <legend class="fieldset-label small px-2 w-auto">Your Details</legend>
                         <div class="row g-3">
                             <div class="col-12 col-md-6">{{ order_form.full_name|as_crispy_field }}</div>
                             <div class="col-12 col-md-6">{{ order_form.email|as_crispy_field }}</div>
@@ -93,7 +93,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="rounded px-3 py-3 mb-4">
-                        <legend class="fieldset-label small text-muted px-2 w-auto">Delivery Details</legend>
+                        <legend class="fieldset-label small px-2 w-auto">Delivery Details</legend>
                         <div class="row g-3">
                             <div class="col-12">{{ order_form.street_address1|as_crispy_field }}</div>
                             <div class="col-12">{{ order_form.street_address2|as_crispy_field }}</div>
@@ -103,11 +103,11 @@
                             <div class="col-12 col-md-6">{{ order_form.postcode|as_crispy_field }}</div>
                             <div class="form-check form-check-inline float-right mr-0">
                                 {% if user.is_authenticated %}
-                                    <div class="form-check-label" for="id-save-info">Save delivery details to my profile</div>
+                                    <div class="form-check-label" for="id-save-info">Save details to my profile</div>
                                     <input type="checkbox" class="form-check-input ml-2 mr-0" id="id-save-info" name="save-info" checked>
                                 {% else %}
                                     <label for="id-save-info" class="form-check-label">
-                                        <a href="{% url 'account_signup' %}" class="text-info">Create an account</a>
+                                        <a href="{% url 'account_signup' %}" class="text-info">Create an account</a> or
                                         <a href="{% url 'account_login' %}" class="text-info">Login</a> to save this information
                                     </label>
                                 {% endif %}
@@ -115,7 +115,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="rounded px-3 py-3 mb-4">
-                        <legend class="fieldset-label small text-muted px-2 w-auto">Payment Details</legend>
+                        <legend class="fieldset-label small px-2 w-auto">Payment Details</legend>
                         <!-- A stripe card element will go here -->
                         <div class="mb-3" id="card-element"></div>
                         <!-- Used to display form errors -->
@@ -132,11 +132,18 @@
                             Back to Basket
                         </a>
                         <button type="submit" class="btn btn-black rounded-0 mb-3 mr-0 mr-md-3 text-nowrap" id="submit-button">
-                            Complete Order <span class="icon"><i class="fas fa-lock"></i></span>
+                            <span class="icon"><i class="fas fa-lock"></i></span> Complete Order
                         </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
