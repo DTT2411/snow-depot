@@ -51,13 +51,13 @@
                                                 <small class="text-muted">Size: {{ item.size|upper }}</small>
                                                 {% endif %}
                                                 {% if item.product.has_boot_sizes %}
-                                                <small class="text-muted">Size (UK): {{ item.boot_size }}</small>
+                                                <small class="text-muted">Size(UK): {{ item.boot_size }}</small>
                                                 {% endif %}
                                                 {% if item.product.has_ski_lengths %}
-                                                <small class="text-muted">Length (cm): {{ item.ski_length }}</small>
+                                                <small class="text-muted">Length(cm): {{ item.ski_length }}</small>
                                                 {% endif %}
                                                 {% if item.product.has_pole_lengths %}
-                                                <small class="text-muted">Length (cm): {{ item.pole_length }}</small>
+                                                <small class="text-muted">Length(cm): {{ item.pole_length }}</small>
                                                 {% endif %}
                                                 <small class="text-muted d-none d-md-block">Category: {{ item.product.category.friendly_name }}</small>
                                                 <small class="text-muted d-none d-md-block">Subcategory: {{ item.product.subcategory.friendly_name }}</small>
@@ -133,7 +133,7 @@
                     </span>
                     <span>Keep Shopping</span>
                 </a>
-                <a href="" class="btn btn-black rounded-0">
+                <a href="{% url 'checkout' %}" class="btn btn-black rounded-0">
                     <span class="icon"><i class="fas fa-lock"></i></span>
                     <span>Checkout</span>
                 </a>
