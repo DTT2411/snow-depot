@@ -3,25 +3,25 @@
 
 .StripeElement,
 .stripe-style-input {
-  box-sizing: border-box;
-  height: 40px;
-  padding: 10px 12px;
-  border: 1px solid #000;
-  border-radius: 0px;
-  background-color: white;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid #000;
+    border-radius: 0px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
 }
 
 .StripeElement--focus,
 .stripe-style-input:focus,
 .stripe-style-input:active {
-  box-shadow: 0 1px 3px 0 #cfd7df;
+    box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
 .StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
+    background-color: #fefde5 !important;
 }
 
 .stripe-style-input::placeholder {
@@ -40,10 +40,24 @@
 }
 
 .success-table {
-  max-width: 800px;
+    max-width: 800px;
 }
 
 .card-body {
-  max-width: 800px;
-  border: 1px solid black;
+    max-width: 800px;
+    border: 1px solid black;
+}
+
+#loading-overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    background-color: #1C3738;
+    opacity: 40%;
+    z-index: 99999;
+}
+
+.loading-icon {
+    margin: 0;
 }
