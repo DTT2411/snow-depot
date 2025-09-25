@@ -86,7 +86,7 @@
           </ul>
           <ul class="navbar-nav d-lg-none w-100 mb-2">
             <li class="nav-item dropdown text-center">
-              <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="mobileAllProductsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products</a>
+              <button type="button" class="nav-link dropdown-toggle dropdown-category px-3 btn btn-link" id="mobileAllProductsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products</button>
               <div class="dropdown-menu border-0 text-center" aria-labelledby="mobileAllProductsDropdown">
                   <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By price</a>
                   <a class="dropdown-item" href="{% url 'products' %}?sort=rating&direction=desc">By rating</a>
@@ -97,9 +97,7 @@
               </div>
             </li>
             <li class="nav-item dropdown text-center">
-              <a class="nav-link dropdown-toggle dropdown-category" href="#" id="mobileEquipDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Equipment
-              </a>
+              <button type="button" class="nav-link dropdown-toggle dropdown-category btn btn-link" id="mobileEquipDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipment</button>
               <div class="dropdown-menu border-0 text-center" aria-labelledby="mobileEquipDropdown">
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=skis">Skis</a>
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=boots">Boots</a>
@@ -108,9 +106,7 @@
               </div>
             </li>
             <li class="nav-item dropdown text-center">
-              <a class="nav-link dropdown-toggle dropdown-category" href="#" id="mobileSkiwearDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Skiwear
-              </a>
+              <button type="button" class="nav-link dropdown-toggle dropdown-category btn btn-link" id="mobileSkiwearDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Skiwear</button>
               <div class="dropdown-menu border-0 text-center" aria-labelledby="mobileSkiwearDropdown">
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=jackets">Jackets</a>
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-pants">Ski Pants</a>
@@ -122,9 +118,7 @@
               </div>
             </li>
             <li class="nav-item dropdown text-center">
-              <a class="nav-link dropdown-toggle dropdown-category" href="#" id="mobileAccessoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Accessories
-              </a>
+              <button type="button" class="nav-link dropdown-toggle dropdown-category btn btn-link" id="mobileAccessoriesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accessories</button>
               <div class="dropdown-menu border-0 text-center" aria-labelledby="mobileAccessoriesDropdown">
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-cameras">Ski Cameras</a>
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=bags">Bags</a>
@@ -140,7 +134,7 @@
       <div class="container">
         <ul class="nav justify-content-center mx-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="allProductsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products</a>
+            <button type="button" class="nav-link dropdown-toggle dropdown-category px-3 btn btn-link" id="allProductsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products</button>
             <div class="dropdown-menu border-0 text-center" aria-labelledby="allProductsDropdown">
                 <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By price</a>
                 <a class="dropdown-item" href="{% url 'products' %}?sort=rating&direction=desc">By rating</a>
@@ -151,7 +145,7 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="equipDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipment</a>
+            <button type="button" class="nav-link dropdown-toggle dropdown-category px-3 btn btn-link" id="equipDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Equipment</button>
             <div class="dropdown-menu border-0 text-center" aria-labelledby="equipDropdown">
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=skis">Skis</a>
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=boots">Boots</a>
@@ -160,7 +154,7 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="skiwearDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Skiwear</a>
+            <button type="button" class="nav-link dropdown-toggle dropdown-category px-3 btn btn-link" id="skiwearDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Skiwear</button>
             <div class="dropdown-menu border-0 text-center" aria-labelledby="skiwearDropdown">
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=jackets">Jackets</a>
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-pants">Ski Pants</a>
@@ -172,7 +166,7 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle dropdown-category px-3" href="#" id="accessoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accessories</a>
+            <button type="button" class="nav-link dropdown-toggle dropdown-category px-3 btn btn-link" id="accessoriesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accessories</button>
             <div class="dropdown-menu border-0 text-center" aria-labelledby="accessoriesDropdown">
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=ski-cameras">Ski Cameras</a>
                 <a class="dropdown-item" href="{% url 'products' %}?subcategory=bags">Bags</a>
