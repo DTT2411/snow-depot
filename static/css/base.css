@@ -51,6 +51,8 @@ h1, h2, .dropdown-category {
     height: 4px;
 }
 
+
+/* Navbar */
 .navbar {
     background-color: var(--highlight-color);
 }
@@ -61,6 +63,22 @@ h1, h2, .dropdown-category {
 .dropdown-menu .dropdown-item.active {
     background-color: var(--primary-color) !important; /* Gunmetal */
     color: #fff !important;
+}
+
+/* Fix vertical alignment of navbar search button with the input */
+.navbar .input-group .btn {
+    height: calc(1.5em + .75rem + 2px); /* Match .form-control default height (Bootstrap 4) */
+    line-height: 1.5;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Slightly reduce the icon box to avoid overflow */
+.navbar .input-group .btn .icon {
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 .logo-font {
@@ -82,13 +100,13 @@ h1, .h1 {
 }
 
 .shop-now-button {
-    background: black;
+    background: var(--primary-color);
     color: white;
     min-width: 260px;
 }
 
 .btn-black {
-    background: black;
+    background: var(--primary-color);
     color: white;
 }
 
@@ -142,6 +160,21 @@ h1, .h1 {
 
 .basket-qty-input {
     width: 50px;
+}
+
+/* Allauth form formatting */
+.allauth-form-inner-content p {
+    margin-top: 1rem;
+    color: var(--primary-color);
+}
+
+.allauth-form-inner-content input {
+    border-color: var(--primary-color);
+    border-radius: 0;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
 }
 
 
@@ -211,3 +244,22 @@ h1, .h1 {
         white-space: nowrap; 
     }
 }
+
+/* Center category headers in collapsed (mobile) navbar */
+@media (max-width: 992px) {
+    /* Make the dropdown toggle fill the row and center its label */
+    .navbar .dropdown-category.btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding-left: 0.75rem; /* balanced horizontal padding */
+        padding-right: 0.75rem;
+    }
+
+    /* Center dropdown menu items for consistency */
+    .navbar .dropdown-menu {
+        text-align: center;
+    }
+}
+
+
