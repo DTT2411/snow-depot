@@ -39,6 +39,16 @@
     border-radius: 0;
 }
 
+select, 
+select option {
+    color: #1C3738;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}
+
 .success-table {
     max-width: 800px;
 }
