@@ -1,0 +1,26 @@
+Dear {{ order.full_name }},
+
+Thank you for your order from Snow Depot. Your order has been received and is now being processed.
+
+Order details:
+- Order number: {{ order.order_number }}
+- Order date: {{ order.date|date:"d M Y" }}
+
+Summary:
+- Subtotal: £{{ order.order_total }}
+- Delivery: £{{ order.delivery_cost }}
+- Grand total: £{{ order.grand_total }}
+
+Shipping address:
+{{ order.full_name }}
+{{ order.street_address1 }}
+{% if order.street_address2 %}{{ order.street_address2 }}
+{% endif %}{{ order.town_or_city }}{% if order.county %}, {{ order.county }}{% endif %}
+{% if order.postcode %}{{ order.postcode }}
+{% endif %}{{ order.country }}
+
+If you have any questions, simply reply to this email and our team will be happy to help.
+
+Thank you for shopping with us,
+
+The Snow Depot Team

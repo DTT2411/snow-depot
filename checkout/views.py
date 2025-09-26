@@ -182,6 +182,16 @@ def checkout_success(request, order_number):
         order.save()
 
         if save_info:
+            # Updates the full name tied to the user account
+            full_name = (order.full_name or '').strip()
+            if full_name:
+                parts = full_name.split()
+                request.user.first_name = parts[0]
+                request.user.last_name = (
+                    ' '.join(parts[1:]) if len(parts) > 1 else ''
+                )
+                request.user.save()
+
             profile_data = {
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,

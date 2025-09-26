@@ -21,11 +21,16 @@ def profile(request):
             if full_name:
                 parts = full_name.split()
                 request.user.first_name = parts[0]
-                request.user.last_name = ' '.join(parts[1:]) if len(parts) > 1 else ''
+                request.user.last_name = (
+                    ' '.join(parts[1:]) if len(parts) > 1 else ''
+                )
                 request.user.save()
 
             form.save()
-            messages.success(request, 'Default delivery information successfully updated!')
+            messages.success(
+                request,
+                'Default delivery information successfully updated!',
+            )
             return redirect('profile')
         else:
             messages.error(request, 'Please correct the errors below.')
@@ -34,7 +39,7 @@ def profile(request):
 
     orders = profile.orders.all().order_by('-date', '-id')
     template = 'profiles/profile.html'
-    
+
     context = {
         'form': form,
         'orders': orders,
@@ -42,12 +47,16 @@ def profile(request):
 
     return render(request, template, context)
 
+
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
-    messages.info(request, (
-        f'This is the old order confirmation for order number {order_number}.'
-    ))
-
+    messages.info(
+        request,
+        (
+            'This is the old order confirmation for order number '
+            f'{order_number}.'
+        ),
+    )
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,

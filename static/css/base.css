@@ -16,7 +16,10 @@ html {
 }
 
 body {
-    background: url('/media/snow-depot-hero-image.jpg') no-repeat center center fixed;
+    /* Translucemnt gradient is used over the background to improve contrast with lead text */
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+        url('/media/snow-depot-hero-image.jpg') no-repeat center center fixed;
     background-size: cover;
     color: var(--primary-color);
     font-family: var(--main-font);
@@ -81,9 +84,9 @@ h1, h2, .dropdown-category {
     width: 1.25rem;
 }
 
-.logo-font {
-    text-transform: uppercase;
-    font-family: var(--headings-font), sans-serif;
+.capital-font {
+    text-transform: uppercase !important;
+    font-family: var(--headings-font), sans-serif !important;
 }
 
 .highlight-font {
