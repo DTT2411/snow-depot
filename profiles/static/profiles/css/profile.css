@@ -1,0 +1,13 @@
+.profile-form-input::placeholder {
+    color: #aab7c4;
+}
+
+select.profile-form-input,
+select.profile-form-input option[value=""] {
+    color: #aab7c4; /* default placeholder-like color when blank country option is selected */
+}
+
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #1C3738;
+}
