@@ -11,3 +11,8 @@ select.profile-form-input option[value=""] {
 #id_default_country option:not(:first-child) {
     color: #1C3738;
 }
+
+.order-history {
+    max-height: 900px;
+    overflow-y: auto;
+}
