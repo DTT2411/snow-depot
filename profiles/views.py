@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 
 from .models import UserProfile
@@ -16,13 +16,25 @@ def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
+            # Persist User full name from form into auth user model
+            full_name = form.cleaned_data.get('full_name', '').strip()
+            if full_name:
+                parts = full_name.split()
+                request.user.first_name = parts[0]
+                request.user.last_name = ' '.join(parts[1:]) if len(parts) > 1 else ''
+                request.user.save()
+
             form.save()
             messages.success(request, 'Default delivery information successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = UserProfileForm(instance=profile)
 
-    form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
-
+    orders = profile.orders.all().order_by('-date', '-id')
     template = 'profiles/profile.html'
+    
     context = {
         'form': form,
         'orders': orders,

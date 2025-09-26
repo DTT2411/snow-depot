@@ -13,6 +13,6 @@ select.profile-form-input option[value=""] {
 }
 
 .order-history {
-    max-height: 900px;
+    max-height: 640px;
     overflow-y: auto;
 }

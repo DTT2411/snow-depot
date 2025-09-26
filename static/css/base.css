@@ -106,7 +106,7 @@ h1, .h1 {
 }
 
 .btn-black {
-    background: var(--primary-color);
+    background: var(--primary-color) !important; 
     color: white;
 }
 

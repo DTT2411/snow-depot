@@ -30,7 +30,7 @@
                 <form action="{% url 'profile' %}" id="profile-update-form" class="mt-3" method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button class="btn btn-black rounded-0 float-right mb-3">Update Information</button>
+                    <button class="btn btn-black rounded-0 mb-3">Update Information</button>
                 </form>
             </div>
             <div class="col-12 col-lg-6">
@@ -57,18 +57,18 @@
                                             {% for line in order.lineitems.all %}
                                                 <tr>
                                                     <td class="small">
-                                                        <div class="text-break">
-                                                            <a href="{% url 'product_detail' line.product.id %}" class="text-black">{{ line.product.name }}</a>
-                                                        </div>
+                                                    <div class="text-break">
+                                                        <a href="{% url 'product_detail' line.product.id %}" class="text-black">{{ line.product.name }}</a>
                                                         {% if line.product_size %}
-                                                            <div><small class="text-muted">Size: {{ line.product_size|upper }}</small></div>
+                                                            <small class="text-muted ml-2">Size: <strong>{{ line.product_size|upper }}</strong></small>
                                                         {% elif line.product_boot_size %}
-                                                            <div><small class="text-muted">Size(UK): {{ line.product_boot_size }}</small></div>
+                                                            <small class="text-muted ml-2">Size(UK): <strong>{{ line.product_boot_size }}</strong></small>
                                                         {% elif line.product_ski_length %}
-                                                            <div><small class="text-muted">Length(cm): {{ line.product_ski_length }}</small></div>
+                                                            <small class="text-muted ml-2">Length(cm): <strong>{{ line.product_ski_length }}</strong></small>
                                                         {% elif line.product_pole_length %}
-                                                            <div><small class="text-muted">Length(cm): {{ line.product_pole_length }}</small></div>
+                                                            <small class="text-muted ml-2">Length(cm): <strong>{{ line.product_pole_length }}</strong></small>
                                                         {% endif %}
+                                                    </div>
                                                     </td>
                                                     <td class="small text-right align-middle">{{ line.quantity }}</td>
                                                 </tr>
