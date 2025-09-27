@@ -6,7 +6,10 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('image_url',)
+        widgets = {
+            'rating': forms.NumberInput(attrs={'min': 0, 'max': 5, 'step': 0.1}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
