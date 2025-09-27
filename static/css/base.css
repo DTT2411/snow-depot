@@ -16,7 +16,7 @@ html {
 }
 
 body {
-    /* Translucemnt gradient is used over the background to improve contrast with lead text */
+    /* Translucent gradient used over background to improve contrast with lead text */
     background: 
         linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
         url('/media/snow-depot-hero-image.jpg') no-repeat center center fixed;
