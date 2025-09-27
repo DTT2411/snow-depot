@@ -18,7 +18,7 @@ html {
 body {
     /* Translucent gradient used over background to improve contrast with lead text */
     background: 
-        linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+        linear-gradient(rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0.23)),
         url('/media/snow-depot-hero-image.jpg') no-repeat center center fixed;
     background-size: cover;
     color: var(--primary-color);
