@@ -61,12 +61,11 @@
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
-                                <div class="pb-0">
-                                    <p class="m-3"><strong>{{ product.name }}</strong></p>
-                                </div>
+
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
+                                            <p class="lead my-3 font-weight-bold">{{ product.name }}</p>
                                             <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
                                             {% if product.category %}
                                                 <p class="mb-0">

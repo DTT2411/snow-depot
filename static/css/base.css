@@ -180,6 +180,16 @@ h1, .h1 {
     display: none;
 }
 
+/* Product cards: consistent footer alignment */
+.product-container .card {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-container .card .card-footer {
+    margin-top: auto;
+}
+
 
 /* -------------------------------- Media Queries */
 
@@ -264,5 +274,3 @@ h1, .h1 {
         text-align: center;
     }
 }
-
-
