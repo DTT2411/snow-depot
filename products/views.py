@@ -93,7 +93,7 @@ def add_product(request):
     """
     if not request.user.is_superuser:
         messages.info(request, 'Only store admins can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('homepage'))
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -120,7 +120,7 @@ def edit_product(request, product_id):
     """
     if not request.user.is_superuser:
         messages.info(request, 'Only store admins can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('homepage'))
 
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -151,7 +151,7 @@ def delete_product(request, product_id):
     """
     if not request.user.is_superuser:
         messages.info(request, 'Only store admins can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('homepage'))
 
     product = get_object_or_404(Product, pk=product_id)
     product.delete()

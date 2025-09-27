@@ -190,6 +190,32 @@ h1, .h1 {
     margin-top: auto;
 }
 
+/* Product form: fix image field */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+    border-color: #dc3545; /* Matches Bootstrap text-danger class */
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #dc3545; /* Matches Bootstrap text-danger class */
+    border-color: #dc3545; /* Matches Bootstrap text-danger class */
+    border-radius: 0;
+}
 
 /* -------------------------------- Media Queries */
 
