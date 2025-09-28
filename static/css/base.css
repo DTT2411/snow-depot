@@ -171,7 +171,7 @@ h1, .h1 {
   position: fixed;
   right: 16px;
   bottom: 16px;
-  z-index: 1050;
+  z-index: 999;
 }
 
 .partners-menu {
@@ -179,7 +179,7 @@ h1, .h1 {
   right: 16px;
   bottom: 64px; /* leave room for the button */
   max-width: 320px;
-  z-index: 1050;
+  z-index: 999;
 }
 
 .partners-toggle .rotate-icon {
@@ -188,6 +188,34 @@ h1, .h1 {
 
 .partners-toggle.collapsed .rotate-icon {
   transform: rotate(180deg);
+}
+
+/* Dark theme for partners menu */
+.partners-menu .card,
+.partners-menu .card-body {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.partners-menu .card {
+  border-color: var(--primary-color);
+}
+
+.partners-menu .table {
+  color: #fff;
+  background-color: transparent;
+}
+
+/* Override Bootstrap thead light background */
+.partners-menu .table thead th,
+.partners-menu .thead-light th {
+  color: #fff;
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.partners-menu .table tbody td {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 
