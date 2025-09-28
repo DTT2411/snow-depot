@@ -45,7 +45,7 @@ class Order(models.Model):
         """
         Generate a unqiue order number using UUID.
         """
-        return uuid.uuid4().hex.upper()
+        return uuid.uuid4().hex[:30].upper()
     
     def update_total(self):
         """
