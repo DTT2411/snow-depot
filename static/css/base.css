@@ -205,18 +205,6 @@ h1, .h1 {
   background-color: transparent;
 }
 
-/* Override Bootstrap thead light background */
-.partners-menu .table thead th,
-.partners-menu .thead-light th {
-  color: #fff;
-  background-color: transparent;
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.partners-menu .table tbody td {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
 /* BASKET */
 
 .basket-product-image {
