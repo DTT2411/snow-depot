@@ -46,14 +46,21 @@ class Order(models.Model):
         Generate a unqiue order number using UUID.
         """
         return uuid.uuid4().hex[:30].upper()
-    
+
     def update_total(self):
         """
         Update the grand total each time an item is added.
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
-        self.delivery_cost = self.order_total * settings.DELIVERY_PERCENTAGE / 100
-        self.grand_total = self.order_total + self.delivery_cost
+        self.order_total = (
+            self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+            or 0
+        )
+        self.delivery_cost = (
+            self.order_total * settings.DELIVERY_PERCENTAGE / 100
+        )
+        self.grand_total = (
+            self.order_total + self.delivery_cost
+        )
         self.save()
 
     def save(self, *args, **kwargs):
@@ -84,7 +91,7 @@ class OrderLineItem(models.Model):
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE
         )
-    product_size = models.CharField(max_length=2, null=True, blank=True)  # XS/S/M/L/XL
+    product_size = models.CharField(max_length=2, null=True, blank=True)
     product_boot_size = models.IntegerField(
         null=True,
         blank=True,
@@ -115,4 +122,7 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'ID {self.product.product_id} on order {self.order.order_number}'
+        return (
+            f'ID {self.product.product_id} on order '
+            f'{self.order.order_number}'
+        )

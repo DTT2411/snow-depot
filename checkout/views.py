@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -73,7 +75,10 @@ def checkout(request):
                 order.user_profile = profile
             client_secret = request.POST.get('client_secret', '')
             if not client_secret:
-                messages.error(request, 'Missing payment confirmation. Please try again.')
+                messages.error(
+                    request,
+                    'Missing payment confirmation. Please try again.',
+                )
                 return redirect(reverse('checkout'))
             pid = client_secret.split('_secret')[0]
             order.stripe_pid = pid
@@ -91,7 +96,9 @@ def checkout(request):
                         order_line_item.save()
                     else:
                         if item_data.get('items_by_size'):
-                            for size, quantity in item_data['items_by_size'].items():
+                            for size, quantity in item_data[
+                                'items_by_size'
+                            ].items():
                                 order_line_item = OrderLineItem(
                                     order=order,
                                     product=product,
@@ -100,7 +107,9 @@ def checkout(request):
                                 )
                                 order_line_item.save()
                         elif item_data.get('items_by_boot_size'):
-                            for boot_size, quantity in item_data['items_by_boot_size'].items():
+                            for boot_size, quantity in item_data[
+                                'items_by_boot_size'
+                            ].items():
                                 order_line_item = OrderLineItem(
                                     order=order,
                                     product=product,
@@ -109,7 +118,9 @@ def checkout(request):
                                 )
                                 order_line_item.save()
                         elif item_data.get('items_by_ski_length'):
-                            for ski_length, quantity in item_data['items_by_ski_length'].items():
+                            for ski_length, quantity in item_data[
+                                'items_by_ski_length'
+                            ].items():
                                 order_line_item = OrderLineItem(
                                     order=order,
                                     product=product,
@@ -118,7 +129,9 @@ def checkout(request):
                                 )
                                 order_line_item.save()
                         elif item_data.get('items_by_pole_length'):
-                            for pole_length, quantity in item_data['items_by_pole_length'].items():
+                            for pole_length, quantity in item_data[
+                                'items_by_pole_length'
+                            ].items():
                                 order_line_item = OrderLineItem(
                                     order=order,
                                     product=product,
@@ -127,8 +140,13 @@ def checkout(request):
                                 )
                                 order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, 'One of the products in your \
-                basket was not found in our database.')
+                    messages.error(
+                        request,
+                        (
+                            'One of the products in your basket was not found '
+                            'in our database.'
+                        ),
+                    )
                     order.delete()
                     return redirect(reverse('view_basket'))
 
@@ -137,8 +155,13 @@ def checkout(request):
                 reverse('checkout_success', args=[order.order_number])
                 )
         else:
-            messages.error(request, 'There was an error in your form. \
-                Please double check your information.')
+            messages.error(
+                request,
+                (
+                    'There was an error in your form. '
+                    'Please double check your information.'
+                ),
+            )
             context = {
                 'order_form': order_form,
                 'stripe_public_key': stripe_public_key,
@@ -181,7 +204,10 @@ def checkout(request):
             order_form = OrderForm()
 
         if not stripe_public_key:
-            messages.warning(request, 'Stripe public key missing - needs to be set in environment.')
+            messages.warning(
+                request,
+                'Stripe public key missing - needs to be set in environment.',
+            )
 
         template = 'checkout/checkout.html'
         context = {
@@ -232,9 +258,13 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order complete! Your \
-        order number is {order_number}. You will receive \
-        a confirmation email at {order.email}.')
+    messages.success(
+        request,
+        (
+            f'Order complete! Your order number is {order_number}. '
+            f'You will receive a confirmation email at {order.email}.'
+        ),
+    )
 
     if 'basket' in request.session:
         del request.session['basket']

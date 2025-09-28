@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.utils.html import format_html
 from django.urls import NoReverseMatch
 
 from products.models import Product
@@ -35,8 +34,8 @@ def add_to_basket(request, product_id):
 
     if quantity < 1:
         messages.error(request, 'Quantity must be at least 1.')
-        redirect_url = request.POST.get('redirect_url') or reverse('view_basket')
-        return redirect(redirect_url)
+        redir_url = request.POST.get('redirect_url') or reverse('view_basket')
+        return redirect(redir_url)
 
     basket = request.session.get('basket', {})
     pid = str(product_id)
@@ -65,7 +64,6 @@ def add_to_basket(request, product_id):
         'checkout_url': checkout_url,
     }
 
-    # Handle first provided sizing (priority: size -> boot_size -> ski_length -> pole_length)
     sizings = [
         (size, 'items_by_size', 'size'),
         (boot_size, 'items_by_boot_size', 'boot size'),
