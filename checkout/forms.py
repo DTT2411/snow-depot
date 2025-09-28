@@ -3,6 +3,12 @@ from .models import Order
 
 
 class OrderForm(forms.ModelForm):
+    """
+    ModelForm used at checkout to capture the contact and shipping details.
+    Configures placeholders CSS classes to integrate with Stripe-styled inputs
+    and hides field labels. Maps directly to the Order model fields required
+    to create an order during checkout.
+    """
     class Meta:
         model = Order
         fields = ('full_name', 'email', 'phone_number',  'street_address1',
@@ -21,7 +27,7 @@ class OrderForm(forms.ModelForm):
             'county': 'County or State',
             'postcode': 'Postal Code',
         }
-
+        # Field customisation
         self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if field != 'country':

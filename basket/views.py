@@ -161,7 +161,8 @@ def adjust_basket(request, product_id):
             item_data[map_key] = mapping
             basket[pid] = item_data
         else:
-            # Remove this mapping; if no other mappings remain, remove the product entry
+            # Remove this sizemapping
+            # If no other mappings remain, remove the product entry
             if map_key in item_data:
                 item_data.pop(map_key, None)
             if any(k.startswith('items_by_') for k in item_data.keys()):

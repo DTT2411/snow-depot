@@ -12,6 +12,11 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """
+    Represents a customer checkout order: stores purchaser details, totals,
+    delivery calculation, original basket and Stripe PID; generates unique
+    order number and recalculates totals from related line items.
+    """
     order_number = models.CharField(max_length=30, null=False, editable=False)
     user_profile = models.ForeignKey(
         UserProfile, on_delete=models.SET_NULL, null=True, blank=True, 
@@ -65,8 +70,16 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """
+    Single product line within an order: captures selected options and
+    quantity, computes line total from product price and quantity, and
+    links to the parent order and product.
+    """
     order = models.ForeignKey(
-        Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems'
+        Order,
+        null=False, blank=False,
+        on_delete=models.CASCADE,
+        related_name='lineitems'
         )
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE
@@ -92,7 +105,9 @@ class OrderLineItem(models.Model):
         )
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
-        max_digits=15, decimal_places=2, null=False, blank=False, editable=False
+        max_digits=15,
+        decimal_places=2,
+        null=False, blank=False, editable=False
         )
 
     def save(self, *args, **kwargs):

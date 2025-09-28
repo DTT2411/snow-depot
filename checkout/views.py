@@ -13,8 +13,14 @@ from basket.contexts import basket_contents
 import stripe
 import json
 
+
 @require_POST
 def cache_checkout_data(request):
+    """
+    Caches checkout session data to Stripe PaymentIntent metadata for future
+    retrieval; stores basket, save_info, and username. Returns 200 or error
+    response.
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -32,6 +38,11 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    Display and process the checkout: validate order form, create Order and
+    line items, initialize Stripe PaymentIntent, handle payment submission,
+    and render checkout page with client secret and form.
+    """
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -54,7 +65,7 @@ def checkout(request):
         if order_form.is_valid():
             order = order_form.save(commit=False)
             if request.user.is_authenticated:
-                # Link order to the user's profile so it appears in Order History
+                # Links order to the user's profile
                 order.user_profile = request.user.userprofile
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
@@ -170,7 +181,9 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
-    Handles successful checkout
+    Finalizes a successful checkout. Attaches order to user profile,
+    optionally updates saved profile info, clears basket, displays
+    confirmation message, and renders the order confirmation page.
     """
     save_info = request.session.get('save_info')  # Update later
     order = get_object_or_404(Order, order_number=order_number)
