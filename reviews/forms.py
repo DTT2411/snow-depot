@@ -3,6 +3,11 @@ from .models import Review
 
 
 class ReviewForm(forms.ModelForm):
+    """
+    Model form for product reviews. Captures text content and optional
+    anonymity, validates input length, and adds fields to the Review model for
+    create/update.
+    """
     content = forms.CharField(
         label="Your review",
         widget=forms.Textarea(

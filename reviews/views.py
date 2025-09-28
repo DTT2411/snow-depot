@@ -11,6 +11,10 @@ from .models import Review
 @require_POST
 @login_required
 def add_review(request, product_id):
+    """
+    Creates a new review for a product from a logged-in user and redirects to
+    product detail.
+    """
     product = get_object_or_404(Product, pk=product_id)
     form = ReviewForm(request.POST)
     if form.is_valid():
@@ -29,6 +33,10 @@ def add_review(request, product_id):
 
 @login_required
 def delete_review(request, review_id):
+    """
+    Deletes a review if requester is author or admin, then redirects to
+    product detail.
+    """
     review = get_object_or_404(Review, pk=review_id)
     product_id = review.product_id
     if request.user.is_superuser or review.user_id == request.user.id:
@@ -41,6 +49,10 @@ def delete_review(request, review_id):
 
 @login_required
 def edit_review(request, review_id):
+    """
+    Allows only the review author to edit content. Saves changes and redirects
+    to product detail.
+    """
     review = get_object_or_404(Review, pk=review_id)
     # Only the author can edit; admins can delete but not edit
     if review.user_id != request.user.id:

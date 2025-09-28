@@ -4,8 +4,9 @@ from django.conf import settings
 
 class Review(models.Model):
     """
-    Product review model for users to submit reviews for specific products.
-    Reviews can be posted anonymously.
+    Stores user-submitted product reviews with content, author, creation date,
+    and optional anonymity. Reviews are linked to a product and user and
+    ordered newest first.
     """
     product = models.ForeignKey(
         'products.Product', on_delete=models.CASCADE, related_name='reviews',
