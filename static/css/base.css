@@ -166,48 +166,30 @@ h1, .h1 {
 
 /* HOMEPAGE */
 
-/* PARTNERS - custom styles (added) */
+/* Partners floating button and menu */
 .partners-fab {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    z-index: 1050;
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1050;
 }
 
 .partners-menu {
-    position: fixed;
-    right: 16px;
-    bottom: 64px; /* leave room for the button */
-    max-width: 320px;
-    z-index: 1050;
+  position: fixed;
+  right: 16px;
+  bottom: 64px; /* leave room for the button */
+  max-width: 320px;
+  z-index: 1050;
 }
 
 .partners-toggle .rotate-icon {
-    transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .partners-toggle.collapsed .rotate-icon {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
-/* Dark table background with white text for contrast */
-.partners-menu .card,
-.partners-menu .card-body,
-.partners-menu .table {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-.partners-menu .table thead th,
-.partners-menu .thead-light th {
-    color: #fff;
-    background-color: transparent;
-    border-color: rgba(255, 255, 255, 0.25);
-}
-
-.partners-menu .table tbody td {
-    border-color: rgba(255, 255, 255, 0.15);
-}
 
 /* BASKET */
 
