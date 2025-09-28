@@ -37,7 +37,13 @@ def profile(request):
             )
             return redirect('profile')
         else:
-            messages.error(request, 'Update failed. Please check valid info has been provided in all fields.')
+            messages.error(
+                request,
+                (
+                    'Update failed. Please check valid info has been provided '
+                    'in all fields.'
+                ),
+            )
     else:
         form = UserProfileForm(instance=profile)
 

@@ -8,6 +8,7 @@ class UserProfileForm(forms.ModelForm):
     placeholders, display order, and field styling.
     """
     full_name = forms.CharField(required=False)
+
     class Meta:
         model = UserProfile
         exclude = ('user',)
@@ -27,8 +28,12 @@ class UserProfileForm(forms.ModelForm):
         if 'full_name' in self.fields:
             self.fields['full_name'].widget.attrs['autofocus'] = True
             if hasattr(self.instance, 'user') and self.instance.user:
-                self.fields['full_name'].initial = self.instance.user.get_full_name()
-        ordered_fields = ['full_name'] + [f for f in self.fields if f != 'full_name']
+                self.fields['full_name'].initial = (
+                    self.instance.user.get_full_name()
+                )
+        ordered_fields = ['full_name'] + [
+            f for f in self.fields if f != 'full_name'
+        ]
         self.order_fields(ordered_fields)
         for field in self.fields:
             if field != 'default_country':
@@ -37,5 +42,7 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = ('border-black rounded-0 profile-form-input')
+            self.fields[field].widget.attrs['class'] = (
+                'border-black rounded-0 profile-form-input'
+            )
             self.fields[field].label = False
