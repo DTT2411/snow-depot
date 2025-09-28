@@ -66,7 +66,8 @@ def checkout(request):
             order = order_form.save(commit=False)
             if request.user.is_authenticated:
                 # Links order to the user's profile
-                order.user_profile = request.user.userprofile
+                profile, _ = UserProfile.objects.get_or_create(user=request.user)
+                order.user_profile = profile
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
@@ -189,7 +190,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
-        profile = UserProfile.objects.get(user=request.user)
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
         #  Attaches the user profile to the order
         order.user_profile = profile
         order.save()
