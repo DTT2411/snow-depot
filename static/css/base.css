@@ -7,6 +7,7 @@
     --main-font: "DM Sans", sans-serif;
     --primary-color: #1C3738; /* Gunmetal */
     --secondary-color: #8BAAAD; /* Cadet Gray */
+    --tertiary-color: #E3E3E3; /* Light Gray */
     --highlight-color: #F4FFF8; /* Mint cream */
 }
 
@@ -31,6 +32,72 @@ h1, h2, .dropdown-category {
     color: var(--primary-color);
 }
 
+h1, .h1 {
+    font-family: var(--headings-font), sans-serif;
+}
+
+.capital-font {
+    text-transform: uppercase !important;
+    font-family: var(--headings-font), sans-serif !important;
+}
+
+.highlight-font {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+
+.main-logo-link {
+    width: fit-content;
+}
+
+.shop-now-button {
+    background: var(--primary-color);
+    color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: var(--primary-color) !important; 
+    color: white;
+}
+
+.btn-black:hover {
+    background: var(--secondary-color) !important; 
+}
+
+.btn-outline-black:hover {
+    background-color: var(--tertiary-color);
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: var(--primary-color) !important;
+}
+
+.border-black {
+    border: 1px solid var(--primary-color) !important;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
@@ -40,6 +107,7 @@ h1, h2, .dropdown-category {
     width: 1.5rem;
 }
 
+/* TOAST MESSAGES */
 .message-container {
     position: fixed;
     right: 20px;
@@ -54,8 +122,21 @@ h1, h2, .dropdown-category {
     height: 4px;
 }
 
+.toast-product-image {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+}
 
-/* Navbar */
+.toast-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+
+/* NAVIGATION */
+
 .navbar {
     background-color: var(--highlight-color);
 }
@@ -84,77 +165,9 @@ h1, h2, .dropdown-category {
     width: 1.25rem;
 }
 
-.capital-font {
-    text-transform: uppercase !important;
-    font-family: var(--headings-font), sans-serif !important;
-}
 
-.highlight-font {
-    color: var(--highlight-color);
-    font-weight: bold;
-}
+/* BASKET */
 
-h1, .h1 {
-    font-family: var(--headings-font), sans-serif;
-}
-
-.main-logo-link {
-    width: fit-content;
-}
-
-.shop-now-button {
-    background: var(--primary-color);
-    color: white;
-    min-width: 260px;
-}
-
-.btn-black {
-    background: var(--primary-color) !important; 
-    color: white;
-}
-
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #222;
-    color: white;
-}
-
-.text-black {
-    color: #000 !important;
-}
-
-.border-black {
-    border: 1px solid black !important;
-}
-
-.overlay {
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: white;
-    z-index: -1;
-}
-
-/* Custom styles for toasts */
-.toast-product-image {
-    width: 60px;
-    height: 80px;
-    object-fit: cover;
-}
-
-.toast-icon {
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-}
-
-/* Basket page */
 .basket-product-image {
     width: 80px;
     height: 120px;
@@ -165,7 +178,9 @@ h1, .h1 {
     width: 50px;
 }
 
-/* Allauth form formatting */
+
+/* ALLAUTH TEMPLATES */
+
 .allauth-form-inner-content p {
     margin-top: 1rem;
     color: var(--primary-color);
@@ -179,6 +194,8 @@ h1, .h1 {
 .allauth-form-inner-content label:not([for='id_remember']) {
     display: none;
 }
+
+/* PRODUCTS */
 
 /* Product cards: consistent footer alignment */
 .product-container .card {
@@ -217,7 +234,7 @@ h1, .h1 {
     border-radius: 0;
 }
 
-/* Reviews List: remove list style from review divs */
+/* REVIEWS */
 .review-list {
     list-style: none;
 }
