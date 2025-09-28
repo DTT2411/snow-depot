@@ -1,0 +1,13 @@
+User-agent: *
+
+# Disallow private, admin, and transactional sections
+Disallow: /admin/
+Disallow: /basket/
+Disallow: /checkout/
+Disallow: /accounts/
+Disallow: /profile/
+
+# Allow access to all other sections
+Allow: /
+
+Sitemap: https://snow-depot-2e7989adac13.herokuapp.com/sitemap.xml
