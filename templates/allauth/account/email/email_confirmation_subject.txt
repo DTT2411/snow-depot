@@ -1,4 +1,1 @@
-{% load i18n %}
-{% autoescape off %}
-{% blocktrans %}Snow Depot: Please Confirm Your E-mail Address{% endblocktrans %}
-{% endautoescape %}
+Snow Depot: Please Confirm Your E-mail Address
