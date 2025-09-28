@@ -16,10 +16,14 @@ class ReviewForm(forms.ModelForm):
         max_length=2000,
         help_text="Max 2000 characters."
     )
+    is_anonymous = forms.BooleanField(
+        label="Post as Anonymous",
+        required=False,
+    )
 
     class Meta:
         model = Review
-        fields = ['content']
+        fields = ['content', 'is_anonymous']
 
     def clean_content(self):
         content = self.cleaned_data.get('content', '')

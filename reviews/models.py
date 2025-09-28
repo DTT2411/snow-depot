@@ -19,6 +19,7 @@ class Review(models.Model):
         related_name='reviews',
     )
     content = models.TextField(max_length=2000)
+    is_anonymous = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

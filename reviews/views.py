@@ -60,8 +60,6 @@ def edit_review(request, review_id):
     else:
         form = ReviewForm(instance=review)
 
-    # Render a minimal page containing just the edit form, or we can reuse product_detail via redirect/message pattern.
-    # To keep UX simple, redirect back with errors or success, but here provide a standalone template.
     return render(request, 'reviews/edit_review.html', {
         'form': form,
         'review': review,

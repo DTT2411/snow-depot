@@ -169,7 +169,7 @@
                 {% for review in product.reviews.all %}
                 <li class="mb-3 border-bottom pb-2 ml-3">
                     <div class="small text-muted">
-                        <strong>{{ review.user.get_username|default:review.user }}</strong> | 
+                        <strong>{% if review.is_anonymous %}Anonymous{% else %}{{ review.user.get_username|default:review.user }}{% endif %}</strong> | 
                         {{ review.created_at }}
                         {% if request.user.is_authenticated %}
                             <!-- User can edit or delete their review -->
@@ -183,18 +183,22 @@
                             {% endif %}
                         {% endif %}
                     </div>
-                    <div class="mt-1">{{ review.content|linebreaksbr }}</div>
+                    <div class="mt-1">{{ review.content }}</div>
                 </li>
                 {% empty %}
                 <li>No reviews yet.</li>
                 {% endfor %}
             </ul>
-            <div class="mt-4">
+            <div class="mt-4 ml-3">
                 {% if request.user.is_authenticated %}
                 <form method="post" action="{% url 'add_review' product.id %}">
                     {% csrf_token %}
                     <div class="form-group ml-3">
                         {{ review_form.content }}
+                    </div>
+                    <div class="form-group ml-3 form-check">
+                        {{ review_form.is_anonymous }}
+                        <label for="id_is_anonymous" class="form-check-label ml-1">Post as Anonymous</label>
                     </div>
                     <button type="submit" class="btn btn-sm btn-black rounded-0 ml-3">Submit Review</button>
                 </form>
