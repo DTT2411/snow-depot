@@ -7,9 +7,10 @@ from products.models import Product
 def basket_contents(request):
     """
     Build and return the basket context used across templates.
-    - Reads the session-based basket and normalizes its contents into a
-      list of basket_items that templates can iterate over. Supports both
-      sized and non-sized products.
+
+    - Reads the session-based basket and normalizes its contents into a list
+      of basket_items that templates can iterate over. Supports both sized and
+      non-sized products.
     - Calculates running totals (subtotal, delivery, grand total) and the
       overall item_count.
     - Returns a context dict with basket_items and totals for rendering in
@@ -26,7 +27,8 @@ def basket_contents(request):
             try:
                 product = Product.objects.get(pk=item_id)
             except Product.DoesNotExist:
-                # Skip invalid product ids that might linger in the session after admin change/deletion
+                # Skip invalid product ids that might linger in the session
+                # after admin change/deletion
                 continue
             line_total = product.price * item_data
             total += line_total
@@ -89,9 +91,18 @@ def basket_contents(request):
                         'line_total': line_total,
                     })
 
-    # Decimal quantize method is used to round up the delivery & grand total to 2 decimal places
-    delivery = ((total * Decimal(settings.DELIVERY_PERCENTAGE) / Decimal('100')) if total > 0 else Decimal('0.00')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-    grand_total = (total + delivery).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    # Decimal.quantize is used to round delivery and grand total to 2 dp
+    if total > 0:
+        rate = Decimal(settings.DELIVERY_PERCENTAGE) / Decimal('100')
+        delivery_raw = total * rate
+    else:
+        delivery_raw = Decimal('0.00')
+
+    delivery = delivery_raw.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    grand_total = (total + delivery).quantize(
+        Decimal('0.01'),
+        rounding=ROUND_HALF_UP,
+    )
 
     context = {
         'basket_items': basket_items,

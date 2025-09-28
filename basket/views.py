@@ -56,7 +56,11 @@ def add_to_basket(request, product_id):
     request.session['last_added'] = {
         'name': product.name,
         'price': str(product.price),
-        'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+        'image_url': (
+            getattr(product.image, 'url', None)
+            if getattr(product, 'image', None)
+            else None
+        ),
         'basket_url': basket_url,
         'checkout_url': checkout_url,
     }
@@ -78,16 +82,22 @@ def add_to_basket(request, product_id):
             basket[pid] = item_record
             messages.success(
                 request,
-                f'Added {quantity} × "{product.name}" ({label} {size_value.upper()}) to your basket.',
-                extra_tags='added_product'
+                (
+                    f'Added {quantity} × "{product.name}" '
+                    f'({label} {size_value.upper()}) to your basket.'
+                ),
+                extra_tags='added_product',
             )
             break
     else:
         basket[pid] = basket.get(pid, 0) + quantity
         messages.success(
             request,
-            f'Added {quantity} × "{product.name}" to your basket.',
-            extra_tags='added_product'
+            (
+                f'Added {quantity} × "{product.name}" '
+                f'to your basket.'
+            ),
+            extra_tags='added_product',
         )
 
     request.session['basket'] = basket
@@ -138,7 +148,8 @@ def adjust_basket(request, product_id):
 
     #  Private method for updating basket items with sizes
     def _update_sizing(map_key: str, size_value: str):
-        nonlocal item_data  # Allows ressigning of item_data after quantity is adjusted
+        # Allows ressigning of item_data after quantity adjust
+        nonlocal item_data
         if not isinstance(item_data, dict):
             item_data = {}
         mapping = item_data.get(map_key, {})
@@ -147,11 +158,19 @@ def adjust_basket(request, product_id):
             request.session['last_updated'] = {
                 'name': product.name,
                 'price': str(product.price),
-                'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+                'image_url': (
+                    getattr(product.image, 'url', None)
+                    if getattr(product, 'image', None)
+                    else None
+                ),
                 'basket_url': basket_url,
                 'checkout_url': checkout_url,
             }
-            messages.success(request, f'{product.name} quantity updated to {quantity}.', extra_tags='updated_product')
+            messages.success(
+                request,
+                f'{product.name} quantity updated to {quantity}.',
+                extra_tags='updated_product',
+            )
         else:
             if size_value in mapping:
                 mapping.pop(size_value)
@@ -185,14 +204,26 @@ def adjust_basket(request, product_id):
                 request.session['last_updated'] = {
                     'name': product.name,
                     'price': str(product.price),
-                    'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+                    'image_url': (
+                        getattr(product.image, 'url', None)
+                        if getattr(product, 'image', None)
+                        else None
+                    ),
                     'basket_url': basket_url,
                     'checkout_url': checkout_url,
                 }
-                messages.success(request, f'{product.name} quantity updated to {quantity}.', extra_tags='updated_product')
+                messages.success(
+                    request,
+                    f'{product.name} quantity updated to {quantity}.',
+                    extra_tags='updated_product',
+                )
             else:
                 basket.pop(pid, None)
-                messages.success(request, f'{product.name} removed from basket.', extra_tags='removed_product')
+                messages.success(
+                    request,
+                    f'{product.name} removed from basket.',
+                    extra_tags='removed_product',
+                )
 
     request.session['basket'] = basket
     return redirect('view_basket')
@@ -227,7 +258,8 @@ def remove_from_basket(request, product_id):
 
         #  Private method for removing basket items with sizes
         def _remove_sizing(map_key: str, size_value: str):
-            nonlocal item_data  # Allows ressigning of item_data after item is removed
+            # Allows ressigning of item_data after item is removed
+            nonlocal item_data
             if not isinstance(item_data, dict):
                 return False
             mapping = item_data.get(map_key, {})
@@ -240,7 +272,10 @@ def remove_from_basket(request, product_id):
             else:
                 item_data.pop(map_key, None)
                 # If no other sizing mappings remain, remove the whole product
-                if any(k.startswith('items_by_') and item_data.get(k) for k in item_data.keys()):
+                if any(
+                    k.startswith('items_by_') and item_data.get(k)
+                    for k in item_data.keys()
+                ):
                     basket[pid] = item_data
                 else:
                     basket.pop(pid, None)
@@ -266,10 +301,18 @@ def remove_from_basket(request, product_id):
             request.session['last_removed'] = {
                 'name': product.name,
                 'price': str(product.price),
-                'image_url': getattr(product.image, 'url', None) if getattr(product, 'image', None) else None,
+                'image_url': (
+                    getattr(product.image, 'url', None)
+                    if getattr(product, 'image', None)
+                    else None
+                ),
                 'basket_url': basket_url,
                 'checkout_url': checkout_url,
             }
-            messages.success(request, f'Removed "{product.name}" from your basket.', extra_tags='removed_product')
+            messages.success(
+                request,
+                f'Removed "{product.name}" from your basket.',
+                extra_tags='removed_product',
+            )
 
     return redirect('view_basket')

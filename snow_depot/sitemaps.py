@@ -27,7 +27,3 @@ class ProductSitemap(Sitemap):
 
     def location(self, obj):
         return reverse('product_detail', kwargs={'product_id': obj.pk})
-
-    # If you add a last_modified/updated field later, implement lastmod()
-    # def lastmod(self, obj):
-    #     return obj.updated_at
