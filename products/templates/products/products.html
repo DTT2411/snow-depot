@@ -86,6 +86,7 @@
                                             {% else %}
                                                 <small class="text-muted">No Rating</small>
                                             {% endif %}
+                                            <div><small class="text-muted">{{ product.reviews.count }} review{% if product.reviews.count != 1 %}s{% endif %}</small></div>
                                             {% if request.user.is_superuser %}
                                                 <small class="ml-3 float-right">
                                                     <a href="{% url 'edit_product' product.id %}" class="text-info">Edit</a> | 

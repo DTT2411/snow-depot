@@ -1,0 +1,29 @@
+from django import forms
+from .models import Review
+
+
+class ReviewForm(forms.ModelForm):
+    content = forms.CharField(
+        label="Your review",
+        widget=forms.Textarea(
+            attrs={
+                'rows': 4,
+                'maxlength': 2000,
+                'class': 'form-control rounded-0 border-black',
+                'placeholder': 'Share your thoughts about this product...'
+            }
+        ),
+        max_length=2000,
+        help_text="Max 2000 characters."
+    )
+
+    class Meta:
+        model = Review
+        fields = ['content']
+
+    def clean_content(self):
+        content = self.cleaned_data.get('content', '')
+        content = content.strip()
+        if not content:
+            raise forms.ValidationError("Review cannot be empty.")
+        return content

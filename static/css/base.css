@@ -217,6 +217,12 @@ h1, .h1 {
     border-radius: 0;
 }
 
+/* Reviews List: remove list style from review divs */
+.review-list {
+    list-style: none;
+}
+
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

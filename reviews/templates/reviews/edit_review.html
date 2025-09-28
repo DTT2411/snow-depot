@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container py-3">
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            <h4 class="mb-3">Edit your review for <strong>{{ product.name }}</strong></h4>
+            <form method="post" action="{% url 'edit_review' review.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.content }}
+                </div>
+                <button type="submit" class="btn btn-black rounded-0">Save changes</button>
+                <a href="{% url 'product_detail' product.id %}" class="btn btn-light rounded-0 border-black ml-2">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

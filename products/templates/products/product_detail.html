@@ -160,4 +160,48 @@
             </div>
         </div>
     </div>
+
+    <hr class="my-4">
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            <h5 class="mb-3 ml-3">Reviews ({{ product.reviews.count }})</h5>
+            <ul class="review-list p-0">
+                {% for review in product.reviews.all %}
+                <li class="mb-3 border-bottom pb-2 ml-3">
+                    <div class="small text-muted">
+                        <strong>{{ review.user.get_username|default:review.user }}</strong> | 
+                        {{ review.created_at }}
+                        {% if request.user.is_authenticated %}
+                            <!-- User can edit or delete their review -->
+                            {% if review.user_id == request.user.id %}
+                                <a href="{% url 'delete_review' review.id %}" class="text-danger float-right">Delete</a>
+                                <span class="text-muted float-right mx-1">|</span>
+                                <a href="{% url 'edit_review' review.id %}" class="text-info float-right">Edit</a>
+                            <!-- Admins can only delete reviews -->
+                            {% elif request.user.is_superuser %}
+                                <a href="{% url 'delete_review' review.id %}" class="text-danger float-right">Delete</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="mt-1">{{ review.content|linebreaksbr }}</div>
+                </li>
+                {% empty %}
+                <li>No reviews yet.</li>
+                {% endfor %}
+            </ul>
+            <div class="mt-4">
+                {% if request.user.is_authenticated %}
+                <form method="post" action="{% url 'add_review' product.id %}">
+                    {% csrf_token %}
+                    <div class="form-group ml-3">
+                        {{ review_form.content }}
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-black rounded-0 ml-3">Submit Review</button>
+                </form>
+                {% else %}
+                <p><a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to write a review.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
