@@ -56,14 +56,18 @@ def edit_review(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     # Only the author can edit; admins can delete but not edit
     if review.user_id != request.user.id:
-        messages.info(request, 'Only store admins can do that.')
-        return redirect(reverse('product_detail', args=[review.product_id]))
+        messages.info(request, 'Only the reviewer can do that.')
+        return redirect(
+            reverse('product_detail', args=[review.product_id])
+        )
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
             messages.success(request, 'Review updated successfully!')
-            return redirect(reverse('product_detail', args=[review.product_id]))
+            return redirect(
+                reverse('product_detail', args=[review.product_id])
+            )
         else:
             for field, errors in form.errors.items():
                 for error in errors:
