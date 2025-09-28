@@ -1,0 +1,28 @@
+[
+  { "model": "products.subcategory", "pk": 1,
+    "fields": { "category": 1, "name": "skis", "friendly_name": "Skis" }},
+  { "model": "products.subcategory", "pk": 2,
+    "fields": { "category": 1, "name": "boots", "friendly_name": "Boots" }},
+  { "model": "products.subcategory", "pk": 3,
+    "fields": { "category": 1, "name": "poles", "friendly_name": "Poles" }},
+
+  { "model": "products.subcategory", "pk": 4,
+    "fields": { "category": 2, "name": "jackets", "friendly_name": "Jackets" }},
+  { "model": "products.subcategory", "pk": 5,
+    "fields": { "category": 2, "name": "ski-pants", "friendly_name": "Ski Pants" }},
+  { "model": "products.subcategory", "pk": 6,
+    "fields": { "category": 2, "name": "underlayers", "friendly_name": "Underlayers" }},
+  { "model": "products.subcategory", "pk": 7,
+    "fields": { "category": 2, "name": "gloves", "friendly_name": "Gloves" }},
+  { "model": "products.subcategory", "pk": 8,
+    "fields": { "category": 2, "name": "goggles", "friendly_name": "Goggles" }},
+  { "model": "products.subcategory", "pk": 9,
+    "fields": { "category": 2, "name": "helmets", "friendly_name": "Helmets" }},
+
+  { "model": "products.subcategory", "pk": 10,
+    "fields": { "category": 3, "name": "ski-cameras", "friendly_name": "Ski Cameras" }},
+  { "model": "products.subcategory", "pk": 11,
+    "fields": { "category": 3, "name": "bags", "friendly_name": "Bags" }},
+  { "model": "products.subcategory", "pk": 12,
+    "fields": { "category": 3, "name": "off-piste-safety", "friendly_name": "Off-piste Safety" }}
+]

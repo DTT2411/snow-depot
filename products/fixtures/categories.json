@@ -1,0 +1,17 @@
+[
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": { "name": "equipment", "friendly_name": "Equipment" }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": { "name": "skiwear", "friendly_name": "Skiwear" }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": { "name": "accessories", "friendly_name": "Accessories" }
+  }
+]

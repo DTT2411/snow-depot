@@ -1,0 +1,218 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "subcategory": 1,
+      "product_id": "SKI-AT-REDSTER",
+      "name": "Atomic Redster Skis",
+      "description": "High-performance on-piste skis for advanced skiers, precise edge hold and stability at speed.",
+      "has_sizes": false,
+      "has_boot_sizes": false,
+      "has_ski_lengths": true,
+      "has_pole_lengths": false,
+      "price": "599.99",
+      "rating": "4.7",
+      "image": "ski-atomic-redster.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "subcategory": 2,
+      "product_id": "BOOT-SAL-XPRO",
+      "name": "Salomon X Pro Boots",
+      "description": "Comfortable all-mountain ski boots with customizable fit for intermediate to advanced skiers.",
+      "has_sizes": false,
+      "has_boot_sizes": true,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "349.00",
+      "rating": "4.3",
+      "image": "boots-salomon-xpro.jpg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "category": 1,
+      "subcategory": 3,
+      "product_id": "POLE-SCOTT-LONGFARER",
+      "name": "Scott Longfarer Poles",
+      "description": "Durable aluminum ski poles with comfortable grips and adjustable straps.",
+      "has_sizes": false,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": true,
+      "price": "59.99",
+      "rating": "4.1",
+      "image": "poles-scott-longfarer.jpg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "category": 2,
+      "subcategory": 4,
+      "product_id": "JKT-ARC-MOONBEAM",
+      "name": "Arc'teryx Moonbeam Jacket",
+      "description": "Premium waterproof-breathable shell with excellent mobility and lightweight insulation.",
+      "has_sizes": true,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "399.00",
+      "rating": "4.8",
+      "image": "jacket-arcteryx-moonbeam.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "category": 2,
+      "subcategory": 5,
+      "product_id": "PANT-MONTEC-RIDER",
+      "name": "Montec Rider Ski Pants",
+      "description": "Hardwearing ski pants with excellent waterproofing, ventilation, and ergonomic fit.",
+      "has_sizes": true,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "179.00",
+      "rating": "4.2",
+      "image": "pants-montec-rider.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "category": 2,
+      "subcategory": 6,
+      "product_id": "BASE-TRE-PROBASE",
+      "name": "Trespass Probase Baselayer",
+      "description": "Breathable, moisture-wicking base layer providing warmth without bulk.",
+      "has_sizes": true,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "49.99",
+      "rating": "4.0",
+      "image": "underlayer-trespass-probase.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "category": 2,
+      "subcategory": 7,
+      "product_id": "GLOV-HESTRA-CLSNAVY",
+      "name": "Hestra Classic Gloves (Navy)",
+      "description": "Warm, durable gloves with leather palm and adjustable cuff.",
+      "has_sizes": true,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "89.00",
+      "rating": "4.4",
+      "image": "gloves-hestra-classicnavy.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "category": 2,
+      "subcategory": 8,
+      "product_id": "GOG-OAK-HIGHWIND",
+      "name": "Oakley Highwind Goggles",
+      "description": "High-contrast lens optics and anti-fog performance for varied mountain conditions.",
+      "has_sizes": false,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "149.00",
+      "rating": "4.5",
+      "image": "goggles-oakley-highwind.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "category": 2,
+      "subcategory": 9,
+      "product_id": "HELM-SMITH-TARGA",
+      "name": "Smith Targa Helmet",
+      "description": "Lightweight helmet with ventilation and adjustable fit system for all-day comfort.",
+      "has_sizes": true,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "129.00",
+      "rating": "4.1",
+      "image": "helmet-smith-targa.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "category": 3,
+      "subcategory": 10,
+      "product_id": "CAM-GOPRO-H5",
+      "name": "GoPro Hero5",
+      "description": "Action camera with 4K recording, waterproof housing, and image stabilization for capturing ski adventures.",
+      "has_sizes": false,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "249.00",
+      "rating": "4.3",
+      "image": "ski-camera-gopro-hero5.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "category": 3,
+      "subcategory": 11,
+      "product_id": "BAG-SSA-ILOVESNOW",
+      "name": "Snowsports Academy Bag",
+      "description": "Roomy gear bag for mountain essentials with durable construction and comfortable straps.",
+      "has_sizes": false,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "59.00",
+      "rating": "4.0",
+      "image": "bags-snowsportsacademy-ilovesnow.jpeg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "category": 3,
+      "subcategory": 12,
+      "product_id": "OPS-SNOW-SHOVEL",
+      "name": "Snow Shovel",
+      "description": "Compact, lightweight avalanche shovel suitable for backcountry safety kits.",
+      "has_sizes": false,
+      "has_boot_sizes": false,
+      "has_ski_lengths": false,
+      "has_pole_lengths": false,
+      "price": "39.00",
+      "rating": "4.2",
+      "image": "ops-snow-shovel.jpg"
+    }
+  }
+]
