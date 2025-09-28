@@ -106,6 +106,11 @@ form.addEventListener('submit', function(ev) {
                 $('#submit-button').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
+                    var hiddenInput = document.createElement('input');
+                    hiddenInput.setAttribute('type', 'hidden');
+                    hiddenInput.setAttribute('name', 'client_secret');
+                    hiddenInput.setAttribute('value', clientSecret);
+                    form.appendChild(hiddenInput);
                     form.submit();
                 }
             }
