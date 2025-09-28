@@ -35,7 +35,7 @@ def delete_review(request, review_id):
         review.delete()
         messages.success(request, 'Review deleted.')
     else:
-        messages.error(request, 'You do not have permission to delete this review.')
+        messages.info(request, 'Only store admins can do that.')
     return redirect(reverse('product_detail', args=[product_id]))
 
 
@@ -44,9 +44,8 @@ def edit_review(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     # Only the author can edit; admins can delete but not edit
     if review.user_id != request.user.id:
-        messages.error(request, 'You do not have permission to edit this review.')
+        messages.info(request, 'Only store admins can do that.')
         return redirect(reverse('product_detail', args=[review.product_id]))
-
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():

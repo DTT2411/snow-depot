@@ -4,11 +4,8 @@ from django.conf import settings
 
 class Review(models.Model):
     """
-    Product reviews written by authenticated users.
-    - product: the product being reviewed (one product can have many reviews)
-    - user: the author of the review (required to be logged in)
-    - content: the review body (limited to 2000 chars)
-    - created_at: date/time the review was created
+    Product review model for users to submit reviews for specific products.
+    Reviews can be posted anonymously.
     """
     product = models.ForeignKey(
         'products.Product', on_delete=models.CASCADE, related_name='reviews',
@@ -28,5 +25,5 @@ class Review(models.Model):
             models.Index(fields=['product', '-created_at']),
         ]
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f"Review by {self.user} on {self.product} at {self.created_at}"
