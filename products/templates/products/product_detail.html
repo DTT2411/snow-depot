@@ -6,7 +6,6 @@
   <meta property="og:title" content="{{ product.name }} | Snow Depot">
   <meta property="og:description" content="{{ product.description|truncatewords:30 }}">
   <meta property="og:image" content="{% if product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}">
-  <link rel="canonical" href="{{ request.build_absolute_uri }}">
 {% endblock %}
 
 {% block page_header %}
