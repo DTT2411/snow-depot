@@ -3,9 +3,7 @@
 
 {% block extra_meta %}
   <meta name="description" content="{{ product.description|truncatewords:30 }}">
-  <meta property="og:title" content="{{ product.name }} | Snow Depot">
-  <meta property="og:description" content="{{ product.description|truncatewords:30 }}">
-  <meta property="og:image" content="{% if product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}">
+  <meta property="title" content="{{ product.name }} | Snow Depot">
 {% endblock %}
 
 {% block page_header %}
