@@ -11,14 +11,16 @@ from checkout.models import Order
 @login_required
 def profile(request):
     """
-    Display's user profile.
+    Displays and updates the authenticated user’s profile, including default
+    contact and delivery details, and lists recent orders associated with
+    the user.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            # Persist User full name from form into auth user model
+            # Collect's user's full name from form and sets on auth user model
             full_name = form.cleaned_data.get('full_name', '').strip()
             if full_name:
                 parts = full_name.split()
@@ -52,6 +54,10 @@ def profile(request):
 
 @login_required
 def order_history(request, order_number):
+    """
+    Shows a previous order’s confirmation details when accessed from the user’s
+    profile.
+    """
     order = get_object_or_404(Order, order_number=order_number)
     messages.info(
         request,

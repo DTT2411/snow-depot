@@ -3,6 +3,10 @@ from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    ModelForm for managing a user’s default contact and address details; sets
+    placeholders, display order, and field styling.
+    """
     full_name = forms.CharField(required=False)
     class Meta:
         model = UserProfile
