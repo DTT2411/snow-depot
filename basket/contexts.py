@@ -7,7 +7,6 @@ from products.models import Product
 def basket_contents(request):
     """
     Build and return the basket context used across templates.
-
     - Reads the session-based basket and normalizes its contents into a
       list of basket_items that templates can iterate over. Supports both
       sized and non-sized products.
