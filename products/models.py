@@ -3,7 +3,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Category(models.Model):
-
+    """
+    Model for top-level product grouping used for browsing and filtering.
+    Provides a machine name and optional friendly display name for storefront
+    navigation and organization.
+    """
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -18,7 +22,11 @@ class Category(models.Model):
 
 
 class Subcategory(models.Model):
-
+    """
+    Model for secondary product grouping linked to a Category. Enables
+    refined browsing and filtering with internal and friendly names for
+    sub-sections like Skis, Boots, Jackets, etc.
+    """
     class Meta:
         verbose_name_plural = 'Subcategories'
 
@@ -36,6 +44,11 @@ class Subcategory(models.Model):
 
 
 class Product(models.Model):
+    """
+    Model for individual storefront product, containing core details such as
+    name, pricing, categorization, sizing options, rating, and media. Supports
+    listing, detail view, basket, and checkout workflows.
+    """
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL
         )

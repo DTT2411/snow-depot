@@ -16,13 +16,12 @@ def view_basket(request):
 
 def add_to_basket(request, product_id):
     """
-    Add a product to the session basket.
-
-    Accepts POST with quantity and optionally one sizing attribute
-    (product_size, product_boot_size, product_ski_length, product_pole_length).
-    Increments either a non-sized quantity or the matching items_by_* entry,
-    persists the basket in the session, shows a message, and redirects to the
-    basket (or a provided redirect_url).
+    Add a product to the session basket. Accepts POST with quantity and
+    optionally one sizing attribute (product_size, product_boot_size,
+    product_ski_length, product_pole_length). Increments either a non-sized
+    quantity or the matching items_by_* entry, establishes the basket in the
+    session, shows a message, and redirects to the basket (or a provided
+    redirect_url).
     """
     if request.method != 'POST':
         return redirect('view_basket')

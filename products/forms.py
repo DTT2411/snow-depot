@@ -4,12 +4,19 @@ from .models import Product, Category, Subcategory
 
 
 class ProductForm(forms.ModelForm):
+    """
+    ModelForm for creating and editing products; configures category &
+    subcategory choices, image upload widget, rating constraints, and
+    applies consistent styling classes to all fields.
+    """
 
     class Meta:
         model = Product
         exclude = ('image_url',)
         widgets = {
-            'rating': forms.NumberInput(attrs={'min': 0, 'max': 5, 'step': 0.1}),
+            'rating': forms.NumberInput(
+                attrs={'min': 0, 'max': 5, 'step': 0.1}
+                ),
         }
 
     image = forms.ImageField(

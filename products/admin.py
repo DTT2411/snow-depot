@@ -3,6 +3,9 @@ from .models import Product, Category, Subcategory
 
 
 class ProductAdmin(admin.ModelAdmin):
+    """
+    Sets fields and order for Product model in django admin.
+    """
     list_display = (
         'product_id',
         'name',
@@ -17,6 +20,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    """
+    Sets fields and order for Category model in django admin.
+    """
     list_display = (
         'name',
         'friendly_name',
@@ -26,6 +32,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class SubcategoryAdmin(admin.ModelAdmin):
+    """
+    Sets fields and order for Subcategory model in django admin.
+    """
     list_display = (
         'name',
         'friendly_name',

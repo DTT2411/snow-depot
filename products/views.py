@@ -12,9 +12,10 @@ from reviews.forms import ReviewForm
 # Create your views here.
 def all_products(request):
     """
-    A view to return a list of all products, including sort/search queries
+    Renders and processes the add product form for store admins. Validates and
+    saves Product with image upload, enforces superuser access, and redirects
+    to the new product’s detail page.
     """
-
     products = Product.objects.all()
     query = None
     sort = None
@@ -77,7 +78,6 @@ def product_detail(request, product_id):
     """
     A view to return a product information page for a specific product
     """
-
     product = get_object_or_404(Product, pk=product_id)
 
     context = {
