@@ -22,7 +22,10 @@ def cache_checkout_data(request):
     response.
     """
     try:
-        pid = request.POST.get('client_secret').split('_secret')[0]
+        client_secret = request.POST.get('client_secret', '')
+        if not client_secret:
+            return HttpResponse(status=400)
+        pid = client_secret.split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'basket': json.dumps(request.session.get('basket', {})),
@@ -68,7 +71,11 @@ def checkout(request):
                 # Links order to the user's profile
                 profile, _ = UserProfile.objects.get_or_create(user=request.user)
                 order.user_profile = profile
-            pid = request.POST.get('client_secret').split('_secret')[0]
+            client_secret = request.POST.get('client_secret', '')
+            if not client_secret:
+                messages.error(request, 'Missing payment confirmation. Please try again.')
+                return redirect(reverse('checkout'))
+            pid = client_secret.split('_secret')[0]
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
             order.save()
@@ -132,6 +139,12 @@ def checkout(request):
         else:
             messages.error(request, 'There was an error in your form. \
                 Please double check your information.')
+            context = {
+                'order_form': order_form,
+                'stripe_public_key': stripe_public_key,
+                'client_secret': request.POST.get('client_secret', ''),
+            }
+            return render(request, 'checkout/checkout.html', context)
 
     else:
         basket = request.session.get('basket', {})
