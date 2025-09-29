@@ -333,7 +333,22 @@ The checkout flow is accessible and optimized for performance, guiding users fro
 **Checkout - appearance of processing overlay after submission** <br>
 ![Checkout processing overlay](readme_assets/img/checkout-processing-overlay.jpg) 
 
+The default details on the user's profile page have been correctly updated since save info was selected at checkout.<br>
 **Checkout - profile details updated** <br>
+![Checkout details updated](readme_assets/img/checkout-details-updated.jpg) 
+
+### 10. Checkout Success
+The checkout success page confirms the user's purchase and provides a clear, printable record. It displays the unique order code and key data such as order date and email used, with an itemized summary of products, quantities & size variants, unit prices, delivery, discounts, and the grand total. Shipping details are shown for verification.
+
+For signed‑in users who chose to save their details, the page confirms that profile information has been updated; returning users can also jump to their Order History to review the receipt later.
+
+The layout is responsive and accessible, with clear CTAs to continue shopping after checkout is complete. 
+
+**Checkout Success - large screens** <br>
+![Checkout large](readme_assets/img/checkout-success-large.jpg) 
+
+**Checkout Success - small screens** <br>
+![Checkout small](readme_assets/img/checkout-success-small.jpg) 
 
 
 ### 4. Hero Image
@@ -355,11 +370,13 @@ The footer is responsive, dividing into two rows on larger screens and collapsin
 **Footer - small screen**<br>
 ![Footer small](readme_assets/img/footer-small.jpg) 
 
+
+
+
 ### 6. Homepage
 The default homepage for the website contains a short description of the restaurant's history and location, and the type of cuisine served. 
 
 **Homepage**<br>
-![Homepage](readme_assets/img/homepage.jpg) 
 
 ### 7. Reservation form
 Users can access the reservation form by being logged in and clicking the "Book Now" CTA button from any page on the site. A simple booking form was developed to apprehend key details for the reservation including the number of guests, date & time of booking, and expected duration. An optional "Special Requirements" field also allows prospective guests to inform the restaurant about any allergies, conditions, etc. prior for anyone in their party.
