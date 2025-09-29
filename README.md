@@ -45,7 +45,8 @@ This structured yet flexible approach supported iterative development, continuou
 |View list of all products|As a customer I can view a list of all products so that I can browse through the entire collection.|Must Have| Complete| 
 |Search through categories|As a customer I can select a category of products to look through so that I can narrow down my search.|Must Have|Complete|
 |Filter products|As a customer I can filter products by subcategory so that I can find a well-rated product which fits my needs and price-range.|Must Have|Complete|
-|See product information|As a customer I can see comprehensive product information for each individual item so that I can be fully informed about the product before buying.|Must Have|Complete| 
+|View detailed product information|As a customer I can see comprehensive product information for each individual item so that I can be fully informed about the product before buying.|Must Have|Complete| 
+|Relevant product images|As a customer I can see relevant images of each product so that I can quickly assess if I like the appearance/construction and would want to buy it.|Must Have|Partially Complete*|
 |Order listed products|As a customer I can order the products when viewing them in a list on screen so that I can sort by my preferences.|Should Have| Complete| 
 |View site information|As a customer I can see basic information about the site so that I can determine upon first visiting whether it’s right for my needs.|Should Have| Complete| 
 |Search products|As a customer I can search through products using keywords so that I can easily find a suitable product even if I'm not sure what subcategory to look in.|Should Have| Complete|
@@ -62,7 +63,7 @@ This structured yet flexible approach supported iterative development, continuou
 |Secure purchase|As a customer I can securely complete the purchase of products so that I can receive my order.|Must Have|Complete| 
 |Update items in basket|As a customer I can change the quantity of individual items in my order so that I can correct any mistake made when adding to basket.|Should Have|Complete| 
 |View running total|As a customer I can see a running total for the order in my basket so that I can track my potential spending.|Should Have|Complete|
-|Check before remove item|As an customer I can receive a check before deleting an item from my order so that I avoid accidental deletions.|Could Have|Not Complete|
+|Check before remove item|As an customer I can receive a check before deleting an item from my order so that I avoid accidental deletions.|Could Have|Not Complete*|
 
 ### Product reviews
 |Name|Description|Priority|Status|
@@ -80,8 +81,8 @@ This structured yet flexible approach supported iterative development, continuou
 |Add new products|As an administrator I can keep add new products to our inventory so that I can keep the store up to date with new items.|Must Have|Complete| 
 |Remove products|As an administrator I can remove products from the store so that we keep the inventory up to date and prevent customers from purchasing any items which are no longer being sold.|Must Have|Complete| 
 |Update products|As an administrator I can update product information so that the information on all stock is kept up to date and we can correct any issues.|Should Have|Complete| 
-|Check before product deletion|As an administrator I can receive a check before deleting a product so that I avoid accidental deletions.|Could Have|Not Complete| 
-|Bulk product upload|As an administrator I can keep upload product images in bulk and complete details/descriptions for each so that I can conveniently add multiple products quickly.|Could Have|Not Complete| 
+|Check before product deletion|As an administrator I can receive a check before deleting a product so that I avoid accidental deletions.|Could Have|Not Complete*| 
+|Bulk product upload|As an administrator I can keep upload product images in bulk and complete details/descriptions for each so that I can conveniently add multiple products quickly.|Could Have|Not Complete*| 
 
 ### Messages and alerts
 |Name|Description|Priority|Status|
@@ -90,6 +91,8 @@ This structured yet flexible approach supported iterative development, continuou
 |Alert user about account interactions|As a customer I can be alerted when I have logged in or out, or updated my details, so that I can be sure of my login status and details at all times.|Must Have| Complete| 
 |Alert user to basket changes|As a customer I can be alerted when I have added, update or removed an item my basket so that I have a visual cue that my items are being added correct, besides the running total updating.|Should Have|Complete| 
 |Email confirmation of purchase|As a customer I can receive a customised confirmation email after completing my order so that I have email evidence of the purchase and details confirmed to me.|Should Have|Complete| 
+
+*Not complete or partially complete user stories will be discussed in the Future Improvements section
 
 
 ## Design
@@ -136,10 +139,10 @@ The main features of the application include:
 8. Basket
 9. Checkout
 10. Checkout success
-11. Reviews
-12. Product administration (admin-only)
-13. Notifications system
-14. Emails
+11. Product administration (admin-only)
+12. Notifications system
+13. Emails
+14. Other features
 
 
 ### 1. Navigation Bar
@@ -208,9 +211,9 @@ The index page welcomes users with a full‑width hero image that sets an alpine
 
 A prominent Shop Now call‑to‑action drives visitors directly into the product catalog for a fast start to browsing. Below, the About section introduces the brand’s purpose and values. 
 
-To reinforce credibility, the Our Partners area highlights a selection of trusted industry brands and services we work with, showcasing the ecosystem behind the store. 
+The Our Partners area highlights a selection of trusted industry brands and services that Snow Depot collaborates with, showcasing the online skiwear ecosystem behind the store. 
 
-Together, these sections quickly communicate who we are, inspire confidence, and streamline the path from discovery to shopping, on any device. Content is lightweight, responsive, and accessible for all users.
+Together, these sections quickly communicate the identity of Snow Depot, inspire confidence, and streamline the path to shopping, on any device. Content is lightweight, responsive, and accessible for all users.
 
 **Homepage** <br>
 ![homepage](readme_assets/img/homepage.jpg) 
@@ -349,6 +352,42 @@ The layout is responsive and accessible, with clear CTAs to continue shopping af
 
 **Checkout Success - small screens** <br>
 ![Checkout small](readme_assets/img/checkout-success-small.jpg) 
+
+
+### 11. Product Administration
+The product administration area enables authorized administrators to manage the product catalog efficiently and safely. A simple form to add new products captures essential fields such as name, category and subcategory, price, ID, description, and rating. The form also includes a customa image uploader with a clear/replace control. Form inputs are validated server‑side and inline, with helpful error messages. When the form is saved, the product is immediately available in the storefront, and a success notice confirms creation.
+
+Editing uses the same, pre‑populated form, streamlining quick corrections to info fields or imagery without re‑entering unchanged data. Image updates allow replacing or removing an existing file. After deletion, the product catalog and lists update and a success message is shown.
+
+For convenience, Edit and Delete links are also exposed to admins on individual product detail pages, providing a fast path to maintenance. All admin routes are permission‑checked so only staff can access them. Non-admins are redurected to the homepage with an info message.
+
+**Add product form - large screens** <br>
+![Add product form large](readme_assets/img/add-product-form-large.jpg) 
+
+**Add product form - small screens** <br>
+![Add product form small](readme_assets/img/add-product-form-small.jpg) 
+
+**Edit/delete links - product lists** <br>
+![Edit/delete links product lists](readme_assets/img/product-list-edit-delete-links.jpg) 
+
+**Edit/delete links - product detail** <br>
+![Edit/delete links product detail](readme_assets/img/product-detail-edit-delete-links.jpg)<br>
+
+For additional context, an examplar populated add product form can be see below, complete with test data.<br>
+**Add product form - populated with test data** <br>
+![Add product form populated](readme_assets/img/add-product-form-populated.jpg)<br>
+
+After creation, the new product detail page for the product is displayed with correct fields, image, size selector (if applicable), etc.<br>
+**Add product form - product detail result** <br>
+![Add product form result 1](readme_assets/img/add-product-form-result-1.jpg)<br>
+
+The new product is also searchable on via all category/subcategory options...<br> 
+**Add product form - product list result** <br>
+![Add product form result 2](readme_assets/img/add-product-form-result-2.jpg)<br>
+
+...and by keyword search.<br>
+**Add product form - product search result** <br>
+![Add product form result 3](readme_assets/img/add-product-form-result-3.jpg)<br>
 
 
 ### 4. Hero Image
