@@ -217,6 +217,31 @@ Together, these sections quickly communicate who we are, inspire confidence, and
 **Homepage collapsed (for mobile & tablet)** <br>
 ![homepage collapsed](readme_assets/img/homepage-collapsed.jpg) 
 
+**Our Partners Menu** <br>
+![our partners menu](readme_assets/img/our-partners.jpg) 
+
+
+### 5. Product Lists
+The product listing pages present inventory in a responsive grid that adapts from single-column on small screens to multi-column layouts on tablets and desktops, ensuring consistent card sizing and readable spacing across devices. Lists are paginated for performance and clarity, maintaining fast load times while keeping navigation straightforward for larger collections.
+
+Each product card features a clear image, product name, category and subcategory tags, price, and average rating, plus a quick link to view full details about the product. 
+
+**Product list example - wide screens** <br>
+![Product list example wide](readme_assets/img/product-list-large-screen.jpg) 
+
+**Product list example - tablet screens** <br>
+![Product list example tablet](readme_assets/img/product-list-tablet.jpg) 
+
+**Product list example - mobile** <br>
+![Product list example mobile](readme_assets/img/product-list-mobile.jpg) 
+
+Ordering tools allow sorting by price (low–high/high–low), rating, and name, helping prioritize value and/or quality.<br>
+**Ordering drop-down** <br>
+![Ordering drop-down](readme_assets/img/ordering-dropdown.jpg) 
+
+Users can refine results with filtering by category and subcategory, narrowing the catalog to relevant gear in a few clicks. Keyword search supports rapid discovery by matching titles and descriptions. The number of search results returned is included, along with a convenient link back to the main product page. <br>
+**Product search results** <br>
+![Product search results](readme_assets/img/search-results.jpg) 
 
 
 ### 4. Hero Image
