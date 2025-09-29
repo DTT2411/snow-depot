@@ -191,15 +191,16 @@ The Profile page centralizes a user’s personal information and purchase histor
 
 The form lets users manage their saved contact and delivery information. Fields are pre-populated when available, include server-side validation with clear inline errors, and save updates securely to streamline future checkouts. Visual feedback is provided via consistent toasts after updating.
 
-The Order History section lists previous orders in reverse chronological order, showing the order number, date, item count, and totals. Each entry links to a detailed, read-only order confirmation page that mirrors the checkout receipt for easy reference or proof of purchase. Line items display product titles, size options (where relevant), quantities, and prices, helping users quickly verify what was purchased. This section is particularly useful for tracking deliveries, calculating expenses, or reviewing sizing and preferences for future purchases. 
+The Order History section is a scrollable list of previous orders in reverse chronological order, showing the order number, date, item count, and totals. Each entry links to a detailed, read-only order confirmation page that mirrors the checkout receipt for easy reference or proof of purchase. Line items display product titles, size options (where relevant), quantities, and prices, helping users quickly verify what was purchased. This section is particularly useful for tracking deliveries, calculating expenses, or reviewing sizing and preferences for future purchases. 
 
 Together, these features provide a reliable self-service hub that speeds up repeat orders while maintaining privacy and data integrity.
 
-**Example success message** - sign in <br>
-![System succcess message](readme_assets/img/success-message.jpg) 
+**Profile** <br>
+![Navigation bar](readme_assets/img/my-profile.jpg) 
 
-**Example error message** - invalid booking <br>
-![System error message](readme_assets/img/error-message.jpg) 
+**Profile collapsed (for mobile & tablet)** <br>
+![Navigation bar collapsed signed out](readme_assets/img/my-profile-collapsed.jpg) 
+
 
 ### 4. Hero Image
 A high-resolution, royalty-free hero image relevant to the restaurant theme was sourced from Pixabay. Using custom styling and application of `{% block main_class %}` on templates, this image serves as the background for all pages.
