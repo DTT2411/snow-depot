@@ -244,6 +244,29 @@ Users can refine results with filtering by category and subcategory, narrowing t
 ![Product search results](readme_assets/img/search-results.jpg) 
 
 
+### 6. Product detail pages
+The product detail page focuses on clear evaluation and fast purchase decisions. A large, high‑quality product image sits alongside the key product details, including name, price, average rating, and categorisation. 
+
+Below the primary section, users find a concise overview and an extended description with key specifications, materials, and care notes. Dynamic badges highlight discounts or limited stock when relevant. 
+
+A quantity selector and a prominent Add to Basket call‑to‑action support quick checkout. If applicable, variant size controls are also available to customise preferences on clothing, skis, boots and poles. The Keep Shopping button returns the user to the product list.
+
+The layout is fully responsive: content stacks vertically on small screens and shifts to a two‑column arrangement on larger devices for efficient scanning. 
+
+For shop admins, edit and delete links for produce update or deletion are available with coherent styling to distinguish them from other content. 
+
+Overall, the page blends rich product information with conversion‑oriented controls, guiding shoppers from assessment to purchase smoothly.
+
+**Product detail page - large screens** <br>
+![Product detail page large](readme_assets/img/product-detail-large.jpg) 
+
+**Product detail page - small screens** <br>
+![Product detail page small](readme_assets/img/product-detail-small.jpg) 
+
+**Size & Quantity inputs** <br>
+![Size & quantity inputs](readme_assets/img/size-quantity-inputs.jpg) 
+
+
 ### 4. Hero Image
 A high-resolution, royalty-free hero image relevant to the restaurant theme was sourced from Pixabay. Using custom styling and application of `{% block main_class %}` on templates, this image serves as the background for all pages.
 
