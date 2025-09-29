@@ -3,7 +3,7 @@
 # Snow Depot
 
 
-## Project Purpose
+## Project Description
 **Snow Depot** is an e-commerce web application for buying premium ski equipment, apparel, and accessories. Built with Django, the site aims to deliver a fast, intuitive, and secure shopping experience across devices. Customers can browse a curated catalog with rich filtering and sorting by category, subcategory, name, rating, and price. Product detail pages display comprehensive information and support size selection where appropriate, while a session-based basket enables quick additions, adjustments, and removals with real-time feedback via clear and easily visible notifications.
 
 Checkout is powered by Stripe, using PaymentIntents for secure card processing, and includes order validation, line item creation, delivery calculation, as well as customised confirmation emails. Authenticated users can manage a profile with saved defaults for contact and address details to speed up future purchases, and view their order history. The reviews feature lets users submit and edit product reviews, enhancing trust and discoverability.
@@ -27,6 +27,43 @@ This structured yet flexible approach supported iterative development, continuou
 
 
 ## User Stories
+
+### Authentication and Profile
+|Name|Description|Priority Level|Status|
+|---|---|---|---|
+|Register Account|As a customer I can register for an account so that I don’t need to fill my details in every time I make a purchase|Must Have| Complete| 
+|Log in to account|As a customer I can easily log in to my account so that I can start browsing without delay.|Must Have| Complete| 
+|Log out of account|As a customer I can easily log out of my account so that I can avoid staying signed in unnecessarily.|Must Have| Complete| 
+|Add contact and shipping details|As a customer I can add my default contact and shipping details to my profile so that I can have a quicker checkout process.|Must Have| Complete|
+|Track previous orders|As a customer I can see a list of my previous orders so that I can keep track of what I've purchased and retain details of past orders in case there have been any issues.|Should Have| Complete| 
+
+### Navigation and viewing products
+|Name|Description|Priority Level|Status|
+|---|---|---|---|
+|Navigate easily|As a customer I can use a navigation bar to easily navigate around the site so that I don't struggle to find what I'm looking for quickly.|Must Have| Complete| 
+|Search through categories|As a customer I can select a category of products to look through so that I can narrow down my search.|Must Have|Complete| 
+|See product information|As a customer I can see comprehensive product information for each individual item so that I can be fully informed about the product before buying.|Must Have|Complete| 
+|Order listed products|As a customer I can order the products when viewing them in a list on screen so that I can sort by my preferences.|Should Have| Complete| 
+|View site information|As a customer I can see basic information about the site so that I can determine upon first visiting whether it’s right for my needs.|Should Have| Complete| 
+|Search products|As a customer I can search through products using keywords so that I can easily find a suitable product even if I'm not sure what subcategory to look in.|Should Have| Complete| 
+
+
+### Order process
+|Name|Description|Priority Level|Status|
+|---|---|---|---|
+|Register Account|As a customer I can register for an account so that I don’t need to fill my details in every time I make a purchase|Must Have| Complete| 
+|Log in to account|As a customer I can easily log in to my account so that I can start browsing without delay.|Must Have| Complete| 
+|Log out of account|As a customer I can easily log out of my account so that I can avoid staying signed in unnecessarily.|Must Have| Complete| 
+|Add contact and shipping details|As a customer, I can add my default contact and shipping details to my profile so that I can have a quicker checkout process.|Must Have| Complete| 
+
+### Messages and alerts
+|Name|Description|Priority Level|Status|
+|---|---|---|---|
+|Register Account|As a customer I can register for an account so that I don’t need to fill my details in every time I make a purchase|Must Have| Complete| 
+|Log in to account|As a customer I can easily log in to my account so that I can start browsing without delay.|Must Have| Complete| 
+|Log out of account|As a customer I can easily log out of my account so that I can avoid staying signed in unnecessarily.|Must Have| Complete| 
+|Add contact and shipping details|As a customer, I can add my default contact and shipping details to my profile so that I can have a quicker checkout process.|Must Have| Complete| 
+
 
 ### Implemented User Stories
 
