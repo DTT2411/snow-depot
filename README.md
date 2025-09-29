@@ -516,6 +516,7 @@ All manual testing detailed here was conducted both on a local server, as well a
 - Updating an item's quantity within the basket to 0 correctly results in the item being removed from the basket altogether.
 - Confirmed that the product names on the basket page correctly link back to the product detail page for that product, ensuring the user can go back and view the details at any time prior to purchase.
 - The appropriate empty basket screen is displayed when the user visits the basket page via nav element with no items in the session, or after they remove all items from within the basket page itself.
+- Confirmed that the basket contents and order total are retained between sessions, unless the user logs out or clears their session data
 
 #### **Checkout**
 - Conducted exhaustive testing of the validation of all details & delivery fields, using normal, extreme, and exceptional data where appropriate.
@@ -523,45 +524,60 @@ All manual testing detailed here was conducted both on a local server, as well a
 - Confirmed that the order total is correctly calculated, the delivery cost of 10% of the order is correctly applied to the total, and that the total advised in the danger text below the card payment section matches the total displayed under the summary.
 - Tested that the "create an account" and "login" links appear correctly with the prompt to save information for users who are not logged in/registered
 - As a logged in user, I ensured that the "save details" functionality worked correctly by completing checkout with the box checked and unchecked, and checking that the default details on the profile page updated/did not update, respectively.
+- Checked that the form was rejected when user tries to complete an order without filling in required fields, such as name, street address line 1, etc. The user is correctly redirected to the form with existing data loaded, and clear error messages below fields where data was missing.
+- During development, as part of the process for establishing the webhooks and handlers, I conducted manual testing of simulated payments using the Stripe CLI and listeners. This helped me to troubleshoot issues with valid payments and ensured that valid transactions were being correctly processed by Stripe.
+- While conducting testing on the deployed version, I encountered a major bug causing completed transactions to result in a Server Error 500 in every instance. I used the Stripe developer dashboard to identify and resolve the issue - further info in "Bug fixes during testing" section.
 - While the project scope did not include the integration of real payments, it was still important to ensure that payment functioned correctly and completed orders were stored in the database regardless of simulated "back-out" or early reloads during the payment process:
   - Removed `form.submit()` from Stripe elements JS to simulate disconnection at point of payment and confirmed via django admin panel that the order was still placed correctly, and retrievable in Order History. I also confirmed that the webhook handler functioned correctly and that the appropriate events (e.g. paymentIntent.succeeded, charge.created) appeared in my Stripe developer panel.
   - Placed a normal order with the standard Stripe dummy card number to simulate a successful transaction. This correctly resulted in the appropriate order success notification, order confirmation email arriving at the user's email account, and redirection to the checkout success page, populated with the correct order details.
 - Confirmed that the Stripe auto-fill option works to save user's card details on the site so that the card information is automatically populated on next checkout visit. 
 
+#### **Account interactions**
+- Ensured that new superuser accounts could be created via terminal and immediately accessible both on the front-end account system and the django admin panel.
+- Confirmed that links to account-related pages on the navigation bar are correctly loaded depending on authentication status, and that the links direct users to the appropriate authentication page.
+- Tested the full registration process from start to finish:
+  - On a fresh session, went to register page and completed details with test placeholders
+  - Upon submitting account details, was redirected to the email verification notification.
+  - Received the customised account verification email with a working link to complete verification
+  - Verification link functioned correctly and complete verification button finished the process, with appropriate toast notification
+  - Attempted login with new account detail with success and received standard login confirmation toast notification
+- Confirmed that cross-referencing links (e.g. login link on register page) work correctly
+- Confirmed that account sign-in status persists between sessions unless user logs out or clears their session data
+- Tested the password reset functionality from allauth worked correctly
 
-
-
-Tested that user can enter a quantity in the appropriate selector on the product detail page, and the value is correctly restricted to 1-99 - the input is locked between 1 and 99.
-- Conducted individual testing on item categories with sizes. I ensured that each the appropriate size/length selector appeared on all pages, with the correct input limits. I also ensured that the basket was correctly populated when different sizes of the same item were added in the same order. Checked sizing worked with all products including:
-  - Clothing with size (mainly skiwear) = XS/S/M/L/XL
-  - Boots with UK shoe size = UK size 1 to 14
-  - Skis with ski length = 130-200cm
-  - Poles with pole length = 80-130cm
-- Confirmed that the "Add to basket" CTA button on the product detail page functions correctly, and the expected success notification appears in the messaging system.
-- Confirmed that the "Go to basket" button within the success message correctly directs the user to the basket
-- Tested the functionality of the "Update" button and quantity input. As expected, selecting a new quantity and clicking Update results in the page being refreshed with the new basket total calculation and line item summary.
-- Updating an item's quantity within the basket to 0 correctly results in the item being removed from the basket altogether.
-- Confirmed that the product names on the basket page correctly link back to the product detail page for that product, ensuring the user can go back and view the details at any time prior to purchase.
-- The appropriate empty basket screen is displayed when the user visits the basket page via nav element with no items in the session, or after they remove all items from within the basket page itself.
-
-
-#### **Profile interactions**
+#### **Profile page**
+- Conducted exhautive testing on the default delivery information form using normal, extreme, and exceptional data where possible.
+  - Tried to add names, street addresses, postcodes etc. exceeding the maximum character limit defined by the model but was correctly restricted to max character limits on the form fields themselves.
+- The "Update Information" button works correctly, reloading the page with all updated details loaded.
+- Upon revisiting the checkout page, the details are appropriately populated with the existing details in my default delivery information. Vice versa, upon completing checkout with different details and the save-info box checked, the profile details are correctly updated.
+- Confirmed that the Order History section correctly displays all of the orders associated with the given user (tested by completing orders and then logging into other accounts and ensuring that the same order was not present in another user's history).
+- Confirmed that the content of each Order History card is accurate including key data on line items, quantities, sizes etc. and a correct delivery cost and total.
+- The orders are displayed in reverse chronological order as intended, with the most recent orders being added to the top. I confirmed this worked immediately after purchase, and persisted between sessions.
+- The Order History section correctly moves to a scrollable format when the number of orders causes the height of the section to exceed screen height.
 
 #### **Review functionality**
-
-Exhaustive testing was conducted on all aspects of the shopping process, including the reservation form and "My Bookings" page. 
-- **Reservation form**: All fields in the booking form (both for create and edit views) were manually tested to ensure an invalid booking could not be submitted. Testing was conducted in a structured approach using normal, extreme, and invalid data (e.g. time added as 19:00, 22:00, and 04:00; number of guests added as 3, 6, and 30). Values were entered both manually via text entry as well as using the date and time widgets to select from calendar/time scroller.
-- **My Bookings page**: Testing was conducted to ensure that the page was responsive and produced the correct data for the logged-in user. Tested with users with no associated bookings, as well as users with a large number of existing bookings to ensure integrity of the table. The "Edit" and "Delete" buttons were also tested to ensure that each provided the expected behaviour when updating or deleting a booking, and that the page correctly refreshed and updated the list of bookings. The deletion confirmation check modal was also tested to ensure it correctly pops up whenever a user requests deletion.
-- **Testing during development of create & edit reservation views**: During development, due to the complexity of the Python code required in the views for creating and editing reservations - in particular, the logic for table assignment - it was necessary to conduct manual testing using print statements in the terminal to track the status of booking variables. 
+- The review addition, editing and deleting functionality and accessibility were tested comprehensively across guest, logged-in user, and admin authentication levels.
+  - Guest: Confirmed that users who are not logged in can only view reviews at the bottom of product detail pages.
+  - Logged-in user: Confirmed that logged-in users are able to submit a review via the form, and the page immediately reloads with the review added to the bottom. The user is then able to edit their own comment via a separate editing page, and be redirected back to the product detail page after update or cancellation. The user is also able to delete their comment by clicking the relevant link.
+  - Admin: I tested that admins are able to edit and delete their own comments (mainly used for testing), and are restricted to only be able to delete the comments from other users. This ensure the integrity of the reviews, while still allowing admins to remove inappropriate comments.
+- The correct username, date & time, and content is posted for each comment.
+- I confirmed that the review counter on the page, as well as the counter on the individual product cards in product lists, are correctly updated whenever a comment is added, updated, or removed.
+- I tested the review form with normal and extreme data (i.e. leaving a standard length comment, and a comment of length 2000 chars) which submitted without issue. The input correctly limits users when they try to exceed the maximum character limit.
+- When users attempt to edit their comment, they are taken to the appropriate url to edit their specific comment. I tested the security of this functionality by logging into another account and attempting to go directly to the editing url for another user's comment - the edit review view has functionality to protect against this, redirecting the user to the homepage and displaying an relevant info message.
+- The "Post as Anonymous" checkbox works correctly, allowing the user to post an anonymous comment. The preference on the checkbox correctly persists through to the edit review page. 
+- I confirmed that all users regardless of authentication status are able to see all reviews on all products - the restrictions correctly only apply to editing and removal access.
 
 #### **Admin panel**
-Admin panel functionality was tested for all models used within the application. Ensured that full expected CRUD functionality was available to logged in superusers for Users, Reservations, Tables and MenuItems, and that inputting normal, extreme, and invalid data in various fields resulted in the expected outcome when attempting to create or update model instances.
+- The Django admin panel was thoroughly tested across all models, including Users, Products, Orders, as well as ensuring back-end account operations such as email validation could be achieved outside of the standard registration process. 
+- Full CRUD functionality was verified to ensure superusers could reliably create, read, update, and delete records. 
+- Testing covered normal, extreme, and exceptional inputs for model fields, confirming that the system handled data validation as expected. 
+- Successful operations produced the correct database changes, while invalid inputs triggered appropriate error messages or rejections. 
 
 #### **Styling**
-Manual testing was used to tidy up styling applied by Bootstrap classes on html elements and custom style rules in the stylesheet. The application was run on a local server while making amends, allowing live identification of redundancies and opportunities for refactoring. 
+Manual testing played a key role in refining the project’s front-end styling. Bootstrap classes and custom CSS rules were systematically reviewed to identify inconsistencies, redundancies, and layout issues. The application was run on a local development server, enabling continuous testing of visual changes in real time. Chrome DevTools was used extensively to inspect elements, trial modifications, and confirm their effects before committing changes to stylesheets. This approach allowed targeted adjustments to be made efficiently, and styling was tested across multiple browsers to confirm consistent rendering. Accessibility was checked through color contrast testing and ensuring appropriate use of headings and semantic HTML.
 
 #### **Responsiveness**
-The responsiveness of all pages on the site was tested by accessing the deployed version of the website via smartphone, as well as using Chome Developer Tools to limit screen size according to industry-standard breakpoints for phones, tablets, laptops and above. 
+Responsiveness was tested throughout development to ensure the site displayed correctly across a range of devices and screen sizes. Using Chrome DevTools, the application was viewed in simulated environments for mobile, tablet, and desktop resolutions. Layouts, navigation menus, and interactive components were checked to confirm that elements resized, stacked, or collapsed appropriately without breaking page structure. Special attention was given to grid-based layouts, form inputs, and media elements, verifying that Bootstrap’s responsive utilities and custom CSS rules behaved as intended. Testing also included rotating devices between portrait and landscape modes to identify inconsistencies. Manual checks were performed on physical devices where possible, complementing browser simulations. This iterative testing process helped identify and resolve issues such as overlapping text, misaligned elements, and scroll-bar overflow, resulting in a consistent and user-friendly experience across all platforms.
 
 #### **Fixes & Improvements from manual testing**
 - Noticed that all icons in the footer were being targeted with a 200% size rule which had only been intended for the social media icons. Resolved by adding more specificity to the existing rule.
@@ -625,20 +641,20 @@ I was unable to resolve one type of linter error reported on my `booking/views.p
 ![Line too long error](readme_assets/img/line-too-long-error.jpg) 
 
 
+### Bug fixes during testing
 
 ## Features for future development
-The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. I have focussed on the following 3 improvements as I believe these would be the most immediately impactful for the functionality and user experience.<br>
+The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. 
 
-### Automatic removal of reservations after date has passed
-The current booking system and user experience would be significantly improved if past bookings were automatically removed from the database after the specified date has passed. Currently, past reservations are retained on the system and therefore stay present on the "My Bookings" page. 
+I have focussed on the following 3 improvements as I believe these would be the most immediately impactful for the functionality and user experience.<br>
 
-### Additional front-end admin functionality
-The current site permits guests to create and manage bookings, however it would also be helpful to restuarant managers and administrators to have additional administrative features. Logged in administrators/superusers could have an admin-only page where they can view, organise (filter, sort, search) and manage all existing bookings from the front end, rather than having to use the default Django administration panel.
+### Improve product imagery 
 
-### Develop model for restaurant information
-A new model could be created for `RestaurantInformation` and used to feed details such as opening times, contact info, etc. into templates with DTL where they are currently held as static text. Additionally, this could be fed into the bboking views and forms, where the restaurant opening times could be read as the limits for booking time inputs, rather than being static values added to widget attributes as they are currently.
+### Integrate real payments with Stripe
 
+### Bulk product upload
 
+### Wishlist
 
 
 
