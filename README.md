@@ -164,14 +164,17 @@ The dropdown elements for categories and accounts work similarly on large screen
 **Account drop-down bar** <br>
 ![Account Dropdown](readme_assets/img/account-dropdown.jpg) 
 
+
 ### 2. Account Management pages
-The account area is integrated with Django Allauth and provides streamlined authentication and profile management. All account pages cross-reference each other where appropriate - for example, unregistered users can quickly move from login to register via a clearly distinguished link.
+The account area is integrated with Django Allauth and provides streamlined authentication and profile management. All account pages cross-reference each other where appropriate - for example, unregistered users can quickly move from login to register via a clearly distinguished `sign up` link.
 
-The Login page supports email and password with server-side validation, helpful errors, remember-me, and links to password reset. 
+The Login page supports email and password with server-side validation, helpful form error reporting, an optional checkbox to remember the user's details for future logins, and links to password reset. 
 
-The Registration page collects minimal details, enforces strong passwords, and triggers an email verification step before checkout and profile features are unlocked. Email Verification delivers clear confirmation and fallback re-send options to ensure verified accounts (see Feature #13: Emails for more indormation).
+The Registration page collects minimal details, enforces strong passwords, and triggers an email verification step before checkout and profile features can be unlocked. Email Verification delivers clear confirmation and fallback re-send options to ensure verified accounts.
 
-Logout is immediate after confirmation, clears session data, and returns users to the homepage with a confirmation message. All pages are responsive, accessible, and use consistent toasts and form styling for feedback.
+Logout is immediate after confirmation, clears session data, and returns users to the homepage with a confirmation message. 
+
+All pages are responsive, accessible, and use consistent toasts and form styling for feedback.
 
 **Login Screen** <br>
 ![Login](readme_assets/img/login.jpg) 
@@ -183,19 +186,14 @@ Logout is immediate after confirmation, clears session data, and returns users t
 ![Logout](readme_assets/img/logout.jpg) 
 
 
+### 3. Profile
+The Profile page centralizes a user’s personal information and purchase history in a clean, responsive layout. 
 
+The form lets users manage their saved contact and delivery information. Fields are pre-populated when available, include server-side validation with clear inline errors, and save updates securely to streamline future checkouts. Visual feedback is provided via consistent toasts after updating.
 
-### 2. Sign-in status notification
-All pages of the site contain a signin status notification for the user nested in the top right corner of the screen below the navigation bar. The notification advises whether the user is logged in or logged out and updates dynamically depending on sign-in status. 
+The Order History section lists previous orders in reverse chronological order, showing the order number, date, item count, and totals. Each entry links to a detailed, read-only order confirmation page that mirrors the checkout receipt for easy reference or proof of purchase. Line items display product titles, size options (where relevant), quantities, and prices, helping users quickly verify what was purchased. This section is particularly useful for tracking deliveries, calculating expenses, or reviewing sizing and preferences for future purchases. 
 
-**Status notification when signed in** <br>
-![Status notification signed in](readme_assets/img/signed-in-status-notification.jpg) 
-
-**Status notification when signed out** <br>
-![Status notification signed out](readme_assets/img/signed-out-status-notification.jpg) 
-
-### 3. System Messages
-Django's messaging system was utilised to provide updates to the user when their sign-in status changes (i.e. if they sign in or out) and when they create, delete or edit a reservation. The messages appear in an alert bar below the navbar, above other page elements, in a green or red theme (depending on success vs error/failure) on the next page after a relevant event occurs.
+Together, these features provide a reliable self-service hub that speeds up repeat orders while maintaining privacy and data integrity.
 
 **Example success message** - sign in <br>
 ![System succcess message](readme_assets/img/success-message.jpg) 

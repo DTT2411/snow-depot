@@ -17,6 +17,9 @@ class ProductForm(forms.ModelForm):
             'rating': forms.NumberInput(
                 attrs={'min': 0, 'max': 5, 'step': 0.1}
                 ),
+            'price': forms.NumberInput(
+                attrs={'min': 0, 'max': 9999.9, 'step': 1}
+                ),
         }
 
     image = forms.ImageField(
