@@ -29,97 +29,97 @@ This structured yet flexible approach supported iterative development, continuou
 ## User Stories
 
 ### Authentication and Profile
-|Name|Description|Priority Level|Status|
+|Name|Description|Priority|Status|
 |---|---|---|---|
 |Register Account|As a customer I can register for an account so that I don’t need to fill my details in every time I make a purchase|Must Have| Complete| 
 |Log in to account|As a customer I can easily log in to my account so that I can start browsing without delay.|Must Have| Complete| 
 |Log out of account|As a customer I can easily log out of my account so that I can avoid staying signed in unnecessarily.|Must Have| Complete| 
 |Add contact and shipping details|As a customer I can add my default contact and shipping details to my profile so that I can have a quicker checkout process.|Must Have| Complete|
-|Track previous orders|As a customer I can see a list of my previous orders so that I can keep track of what I've purchased and retain details of past orders in case there have been any issues.|Should Have| Complete| 
+|Track previous orders|As a customer I can see a list of my previous orders so that I can keep track of what I've purchased and retain details of past orders in case there have been any issues.|Should Have|Complete| 
+|Account validation|As an administrator I can ensure customers need to sign up with a valid email to login so that accounts are secured at activation and we prevent spam in the reviews.|Could Have| Complete| 
 
 ### Navigation and viewing products
-|Name|Description|Priority Level|Status|
+|Name|Description|Priority|Status|
 |---|---|---|---|
 |Navigate easily|As a customer I can use a navigation bar to easily navigate around the site so that I don't struggle to find what I'm looking for quickly.|Must Have| Complete| 
-|Search through categories|As a customer I can select a category of products to look through so that I can narrow down my search.|Must Have|Complete| 
+|View list of all products|As a customer I can view a list of all products so that I can browse through the entire collection.|Must Have| Complete| 
+|Search through categories|As a customer I can select a category of products to look through so that I can narrow down my search.|Must Have|Complete|
+|Filter products|As a customer I can filter products by subcategory so that I can find a well-rated product which fits my needs and price-range.|Must Have|Complete|
 |See product information|As a customer I can see comprehensive product information for each individual item so that I can be fully informed about the product before buying.|Must Have|Complete| 
 |Order listed products|As a customer I can order the products when viewing them in a list on screen so that I can sort by my preferences.|Should Have| Complete| 
 |View site information|As a customer I can see basic information about the site so that I can determine upon first visiting whether it’s right for my needs.|Should Have| Complete| 
-|Search products|As a customer I can search through products using keywords so that I can easily find a suitable product even if I'm not sure what subcategory to look in.|Should Have| Complete| 
+|Search products|As a customer I can search through products using keywords so that I can easily find a suitable product even if I'm not sure what subcategory to look in.|Should Have| Complete|
+|Links to partners|As an administrator I can direct customers to a partners section on the homepage so that we can encourage customer engagement with partners as part of our mutual relationship.|Should Have|Complete| 
 
-
-### Order process
-|Name|Description|Priority Level|Status|
+### Adding and purchasing products
+|Name|Description|Priority|Status|
 |---|---|---|---|
+|Prevent invalid transactions|As an administrator I can prevent invalid or unfinished transactions from going through so that we avoid any issues with transactions being made without the order being correctly logged in the database.|Must Have|Complete| 
 |Register Account|As a customer I can register for an account so that I don’t need to fill my details in every time I make a purchase|Must Have| Complete| 
-|Log in to account|As a customer I can easily log in to my account so that I can start browsing without delay.|Must Have| Complete| 
-|Log out of account|As a customer I can easily log out of my account so that I can avoid staying signed in unnecessarily.|Must Have| Complete| 
-|Add contact and shipping details|As a customer, I can add my default contact and shipping details to my profile so that I can have a quicker checkout process.|Must Have| Complete| 
+|View basket|As a customer I can see a basket containing all of the items and relevant info about each in my order before checkout so I can see details of what I am purchasing at a glance.|Must Have|Complete| 
+|Add to basket|As a customer I can easily add an item to my basket so that I can include it in my order.|Must Have|Complete| 
+|Remove from basket|As a customer I can easily remove an item from my basket so that I can prevent it being ordered if I've changed my mind about buying.|Must Have|Complete| 
+|Secure purchase|As a customer I can securely complete the purchase of products so that I can receive my order.|Must Have|Complete| 
+|Update items in basket|As a customer I can change the quantity of individual items in my order so that I can correct any mistake made when adding to basket.|Should Have|Complete| 
+|View running total|As a customer I can see a running total for the order in my basket so that I can track my potential spending.|Should Have|Complete|
+|Check before remove item|As an customer I can receive a check before deleting an item from my order so that I avoid accidental deletions.|Could Have|Not Complete|
+
+### Product reviews
+|Name|Description|Priority|Status|
+|---|---|---|---|
+|View reviews|As a customer I can see reviews for products so that I can get feedback from other purchasers about the product before buying.|Must Have|Complete|
+|Submit review|As a customer I can add a review for a product I have purchased so that I can provide a rating and feedback to other potential buyers.|Must Have|Complete|
+|Delete review|As an administrator I can easily delete a product review so that I can remove any spam reviews or reviews with inappropriate text.|Must Have|Complete|
+|Edit review|As a customer I can edit my existing product review so that I can amend any mistakes, or update the review if circumstances have changed.|Should Have|Complete|
+|Anonymous reviews|As a customer I can add a review anonymously so that I don't have to link my review with my user account, especially if I have something negative to say.|Could Have|Complete|
+|List number of reviews on products|As an administrator I can show the number of reviews a product has on the product lists so that users can be encouraged to buy items which have been thoroughly vetted.|Could Have|Complete|
+
+### Product administration
+|Name|Description|Priority|Status|
+|---|---|---|---|
+|Add new products|As an administrator I can keep add new products to our inventory so that I can keep the store up to date with new items.|Must Have|Complete| 
+|Remove products|As an administrator I can remove products from the store so that we keep the inventory up to date and prevent customers from purchasing any items which are no longer being sold.|Must Have|Complete| 
+|Update products|As an administrator I can update product information so that the information on all stock is kept up to date and we can correct any issues.|Should Have|Complete| 
+|Check before product deletion|As an administrator I can receive a check before deleting a product so that I avoid accidental deletions.|Could Have|Not Complete| 
+|Bulk product upload|As an administrator I can keep upload product images in bulk and complete details/descriptions for each so that I can conveniently add multiple products quickly.|Could Have|Not Complete| 
 
 ### Messages and alerts
-|Name|Description|Priority Level|Status|
+|Name|Description|Priority|Status|
 |---|---|---|---|
-|Register Account|As a customer I can register for an account so that I don’t need to fill my details in every time I make a purchase|Must Have| Complete| 
-|Log in to account|As a customer I can easily log in to my account so that I can start browsing without delay.|Must Have| Complete| 
-|Log out of account|As a customer I can easily log out of my account so that I can avoid staying signed in unnecessarily.|Must Have| Complete| 
-|Add contact and shipping details|As a customer, I can add my default contact and shipping details to my profile so that I can have a quicker checkout process.|Must Have| Complete| 
-
-
-### Implemented User Stories
-
-#### Must Have
-As a guest, I can...
-- ...create a booking online so that I can have dinner at the restaurant.
-- ...view my existing booking(s) so that I can remind myself of the details I submitted.
-- ...update my booking so that I can make changes in case we are running late, or want to add another guest.
-- ...delete my booking so that I can cancel at any time.
-- ...view information about the restaurant so that I can learn about its history, cuisine, location and opening hours.
-- ...register and log into a site account so that I can make a booking.
-
-#### Should Have
-As a guest, I can...
-- ...view information about the restaurant’s menu so that I can decide if the restaurant would be suitable for my party.
-- ...make multiple bookings so that I can schedule several upcoming dinners I want to have with friends.
-- ...automatically be assigned a table when booking so that my dinner party is given the best sized available table.
-
-As a restaurant manager, I can...
-- ...create, read, update and delete menu items from the current menu so that we can accommodate for seasonal changes to the menu.
-- ...make users login in order to make a booking so that the appropriate details for the user can be stored.
-
-#### Could Have
-As a guest I can...
-- ...see a table listing existing bookings with columns for date, time and number of guests so that I can quickly review and understand my bookings at a glance.
-
-### User Stories for future implementation
-As a restaurant manager, I can...
-- ...create, view and update content from the About Us section so that I can update this as and when needed.
-- ...see an admin-only page listing all bookings in a sensible format so that I can get an overview of existing bookings and apply changes as required.
-- ...have bookings which are in the past automatically deleted from the booking system so that only a list of valid upcoming bookings is retained.
+|Alert user about failed payments|As a customer I can be alerted when a purchase has failed so that I can attempt to re-order, or use different payment details.|Must Have| Complete| 
+|Alert user about account interactions|As a customer I can be alerted when I have logged in or out, or updated my details, so that I can be sure of my login status and details at all times.|Must Have| Complete| 
+|Alert user to basket changes|As a customer I can be alerted when I have added, update or removed an item my basket so that I have a visual cue that my items are being added correct, besides the running total updating.|Should Have|Complete| 
+|Email confirmation of purchase|As a customer I can receive a customised confirmation email after completing my order so that I have email evidence of the purchase and details confirmed to me.|Should Have|Complete| 
 
 
 ## Design
 
 ### Design Methodology
-A mobile-first design methodology was employed to ensure a responsive and organised appearance on all website pages. A combination of Bootstrap classes and custom CSS media queries was utilised to ensure elements and text appear at an appropriate size on all screen sizes. 
+The site follows a clean, mobile-first design methodology that prioritizes clarity, speed, and conversion. A cool gray palette (light grays, charcoal, white) and generous whitespace create a crisp aesthetic, while high-contrast CTA buttons guide attention. Typography pairs a bold display face for headings with a highly legible sans-serif for body text. 
+
+The site layout is built on a fluid, responsive grid with a consistent spacing scale, enabling card-based product tiles and balanced content sections. The structure is anchored by a sticky header with search, faceted filtering on product lists, and breadcrumb trails for navigating through different categories of products. Reusable components include navigation, product cards, forms, toast messages, and modals, all of which ensure visual consistency and predictable interaction with the various elements. 
+
+Imagery uses full-bleed hero banners, standardized product ratios, and subtle overlays. Accessibility is integral and considerations were taken to ensure sufficient color contrast, focus states, and keyboard support. The site's performance is reinforced through responsive images, lazy-loading, and SVG icons, ensuring a fast, polished experience across devices. 
 
 ### Wireframes
-Balsamiq wireframes were developed at the outset of the project as a visual guide to the structure and key features of the website.
+Balsamiq wireframes were developed at the outset of the project as a visual guide to the structure and key features of the website. 
 
 ### Colour Scheme
-Coolors was used to identify suitably contrasting primary, secondary and tertiary colours for use across the site. A contrast checker was also utilised to ensure sufficient contrast between the primary colour and secondary & tertiary colours.
-- **Primary colour - #30011E, Dark Purple**: Used as the main background colour for large html elements. Also used for fonts on some elements with inverse colouring.
-- **Secondary colour - #D7FCD4, Tea Green**: Used as the main colour for text across the site. Also used as background colour on some elements with inverse colouring.
-- **Tertiary colour - #B6CCA1, Celadon**: Intentionally low-contrast colour relative to secondary colour, primarily used to make navigation links and buttons with the secondary colour on top of a primary colour backgroun reactive on mouse hover.
+Coolors was used to identify suitably contrasting colours for use across the site. A contrast checker was also utilised to ensure sufficient contrast between the primary colour and secondary & tertiary colours.
+- **Primary colour - #1C3738, Gunmetal**: Used as the main background colour for large html elements. Also used for fonts on some elements with inverse colouring.
+- **Secondary colour - #8BAAAD, Cadet Grey**: Mainly used on black/dark buttons and elements upon hover/docus to distinguish interaction.
+- **Tertiary colour - #E3E3E3, Platinum**: Mainly used on white/light buttons and elements upon hover/focus to distinguish interaction.
+- **Highlight colour - #F4FFF8, Mint Cream**: Used for contrasting text appearing imposed on the product lists i.e. with a dark background.
 
 ![Coolors color scheme](readme_assets/img/colour-scheme.jpg) 
 
 ### Fonts
-Google Fonts was used to identify suitable primary and secondary fonts for use throughout the site.
+Google Fonts was used to identify suitable primary and secondary fonts for use throughout the site. The selected fonts were highly complementary, with the main difference being the font spacing, and otherwise similar styling.
 
-**Headings font - Eagle Lake**: "Fancy", attractive cursive font which looks good for large heading elements.<br>
+**Headings font - Lexend Mega**: Lexend Mega is a bold, wide display sans, used for hero headings, key CTAs, and prominent navigation.<br>
 ![Headings font](readme_assets/img/heading-font-example.jpg) 
 
-**Main font - Gudea**: Highly readable, clear and functional typeface for main/body text.<br>
+**Main font - DM Sans**: DM Sans is a clean, legible sans-serif for body copy, forms, product details, and everyday UI elements.<br>
 ![Main font](readme_assets/img/main-font-example.jpg) 
 
 
@@ -127,17 +127,18 @@ Google Fonts was used to identify suitable primary and secondary fonts for use t
 
 The main features of the application include:
 1. Navigation Bar
-2. Sign-in status notification
-3. System Messages
-4. Hero Image
-5. Footer
-6. Homepage
-7. Reservation form
-8. My Bookings page
-9. Menu page
-10. Registration page
-11. Login page
-12. Logout page
+2. Account Management pages
+3. Profile 
+4. Homepage
+5. Product lists
+6. Product detail pages
+7. Reviews
+8. Basket
+9. Checkout
+10. Reviews
+11. Product administration (admin-only)
+12. Notifications system
+
 
 ### 1. Navigation Bar
 A simple Bootstrap navigation bar was used for site navigation, including the restaurant name, links to the "Home", "Menu" and "My Bookings" pages as well as authentication pages depending on the user's sign-in status. The navigation bar also contains the "Book Now" call to action (CTA) button.
