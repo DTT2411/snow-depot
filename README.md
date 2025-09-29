@@ -196,10 +196,27 @@ The Order History section is a scrollable list of previous orders in reverse chr
 Together, these features provide a reliable self-service hub that speeds up repeat orders while maintaining privacy and data integrity.
 
 **Profile** <br>
-![Navigation bar](readme_assets/img/my-profile.jpg) 
+![profile page](readme_assets/img/my-profile.jpg) 
 
 **Profile collapsed (for mobile & tablet)** <br>
-![Navigation bar collapsed signed out](readme_assets/img/my-profile-collapsed.jpg) 
+![profile page collapsed](readme_assets/img/my-profile-collapsed.jpg) 
+
+
+### 4. Homepage
+The index page welcomes users with a full‑width hero image that sets an alpine mood. The hero image has custom styling including a translucent gradient to reduce the vividity of the hero image and ensure the texts stays well contrasted and readable.
+
+A prominent Shop Now call‑to‑action drives visitors directly into the product catalog for a fast start to browsing. Below, the About section introduces the brand’s purpose and values. 
+
+To reinforce credibility, the Our Partners area highlights a selection of trusted industry brands and services we work with, showcasing the ecosystem behind the store. 
+
+Together, these sections quickly communicate who we are, inspire confidence, and streamline the path from discovery to shopping, on any device. Content is lightweight, responsive, and accessible for all users.
+
+**Homepage** <br>
+![homepage](readme_assets/img/homepage.jpg) 
+
+**Homepage collapsed (for mobile & tablet)** <br>
+![homepage collapsed](readme_assets/img/homepage-collapsed.jpg) 
+
 
 
 ### 4. Hero Image
