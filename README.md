@@ -267,6 +267,32 @@ Overall, the page blends rich product information with conversion‑oriented con
 ![Size & quantity inputs](readme_assets/img/size-quantity-inputs.jpg) 
 
 
+### 7. Reviews
+The reviews feature enables customers to share authentic feedback on products and helps shoppers make informed decisions. Signed-in users can submit their comment in a simple text entry box. The feature is integrated within the product detail page for each individual product, and appropriately modelled such that product-specific reviews can be displayed and updated.
+
+After submission, review counts on the product cards are automatically updated, as well as the counter at the top of the reviews section. Reviews appear in reverse chronological order (latest at the top) with the reviewer's name if anonymous posting was not enabled, or anonymous if the box was checked. Users can post multiple reviews per product, and they can also edit their review or delete it using the appropriately styled links to the right side of each review.
+
+**Review section - large screens** <br>
+![Review section large](readme_assets/img/reviews-large.jpg) 
+
+**Review section - small screens** <br>
+![Review section small](readme_assets/img/reviews-small.jpg) 
+
+Administrators may only delete reviews from other customers - they cannot make any edits to existing reviews from other users. Admins can still edit their own reviews (this would mainly be used for testing). In the instance below, the admin is `DTT010` and they have posted one public and one anonymous review.<br>
+**Review section - admin view** <br>
+![Review section admin](readme_assets/img/reviews-admin-view.jpg) 
+
+Customers can edit or delete their own reviews, but cannot interact with reviews from other users. In the instance below, the customer is logged in as `TEST12` and can amend/delete only their own review.<br>
+**Review section - customer view** <br>
+![Review section customer](readme_assets/img/reviews-customer-view.jpg) 
+
+Clicking to edit a review takes the user to a review editing page. The form persists the content of the review and the user's anonymity checkbox selection, which they can change if they wish. Clicking "Save Changes" redirects the user to the product detail page, on which the updated content is immediately visible.<br>
+**Review section - editing** <br>
+![Review section editing](readme_assets/img/reviews-edit.jpg) 
+
+**Review section - updated** <br>
+![Review section updated](readme_assets/img/reviews-updated.jpg) 
+
 ### 4. Hero Image
 A high-resolution, royalty-free hero image relevant to the restaurant theme was sourced from Pixabay. Using custom styling and application of `{% block main_class %}` on templates, this image serves as the background for all pages.
 
