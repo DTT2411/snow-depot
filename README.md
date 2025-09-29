@@ -483,28 +483,73 @@ User-generated feedback on Products, storing author, content, creation timestamp
 **Review Model**<br>
 ![Review Model](readme_assets/img/model-review.jpg)
 
-## Features for future development
-The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. I have focussed on the following 3 improvements as I believe these would be the most immediately impactful for the functionality and user experience.<br>
-
-
-
-### Automatic removal of reservations after date has passed
-The current booking system and user experience would be significantly improved if past bookings were automatically removed from the database after the specified date has passed. Currently, past reservations are retained on the system and therefore stay present on the "My Bookings" page. 
-
-### Additional front-end admin functionality
-The current site permits guests to create and manage bookings, however it would also be helpful to restuarant managers and administrators to have additional administrative features. Logged in administrators/superusers could have an admin-only page where they can view, organise (filter, sort, search) and manage all existing bookings from the front end, rather than having to use the default Django administration panel.
-
-### Develop model for restaurant information
-A new model could be created for `RestaurantInformation` and used to feed details such as opening times, contact info, etc. into templates with DTL where they are currently held as static text. Additionally, this could be fed into the bboking views and forms, where the restaurant opening times could be read as the limits for booking time inputs, rather than being static values added to widget attributes as they are currently.
-
-
 ## Testing
 
 ### Manual Testing
-All manual testing detailed here was conducted both on a local server, as well as the main deployed version after development.
+All manual testing detailed here was conducted both on a local server, as well as the main deployed version after development was completed. A detailed manual testing plan was implemented to ensure the integrity of the site's functionality.
 
-#### **Booking System**
-Exhaustive testing was conducted on all aspects of the booking system, including the reservation form and "My Bookings" page. 
+#### **Browsing Process**
+- Main homepage loads upon visiting the site index, and the CTA Shop Now button correctly redirects the user to the All Product list.
+- Navigation elements were tested exhaustively on all screen sizes:
+  - All nav element links return the correct url and page
+  - Nav elements are consistently styled, and drop-down lists function as expected
+  - All action buttons e.g. Checkout, Back to Shopping, Cancel are consistently styled and redirect users to the correct page, or submit the appropriate form
+  - The search bar and submit search element work correctly
+- All product lists worked as expected, with users being able to see lits of all products at varying levels of categorisation and refinement including:
+  - Full unfiltered product lists
+  - Category specific lists - Equipment, Skiwear, and Accessories
+  - Subcategory specific lists - Skis, Boots, Underlayers, Off-Piste Safety, etc.
+  - Lists ordered by attribute in ascending or descending order upon selection - A-Z, rating-based, price-based, name-based and category-based
+- Search functioned as expected, with the search reliably returning any product with matching keywords in the name, description or ID
+- Product links appropriately linked to product detail pages for each product.
+
+#### **Managing Basket**
+- Tested that user can enter a quantity in the appropriate selector on the product detail page, and the value is correctly restricted to 1-99 - the input is locked between 1 and 99.
+- Conducted individual testing on item categories with sizes. I ensured that each the appropriate size/length selector appeared on all pages, with the correct input limits. I also ensured that the basket was correctly populated when different sizes of the same item were added in the same order. Checked sizing worked with all products including:
+  - Clothing with size (mainly skiwear) = XS/S/M/L/XL
+  - Boots with UK shoe size = UK size 1 to 14
+  - Skis with ski length = 130-200cm
+  - Poles with pole length = 80-130cm
+- Confirmed that the "Add to basket" CTA button on the product detail page functions correctly, and the expected success notification appears in the messaging system.
+- Confirmed that the "Go to basket" button within the success message correctly directs the user to the basket
+- Tested the functionality of the "Update" button and quantity input. As expected, selecting a new quantity and clicking Update results in the page being refreshed with the new basket total calculation and line item summary.
+- Updating an item's quantity within the basket to 0 correctly results in the item being removed from the basket altogether.
+- Confirmed that the product names on the basket page correctly link back to the product detail page for that product, ensuring the user can go back and view the details at any time prior to purchase.
+- The appropriate empty basket screen is displayed when the user visits the basket page via nav element with no items in the session, or after they remove all items from within the basket page itself.
+
+#### **Checkout**
+- Conducted exhaustive testing of the validation of all details & delivery fields, using normal, extreme, and exceptional data where appropriate.
+- Confirmed that the order summary loads correctly with a full list of all ordered items, totals and delivery costs.
+- Confirmed that the order total is correctly calculated, the delivery cost of 10% of the order is correctly applied to the total, and that the total advised in the danger text below the card payment section matches the total displayed under the summary.
+- Tested that the "create an account" and "login" links appear correctly with the prompt to save information for users who are not logged in/registered
+- As a logged in user, I ensured that the "save details" functionality worked correctly by completing checkout with the box checked and unchecked, and checking that the default details on the profile page updated/did not update, respectively.
+- While the project scope did not include the integration of real payments, it was still important to ensure that payment functioned correctly and completed orders were stored in the database regardless of simulated "back-out" or early reloads during the payment process:
+  - Removed `form.submit()` from Stripe elements JS to simulate disconnection at point of payment and confirmed via django admin panel that the order was still placed correctly, and retrievable in Order History. I also confirmed that the webhook handler functioned correctly and that the appropriate events (e.g. paymentIntent.succeeded, charge.created) appeared in my Stripe developer panel.
+  - Placed a normal order with the standard Stripe dummy card number to simulate a successful transaction. This correctly resulted in the appropriate order success notification, order confirmation email arriving at the user's email account, and redirection to the checkout success page, populated with the correct order details.
+- Confirmed that the Stripe auto-fill option works to save user's card details on the site so that the card information is automatically populated on next checkout visit. 
+
+
+
+
+Tested that user can enter a quantity in the appropriate selector on the product detail page, and the value is correctly restricted to 1-99 - the input is locked between 1 and 99.
+- Conducted individual testing on item categories with sizes. I ensured that each the appropriate size/length selector appeared on all pages, with the correct input limits. I also ensured that the basket was correctly populated when different sizes of the same item were added in the same order. Checked sizing worked with all products including:
+  - Clothing with size (mainly skiwear) = XS/S/M/L/XL
+  - Boots with UK shoe size = UK size 1 to 14
+  - Skis with ski length = 130-200cm
+  - Poles with pole length = 80-130cm
+- Confirmed that the "Add to basket" CTA button on the product detail page functions correctly, and the expected success notification appears in the messaging system.
+- Confirmed that the "Go to basket" button within the success message correctly directs the user to the basket
+- Tested the functionality of the "Update" button and quantity input. As expected, selecting a new quantity and clicking Update results in the page being refreshed with the new basket total calculation and line item summary.
+- Updating an item's quantity within the basket to 0 correctly results in the item being removed from the basket altogether.
+- Confirmed that the product names on the basket page correctly link back to the product detail page for that product, ensuring the user can go back and view the details at any time prior to purchase.
+- The appropriate empty basket screen is displayed when the user visits the basket page via nav element with no items in the session, or after they remove all items from within the basket page itself.
+
+
+#### **Profile interactions**
+
+#### **Review functionality**
+
+Exhaustive testing was conducted on all aspects of the shopping process, including the reservation form and "My Bookings" page. 
 - **Reservation form**: All fields in the booking form (both for create and edit views) were manually tested to ensure an invalid booking could not be submitted. Testing was conducted in a structured approach using normal, extreme, and invalid data (e.g. time added as 19:00, 22:00, and 04:00; number of guests added as 3, 6, and 30). Values were entered both manually via text entry as well as using the date and time widgets to select from calendar/time scroller.
 - **My Bookings page**: Testing was conducted to ensure that the page was responsive and produced the correct data for the logged-in user. Tested with users with no associated bookings, as well as users with a large number of existing bookings to ensure integrity of the table. The "Edit" and "Delete" buttons were also tested to ensure that each provided the expected behaviour when updating or deleting a booking, and that the page correctly refreshed and updated the list of bookings. The deletion confirmation check modal was also tested to ensure it correctly pops up whenever a user requests deletion.
 - **Testing during development of create & edit reservation views**: During development, due to the complexity of the Python code required in the views for creating and editing reservations - in particular, the logic for table assignment - it was necessary to conduct manual testing using print statements in the terminal to track the status of booking variables. 
@@ -524,6 +569,7 @@ The responsiveness of all pages on the site was tested by accessing the deployed
 - Identified a missing minimum value validation on the "duration" field of the Reservation model, resolved by adding `validators=[MinValueValidator(1)]` to the duration field and migrating the changes.
 - Multiple instances of redundancy within style rules e.g. applying color/background style to elements which have already inherited this from a lower specificity rule; applying styles already managed by Bootstrap class.
 - Resolved an issue causing the table assignment functionality to break using manual testing with terminal print statements added to the `create_reservation` view. 
+
 
 
 ### Automated Testing
@@ -577,6 +623,25 @@ I was unable to resolve one type of linter error reported on my `booking/views.p
 
 **Example of "line too long" error**<br>
 ![Line too long error](readme_assets/img/line-too-long-error.jpg) 
+
+
+
+## Features for future development
+The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. I have focussed on the following 3 improvements as I believe these would be the most immediately impactful for the functionality and user experience.<br>
+
+### Automatic removal of reservations after date has passed
+The current booking system and user experience would be significantly improved if past bookings were automatically removed from the database after the specified date has passed. Currently, past reservations are retained on the system and therefore stay present on the "My Bookings" page. 
+
+### Additional front-end admin functionality
+The current site permits guests to create and manage bookings, however it would also be helpful to restuarant managers and administrators to have additional administrative features. Logged in administrators/superusers could have an admin-only page where they can view, organise (filter, sort, search) and manage all existing bookings from the front end, rather than having to use the default Django administration panel.
+
+### Develop model for restaurant information
+A new model could be created for `RestaurantInformation` and used to feed details such as opening times, contact info, etc. into templates with DTL where they are currently held as static text. Additionally, this could be fed into the bboking views and forms, where the restaurant opening times could be read as the limits for booking time inputs, rather than being static values added to widget attributes as they are currently.
+
+
+
+
+
 
 ## Key packages
 - **Django==4.2.23**: The framework used to build the application.
