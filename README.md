@@ -579,6 +579,87 @@ Manual testing played a key role in refining the project’s front-end styling. 
 #### **Responsiveness**
 Responsiveness was tested throughout development to ensure the site displayed correctly across a range of devices and screen sizes. Using Chrome DevTools, the application was viewed in simulated environments for mobile, tablet, and desktop resolutions. Layouts, navigation menus, and interactive components were checked to confirm that elements resized, stacked, or collapsed appropriately without breaking page structure. Special attention was given to grid-based layouts, form inputs, and media elements, verifying that Bootstrap’s responsive utilities and custom CSS rules behaved as intended. Testing also included rotating devices between portrait and landscape modes to identify inconsistencies. Manual checks were performed on physical devices where possible, complementing browser simulations. This iterative testing process helped identify and resolve issues such as overlapping text, misaligned elements, and scroll-bar overflow, resulting in a consistent and user-friendly experience across all platforms.
 
+
+### Automated Testing
+
+#### **Lighthouse testing**
+The Lighthouse testing functionality within Google Chrome DevTools was used to ensure acceptable performance and accessibility of all pages of the site, on both the local development server during development to target issues, and on the deployed version of the project prior to submission. 
+
+#### **HTML Validation**
+W3C HTML Validation Service was used to validate all templates used throughout the site, including:
+- templates/base.html
+- templates/errors/404.html
+- templates/includes/toasts/toast_success.html
+- templates/includes/toasts/toast_info.html
+- templates/includes/toasts/toast_error.html
+- templates/includes/toasts/toast_warning.html
+- homepage/templates/homepage/index.html
+- products/templates/products/products.html
+- products/templates/products/product_detail.html
+- products/templates/products/add_product.html
+- products/templates/products/edit_product.html
+- products/templates/products/custom_widget_templates/custom_clearable_file_input.html
+- basket/templates/basket/basket.html
+- profiles/templates/profiles/profile.html
+- checkout/templates/checkout/checkout.html
+- checkout/templates/checkout/checkout_success.html
+- reviews/templates/reviews/edit_review.html
+
+All major issues and errors reported by W3C were due to the use of Django Templating Language (DTL) within the html documents. For example, individual instances of DTL such as `{% extends 'base.html' %}` throw multiple errors such as below.
+
+**Examples of errors thrown due to W3C not recognising DTL**<br>
+![DTL error examples](readme_assets/img/dtl-error-examples.jpg)<br>
+
+#### **CSS Validation**
+The W3C CSS Validation Service was used to validate the following stylesheets after tidy up had been conducted. No errors were found:
+- templates/static/css/base.css
+- checkout/static/checkout/css/checkout.css
+- profiles/static/profiles/css/profile.css
+
+**base.css validation**<br>
+![base.css validation](readme_assets/img/base-css-validation.jpg)<br>
+
+**checkout.css validation**<br>
+![checkout.css validation](readme_assets/img/checkout-css-validation.jpg)<br>
+
+**base.css validation**<br>
+![profile.css validation](readme_assets/img/profile-css-validation.jpg)<br>
+
+#### **JS Validation**
+The online JSHint validation tool was used to check the `stripe_elements.js` file. No errors were found, aside from a warning regarding template literal syntax accessibility on different versions which could be ignored.<br>
+![JS Validation stripe](readme_assets/img/jshint-validation-stripe.jpg)<br>
+
+I used the same tool to validate the `countryfield.js` file, where one minor bug (unnecessary semi-colon) was immediately fixed prior to redeployment.<br>
+![JS Validation countryfield](readme_assets/img/jshint-validation-countryfield.jpg)<br>
+
+I also used the JSHint validation tool to validate the postload Javascript in the following files, all similarly returning no errors:
+- templates/base.html
+- products/templates/products/products.html
+- products/templates/products/add_product.html
+- products/templates/products/edit_product.html
+- profiles/templates/profiles/profile.html
+- checkout/templates/checkout/checkout.html
+- checkout/templates/checkout/checkout_success.html
+
+#### **Python Validation**
+A Python linter was used throughout development to maintain PEP8 compliance and improve code quality. Flake8 was integrated into the IDE, highlighting issues in real time so they could be corrected immediately. Final validation was performed using [Code Institute's Python Linter](https://pep8ci.herokuapp.com/), ensuring the codebase was fully compliant with PEP8 standards and free from unnecessary style or formatting errors before deployment.
+
+Unfortunately there were multiple instances throughout the project where I was unable to find a solution for fixing Flake8 line limit errors i.e. instances of lines over the 79 character limit. Affected files include: 
+- basket/contexts.py
+- checkout/views.py
+- checkout/webhooks.py
+- checkout/webhook_handler.py
+- snow_depot/urls.py
+
+Example below:<br>
+**Linter error example**<br>
+![Linter](readme_assets/img/flake8-error-example.jpg)<br>
+In the above instance, I was unable to amend the code to reduce the line length without breaking the behaviour. In future development I would target a fix for this issue - one option would be to instantiate the variables with long names (e.g. "profile.default_street_address") to a temporary variable with a smaller name within the webhook handler in which this code is executed.
+
+### Bug fixes during testing
+
+
+
 #### **Fixes & Improvements from manual testing**
 - Noticed that all icons in the footer were being targeted with a 200% size rule which had only been intended for the social media icons. Resolved by adding more specificity to the existing rule.
 - Identified a missing minimum value on the "number of guests" widget on the booking form, resolved by setting `'min': '1'` in the widget's attributes in `booking/forms.py`.
@@ -588,60 +669,6 @@ Responsiveness was tested throughout development to ensure the site displayed co
 
 
 
-### Automated Testing
-
-#### **Mock data testing**
-Django's built-in testing functionality was used for testing key components of the booking system, including tests for the reservation form and functional views related to bookings.
-
-The tests in `booking/test_forms` provides test cases for the functionality of the booking form, ensuring form validity and testing the constraints for each field.
-
-The tests in `booking/test_views` verifies the functionality of the `create_reservation`, `edit_reservation` and `delete_reservation` views.
-
-#### **Lighthouse testing**
-The Lighthouse testing functionality within Google Chrome Developer Tools was used to assess the performace and accessibility of each site page on the deployed version of the application. The results for each page are summarised below:<br>
-![Lighthouse testing](readme_assets/img/lighthouse-testing.jpg)<br>
-The main deficit in Performance rating, relative to the other metrics, was the use of a high resolution hero image for the background on all pages of the site. Initially, an even higher resolution image was being used and resulted in significantly lower Performance scores (mid 60s for most pages). Lower resolution images were tested until sufficient compromise between image quality and page load was found.
-
-#### **HTML Validation**
-W3C HTML Validation Service was used to validate all templates used throughout the site, including:
-- base.html
-- homepage.html
-- reservation_form.html
-- reservation_list.html
-- menu_list.html
-
-All major issues and errors reported by W3C were due to the use of Django Templating Language (DTL) within the html documents (e.g. `{% for message in messages %}`, `{% message %}`) and could safely be ignored. 
-
-**Examples of errors thrown due to W3C not recognising DTL**<br>
-![DTL error examples 1](readme_assets/img/DTL-error-examples1.jpg)<br>
-![DTL error examples 2](readme_assets/img/DTL-error-examples2.jpg) 
-
-One minor issue was detected on login.html, logout.html and signup.html authentication pages where a trailing slash had been left on an input element, which was resolved immediately.<br>
-
-**Trailing slash issue**<br>
-![Trailing Slash Fix](readme_assets/img/trailing-slash-fix.jpg) 
-
-#### **CSS Validation**
-W3C CSS Validation Service was used to validate the static stylesheet after tidy up had been conducted. No errors were found.<br>
-![CSS Validation](readme_assets/img/CSS-validation.jpg) 
-
-#### **JS Validation**
-The online JSHint validation tool was used to check the static javascript file. No errors were found.<br>
-![JS Validation](readme_assets/img/JS-validation.jpg) 
-
-#### **Python Validation**
-Utilised [Code Institute's Python Linter](https://pep8ci.herokuapp.com/) for PEP8 adherence & validation. A python linter (Flake8) was also used within the IDE during development meaning that the majority of issues were fixed during development. 
-
-I was unable to resolve one type of linter error reported on my `booking/views.py` file. Due to the level of indentation and length of variable names requried for the booking system logic, and the lack of a suitable place in these lines to add a linebreak, several lines in this file are longer than the 79 character limit. 
-
-**Linter errors on booking/views.py**<br>
-![Linter Errors](readme_assets/img/linter-errors.jpg) 
-
-**Example of "line too long" error**<br>
-![Line too long error](readme_assets/img/line-too-long-error.jpg) 
-
-
-### Bug fixes during testing
 
 ## Features for future development
 The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. 
@@ -704,12 +731,12 @@ Please note that these steps assume you have a verified Heroku account and an ec
 ## Credits
 
 ### Concept
-Project Example Idea 1 recommended within Code Institute's Portfolio Project 4 Assessment Guide was the main inspiration for this project.
+The Boutique Ado e-commerce project within Code Institute's Portfolio Project 5 course materials was the main inspiration for this project.
 
-### AGILE Project Management
+### AGILE Project Management UPDATE
 Github project dashboard and issues were used for AGILE development, including: development of User Story templates; labels for prioritisation (must-have, should-have, could-have); and a dashboard for tracking User Story progress (to-do, in progress, done).
 
-### Code
+### Code UPDATE
 - **Stack Overflow** was used extensively for general troubleshooting, and for specific fix with enforcing a positive number on Django model via `minValuValidator`: https://stackoverflow.com/questions/54858123/how-do-i-enforce-a-positive-number-on-my-python-django-model-field
 - **Bootstrap Documentation** for general troubleshooting on styling and classes, and a specific fix for right-aligning table items with the `flowreverse` class: https://getbootstrap.com/docs/4.0/utilities/flex/
 - **Django documentation** for general guidance on built-in Django functions and imports used extensively throughout the project: https://docs.djangoproject.com/en/5.2/.
@@ -722,11 +749,12 @@ Github project dashboard and issues were used for AGILE development, including: 
 ### Data Modelling
 - **Dbdiagram** (https://dbdiagram.io/) was used to help plan and visualise the models required for the booking and menu apps within the project. 
 
-### Content
+### Content UPDATE
 - **Bootstrap** classes were used extensively throughout the templates to improve responsiveness of html elements and reduce the need for additional custom CSS styling. https://getbootstrap.com/docs/5.3/getting-started/introduction/.
 - **Google Fonts** for custom fonts used throughout site. Link to embed code used: https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Gudea:ital,wght@0,400;0,700;1,400&display=swap.
 - **Coolors** (https://coolors.co/) was used to identify a suitable colour scheme for the site.
-- **Pixabay** was used to identify a suitable hero-image for use as the background image for all site pages. Direct link to image: https://pixabay.com/photos/landscape-building-architecture-1303550/
+- **Pexels** was the source of the hero image which served as the background image (with a modified translucent filter) for the homepage and product list pages. Direct link to image: https://www.pexels.com/photo/snow-top-mountain-under-clear-sky-1054218/
+- **Pixabay** was used to source various royalty-free product images for the product cataglog: https://pixabay.com/
 - **Amiresponsive** (https://ui.dev/amiresponsive) was used to generate the mock-up image for the readme.
 - **Balsamiq Wireframes** (https://balsamiq.com/) was used extensively during planning to guide the structure and layout of the website.
 - **WebAim Contrast checker** (https://webaim.org/resources/contrastchecker/) was used to check the viability of the colour scheme.
@@ -737,7 +765,6 @@ Github project dashboard and issues were used for AGILE development, including: 
 - **W3C HTML Validator** (https://validator.w3.org/) was used for testing HTML.
 - **W3C CSS Validator** (https://jigsaw.w3.org/css-validator/) was used for testing CSS.
 - **JSHint Validator** (https://jshint.com/) was used for testing JavaScript.
-- **Autoprefixer** (https://autoprefixer.github.io/) was used to ensure portability of stylesheet across different browsers.
 
 ### Special Thanks
 Special thanks to my mentor Cans and all of the amazing CI tutors for their unwavering support, quick responses, and kind encouragement. 
