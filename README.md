@@ -141,7 +141,7 @@ The main features of the application include:
 10. Checkout success
 11. Product administration (admin-only)
 12. Notifications system
-13. Emails
+13. Customised Emails
 14. Other features
 
 
@@ -355,7 +355,7 @@ The layout is responsive and accessible, with clear CTAs to continue shopping af
 
 
 ### 11. Product Administration
-The product administration area enables authorized administrators to manage the product catalog efficiently and safely. A simple form to add new products captures essential fields such as name, category and subcategory, price, ID, description, and rating. The form also includes a customa image uploader with a clear/replace control. Form inputs are validated server‑side and inline, with helpful error messages. When the form is saved, the product is immediately available in the storefront, and a success notice confirms creation.
+The product administration area enables authorized administrators to manage the product catalog efficiently and safely. A simple form to add new products captures essential fields such as name, category and subcategory, price, ID, description, and rating. The form also includes a custom image uploader with a clear/replace control. Form inputs are validated server‑side and inline, with helpful error messages. When the form is saved, the product is immediately available in the storefront, and a success notice confirms creation.
 
 Editing uses the same, pre‑populated form, streamlining quick corrections to info fields or imagery without re‑entering unchanged data. Image updates allow replacing or removing an existing file. After deletion, the product catalog and lists update and a success message is shown.
 
@@ -390,105 +390,103 @@ The new product is also searchable on via all category/subcategory options...<br
 ![Add product form result 3](readme_assets/img/add-product-form-result-3.jpg)<br>
 
 
-### 4. Hero Image
-A high-resolution, royalty-free hero image relevant to the restaurant theme was sourced from Pixabay. Using custom styling and application of `{% block main_class %}` on templates, this image serves as the background for all pages.
+### 12. Notifications system
+The site uses lightweight, accessible toast notifications to provide immediate feedback in response to important actions. Three levels are used: Success (green) confirms completed tasks, Error (red) highlights problems that need attention, and Info (blue) shares helpful context or next steps. Toasts are non‑blocking, stack safely, auto‑dismiss after a short interval, and can also be closed manually.
 
-**Full hero image**<br>
-![Hero Image](readme_assets/img/hero-image.jpg) 
+Typical triggers include:
+- Authentication: login, logout, sign‑up, password resets, and email verification prompts.
+- Basket: item added, quantity updated, item removed, basket cleared; info toasts can show current subtotal and progress toward free delivery thresholds.
+- Checkout: validation errors, Stripe card errors/SCA prompts (error/info), and payment success (success) with order reference.
+- Orders: confirmation sent, webhook recovery notices if the page closed early, and any address/shipping changes.
+- Profile: saved or updated default delivery information and account details.
+- Reviews: submitted, edited, or deleted feedback.
+- Product admin (staff): product created, updated, or deleted; image uploads replaced/cleared.
 
-### 5. Footer
-The footer contains key information about the restaurant including address, contact number, email address, opening times, and social media links. Fontawesome Icons are used in this section for visual guidance and intuitive identification of contact details. 
+Where relevant, toasts include contextual links (e.g., “View basket,” “Go to order,” “Edit profile”) to keep users moving. 
 
-Similar to the navigation bar, the footer is a component of the base.html template and is applied consistently across all pages on the website.
+Examplar notifications can be seen below.
 
-The footer is responsive, dividing into two rows on larger screens and collapsing & centering on smaller screens. <br>
+**Example Success Notification** <br>
+![Success notification](readme_assets/img/notifications-success-example.jpg)<br>
+In this example, the quantity of a product was updated in the basket.
 
-**Footer - large screen**<br>
-![Footer large](readme_assets/img/footer-large.jpg) 
+**Example Error Notification** <br>
+![Error notification](readme_assets/img/notifications-error-example.jpg)<br>
+In this example, the user tried to proceed to the checkout url without anything in their basket.
 
-**Footer - small screen**<br>
-![Footer small](readme_assets/img/footer-small.jpg) 
+**Example Info Notification** <br>
+![Info notification](readme_assets/img/notifications-info-example.jpg)<br>
+In this example, the user is viewing an old checkout success confirmation for a previous order.
 
 
+### 13. Customised Emails
+Account email verification is handled by Django Allauth. On sign‑up, users receive a verification email containing a secure, time‑limited link. Following the link confirms the address and unlocks full account functionality. Templates define the subject and body for consistent branding, and users can request a resend if needed.<br>
+**Account verification email** <br>
+![Account verification email](readme_assets/img/account-verification-email.jpg)<br>
 
+Order confirmation emails are sent automatically after a successful checkout. Once Stripe confirms the Payment Intent, the server creates the order and dispatches an email summarizing the purchase. Emails use template-driven content for clarity - order number, items, quantities, prices, delivery cost, totals, and shipping details are included.<br>
+**Order confirmation email** <br>
+![Order confirmation email](readme_assets/img/order-confirmation-email.jpg)<br>
 
-### 6. Homepage
-The default homepage for the website contains a short description of the restaurant's history and location, and the type of cuisine served. 
+### 14. Other features
 
-**Homepage**<br>
+#### Robots.txt
+The site includes a robots.txt file to instruct browser crawlers what to index. The file can be accessed at the `/robots.txt` url. Direct link: https://snow-depot-2e7989adac13.herokuapp.com/robots.txt
 
-### 7. Reservation form
-Users can access the reservation form by being logged in and clicking the "Book Now" CTA button from any page on the site. A simple booking form was developed to apprehend key details for the reservation including the number of guests, date & time of booking, and expected duration. An optional "Special Requirements" field also allows prospective guests to inform the restaurant about any allergies, conditions, etc. prior for anyone in their party.
-
-The same form is used when a user edits an existing booking via the My Bookings page. In this case, after clicking the "Edit" button, a form prepopulated with the user's existing details will be displayed. Please see the "My Bookings page" subsection for further context.
-
-**Reservation Form**<br>
-![Reservation form](readme_assets/img/reservation-form.jpg) 
-
-#### **Form Fields**
-- **Number of guests**: Simple positive integer field with accepted minimum of 1 and maximum of 6 (largest table size at thos restaurant).
-- **Date**: Datepicker field which opens into a calendar view when the calendar icon is clicked. Only accepts dates from today onwards. <br>
-![Datepicker](readme_assets/img/reservation-form-date.jpg) 
-- **Time**: Timepicker field which opens into a scrollable time selector when the clock icon is clicked. Only accepts times within the restaurant's opening hours (12:00 to 22:00).<br>
-![Timepicker](readme_assets/img/reservation-form-time.jpg) 
-- **Duration**: Simple positive integer field requesting user to define expected length of stay in hours, with accepted minimum of 1 and maximum of 3. Tracking reservation durations is important for the table allocation functionality, as the system needs to know which tables are booked and for how long.
-- **Special Requirements**: Simple text area field for users to advise of any allergies, conditions or other requirements. Limited to 300 characters.
-
-### 8. My Bookings list
-The "My Bookings" page is accessible to all logged in users. If the user has any existing bookings, they will be displayed in a simple table with columns for key booking details. Additionally, users can manage (edit or delete) their booking via the respective buttons on the right side of the table in the Manage column.
-
-If the user does not have any existing bookings, a simple alert message is displayed instead of the table.
-
-**My Bookings - large screen**<br>
-![My Bookings Large](readme_assets/img/my-bookings-large.jpg) 
-
-**My Bookings - small screen**<br>
-![My Bookings Small](readme_assets/img/my-bookings-small.jpg) 
-
-**My Bookings - Manage buttons**<br>
-The "Edit" and "Delete" buttons become appropriately coloured upon mouse hover or focus for visual guidance.<br>
-![My Bookings Manage Buttons](readme_assets/img/my-bookings-manage-buttons.jpg) 
-
-**My Bookings - no bookings**<br>
-![No Bookings](readme_assets/img/no-bookings.jpg) 
-
-### 9. Menu page
-The "Menu" page is accessible to all users regardless of sign-in status. The page displays tabulated lists of menu items separated depending on course/type, e.g. Starters, Mains. Key information including the dish name and price are included on the menu sections.
-
-The page is responsive, collapsing the size of the divisions for each course at smaller screen sizes.
-
-Element padding and row dividers are used to ensure the tables of dishes are clean, well deliniated and readable.
-
-**Menu - large screen**<br>
-![Menu Large](readme_assets/img/menu-large.jpg) 
-
-**Menu - small screen**<br>
-![Menu Small](readme_assets/img/menu-small.jpg) 
-
-### 10. Registration page
-The default All Auth registration page has been custom styled for thematic consistency, but otherwise the content of this page is identical to the default. This page is accessible for users who are not already logged in, and allows them to register a guest account on the website. They are encouraged to specify a username and password (with confirmation), an email (optional), and upon valid form submission they will be signed in and redirected to the homepage with an alert to confirm they have successfully signed in. The page also has a link `sign in` which redirects the user to the login page if they already have an account.<br>
-
-![Registration Page](readme_assets/img/registration-page.jpg) 
-
-### 11. Login page
-Similar to the registration page, the login page is similar to the All Auth default with the exception of custom styling for consistent appearance. This page is accessible for users who are not already logged in, and allows them to enter their username and password in order to access the site's booking functionality. The page also has a link `sign up` which redirects the user to the registration page if they do not already have an account.<br>
-
-![Login Page](readme_assets/img/login-page.jpg) 
-
-### 12. Logout page
-Similar to the registration page, the logout page is similar to the All Auth default with the exception of custom styling for consistent appearance. This page is accessible for users who are logged in, and requests their confirmation in order to sign out from their site account.<br>
-![Logout Page](readme_assets/img/logout-page.jpg) 
+#### Sitemap.xml
+The sitemap was generated by Django's sitemap framework and can be accessed at the `/sitemap.xml` url. Direct link: https://snow-depot-2e7989adac13.herokuapp.com/sitemap.xml
 
 
 ## Models
-Dbdiagram was used at the outset of the project to sketch out the models and relationships which would be required for the database used to hold data for reservations, tables, and the menu. This tool allows the development of linked Entity-Relationship Diagrams to help enivision the structure and interactions between the required models.<br>
+Dbdiagram was utilised prior to development to plan the required models, relationships and data structure for all of the components of the online shop. This tool supports the development of linked Entity-Relationship Diagrams to help enivision the structure and interactions between the required models.<br>
 
 **Database Structure**<br>
 ![Dbdiagram ERDs](readme_assets/img/dbdiagram-ERDs.jpg) 
 
+### 1. Users
+This model represents authenticated customers and admins using Django’s built-in User model. Stores username, email, and credentials, with authentication/registration handled via Allauth. Each User has a one-to-one UserProfile for default delivery details. Users can author multiple Reviews (one-to-many). Orders are indirectly linked via the user’s profile, enabling order history retrieval without duplicating account data.<br>
+**User Model**<br>
+![User Model](readme_assets/img/model-users.jpg) 
+
+### 2. UserProfile
+Extends the User model with default delivery information (phone, addresses, city, county, country, postcode). A one-to-one relationship ensures each account has at most one profile. Profiles are associated with many Orders (one-to-many), providing a basis for order history and enabling checkout forms to prefill saved details.<br>
+**UserProfile Model**<br>
+![UserProfile Model](readme_assets/img/model-userprofile.jpg) 
+
+### 3. Product
+Core product model containing name, description, pricing, rating, media, and size typing (sizes, boot sizes, ski/pole lengths) where appropriate. Each Product belongs to a Category and Subcategory, supporting flexible navigation and filtering. Products are related to OrderLineItems (one-to-many), where quantity and chosen options are captured for each order. They also aggregate customer feedback through Reviews (one-to-many).<br>
+**Product Model**<br>
+![Product Model](readme_assets/img/model-product.jpg) 
+
+### 4. Category
+Top-level grouping used to organize the product catalog and facilitate navigation. Categories serve as parents of Subcategories (one-to-many), enabling both broad and refined browsing structures. This dual mapping allows products to be grouped at varying depths depending on merchandising needs, while keeping URLs, filters, and menus predictable.<br>
+**Category Model**<br>
+![Category Model](readme_assets/img/model-category.jpg)
+
+### 5. Subcategory
+Secondary-level grouping nested under a single Category (many Subcategories per Category). Subcategories refine product discovery (e.g., Skis, Boots, Jackets) and can contain many Products (one-to-many). They inherit context from their parent Category while enabling targeted filtering.<br>
+**Subcategory Model**<br>
+![Subcategory Model](readme_assets/img/model-subcategory.jpg)
+
+### 6. Order
+Represents a completed checkout, capturing critical information such as purchaser details, shipping address, and order total. Orders optionally link to a UserProfile (many Orders per profile), allowing authenticated users to view history while still supporting guest checkouts. An Order aggregates many OrderLineItems (one-to-many) and calculates totals from those items.<br>
+**Order Model**<br>
+![Order Model](readme_assets/img/model-order.jpg)
+
+### 7. OrderLineItem
+Line-level record linking an Order to a specific Product with quantity and selected options (size/length) where appropriate. Each line computes its own total from the product price and quantity, contributing to the Order’s aggregate totals. Many line items belong to one Order; each line references exactly one Product (and individual sizes the same product, if multiple are present). Cascading behavior ensures line items are cleaned up with their parent order, maintaining data integrity.<br>
+**OrderLineItem Model**<br>
+![OrderLineItem Model](readme_assets/img/model-orderlineitem.jpg)
+
+### 8. Review
+User-generated feedback on Products, storing author, content, creation timestamp, and optional anonymity. Each Review belongs to one Product and one User (many reviews per product; many reviews per user). Reviews are ordered newest-first and indexed by product and date for fast retrieval on product detail pages.<br>
+**Review Model**<br>
+![Review Model](readme_assets/img/model-review.jpg)
 
 ## Features for future development
-The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. I have focussed on the following 3 improvements as I believe these would be the most immediately impactful for the functionality and user experience.
+The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. I have focussed on the following 3 improvements as I believe these would be the most immediately impactful for the functionality and user experience.<br>
+
+
 
 ### Automatic removal of reservations after date has passed
 The current booking system and user experience would be significantly improved if past bookings were automatically removed from the database after the specified date has passed. Currently, past reservations are retained on the system and therefore stay present on the "My Bookings" page. 
