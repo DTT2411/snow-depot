@@ -135,10 +135,11 @@ The main features of the application include:
 7. Reviews
 8. Basket
 9. Checkout
-10. Reviews
-11. Product administration (admin-only)
-12. Notifications system
-13. Emails
+10. Checkout success
+11. Reviews
+12. Product administration (admin-only)
+13. Notifications system
+14. Emails
 
 
 ### 1. Navigation Bar
@@ -312,6 +313,23 @@ Prominent action buttons let users continue browsing or proceed to secure checko
 An empty‑basket state redirects users back to shopping.<br>
 **Basket - empty** <br>
 ![Basket empty](readme_assets/img/basket-empty.jpg) 
+
+
+### 9. Checkout
+The checkout page provides a focused, secure flow to complete purchases. A responsive form collects contact email, shipping details, and optional phone number, with clear required fields (denoted by `*`), inline validation, and helpful error messaging if they add any invalid data. Beside the form, a condensed order summary is visible, showing itemized lines, delivery costs based on current rules, and a final total that updates with any changes.
+
+The payment information section uses Stripe Elements for secure and reliable processing. A Payment Intent is created server‑side and confirmed client‑side with appropriate checks and retry attempts. Errors from Stripe are highlighted immediately, and a loading overlay prevents duplicate submissions during processing. On success, an order record is created and a confirmation email is sent. Stripe webhooks provide a secondary, reliable confirmation path, ensuring orders are finalized even if the client disconnects, reloads, or backs out during payment.
+
+Signed‑in customers can tick “Save this information” to store or update their default delivery details in their profile. On subsequent checkouts, saved details prefill the form and can be edited before payment. Address and contact updates update to the user's profile when selected, keeping future checkouts fast and accurate.
+
+The checkout flow is accessible and optimized for performance, guiding users from review to secure payment with minimal friction.
+
+**Checkout - large screens** <br>
+![Checkout large](readme_assets/img/checkout-large.jpg) 
+
+**Checkout - small screens** <br>
+![Checkout small](readme_assets/img/checkout-small.jpg) 
+
 
 ### 4. Hero Image
 A high-resolution, royalty-free hero image relevant to the restaurant theme was sourced from Pixabay. Using custom styling and application of `{% block main_class %}` on templates, this image serves as the background for all pages.
