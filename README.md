@@ -293,6 +293,24 @@ Clicking to edit a review takes the user to a review editing page. The form pers
 **Review section - updated** <br>
 ![Review section updated](readme_assets/img/reviews-updated.jpg) 
 
+
+### 8. Basket
+The basket page provides a clear, responsive summary of items selected for purchase. 
+
+Products are shown in a table (cards on small screens) with thumbnail, name (linked to details), selected options (e.g., size), unit price, quantity controls, and line subtotal. Users can adjust quantities inline or remove items entirely; inputs are validated and totals recalculate instantly with success/error messaging. The subtotal, delivery total and the grand total are clearly featured below the summary table. 
+
+Prominent action buttons let users continue browsing or proceed to secure checkout. The basket remains in the session locally between visits until cleared or converted to an order, helping users resume shopping where they left off. The layout is responsive, allowing the user to see a condensed version of the basket contents on mobile screens. 
+
+**Basket - large screens** <br>
+![Basket large](readme_assets/img/basket-large.jpg) 
+
+**Basket - small screens** <br>
+![Basket small](readme_assets/img/basket-small.jpg) 
+
+An empty‑basket state redirects users back to shopping.<br>
+**Basket - empty** <br>
+![Basket empty](readme_assets/img/basket-empty.jpg) 
+
 ### 4. Hero Image
 A high-resolution, royalty-free hero image relevant to the restaurant theme was sourced from Pixabay. Using custom styling and application of `{% block main_class %}` on templates, this image serves as the background for all pages.
 
