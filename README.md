@@ -138,27 +138,52 @@ The main features of the application include:
 10. Reviews
 11. Product administration (admin-only)
 12. Notifications system
+13. Emails
 
 
 ### 1. Navigation Bar
-A simple Bootstrap navigation bar was used for site navigation, including the restaurant name, links to the "Home", "Menu" and "My Bookings" pages as well as authentication pages depending on the user's sign-in status. The navigation bar also contains the "Book Now" call to action (CTA) button.
+The navigation bar maintains a consistent, responsive header across all pages of the site. 
 
-Signed in users have access to the reservation form via the CTA button as well as the "My Bookings" page, and can opt to logout.
+The left-aligned Snow Depot logo returns to the homepage. Primary product categories appear as top-level links with dropdown access to key subcategories, offering quick routes to shop pages. A prominent global search enables instant keyword queries from any page. 
 
-Signed out users have access to registration and login pages and are redirected to login when they click the CTA button.
+On the right, user controls in the My Account section adapt to authentication state: an account/login menu (profile, orders, sign in/out) and a basket shortcut displaying the running total. 
 
-The navigation bar is present on all pages of the site as it forms part of the base.html template which every other page/template extends. This ensures that users can enjoy a consistent look and level of navigation across the site.
+The header is sticky so search and cart remain available while scrolling, and it collapses into a hamburger menu on smaller screens for thumb-friendly navigation. Clear icons and accessible labels support usability. The structure prioritizes product discovery, speed to checkout, and clarity.
 
-On smaller screens, the navigation bar is collapsed into a buger icon, which expands into a vertical list in order to better utilise space. 
+**Navigation bar** <br>
+![Navigation bar](readme_assets/img/navigation-bar.jpg) 
 
-**Navigation bar when signed in** <br>
-![Navbar signed in](readme_assets/img/navbar-signed-in.jpg) 
+**Navigation bar collapsed (for mobile & tablet)** <br>
+![Navigation bar collapsed signed out](readme_assets/img/navigation-bar-collapsed.jpg) 
 
-**Navigation bar when signed out** <br>
-![Navbar signed out](readme_assets/img/navbar-signed-out.jpg) 
+The dropdown elements for categories and accounts work similarly on large screens and mobile. In the collapsed navigation bar, the drop-down categories open into second-level menus within the list.
 
-**Collapsed navigation bar with "burger" icon for smaller screens** <br>
-![Navbar collapsed](readme_assets/img/navbar-collapsed.jpg) 
+**Category > Subcategory drop-down** <br>
+![Category Dropdown](readme_assets/img/category-dropdown.jpg) 
+
+**Account drop-down bar** <br>
+![Account Dropdown](readme_assets/img/account-dropdown.jpg) 
+
+### 2. Account Management pages
+The account area is integrated with Django Allauth and provides streamlined authentication and profile management. All account pages cross-reference each other where appropriate - for example, unregistered users can quickly move from login to register via a clearly distinguished link.
+
+The Login page supports email and password with server-side validation, helpful errors, remember-me, and links to password reset. 
+
+The Registration page collects minimal details, enforces strong passwords, and triggers an email verification step before checkout and profile features are unlocked. Email Verification delivers clear confirmation and fallback re-send options to ensure verified accounts (see Feature #13: Emails for more indormation).
+
+Logout is immediate after confirmation, clears session data, and returns users to the homepage with a confirmation message. All pages are responsive, accessible, and use consistent toasts and form styling for feedback.
+
+**Login Screen** <br>
+![Login](readme_assets/img/login.jpg) 
+
+**Register** <br>
+![Register](readme_assets/img/register.jpg) 
+
+**Logout** <br>
+![Logout](readme_assets/img/logout.jpg) 
+
+
+
 
 ### 2. Sign-in status notification
 All pages of the site contain a signin status notification for the user nested in the top right corner of the screen below the navigation bar. The notification advises whether the user is logged in or logged out and updates dynamically depending on sign-in status. 
