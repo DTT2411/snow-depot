@@ -768,24 +768,24 @@ A Mailchimp account was created and a related email subscription form was integr
 
 #### Phase 1: Awareness & Attraction (1-3 months post-deployment)
 Goal: Build brand visibility and attract targeted traffic.
-- Content Marketing: Blog posts and guides on ski gear, destination tips, and “how to choose” articles optimized for SEO.
+- Content Marketing: Facebook posts and relevant content e.g. sharing guides on ski gear, destination tips, and “how to choose” articles optimized for SEO.
 - Social Media Campaigns: Leverage existing Facebook page and explore options to extend social media presence to other sites (e.g. Instagram, TikTok) for wider reach.
 - Paid Ads: Run seasonal Google Ads & Meta Ads targeting keywords like “buy skis online” and “ski gear near me.”
-- Partnerships: Establish genuine partnerships with ski resorts, instructors, and influencers for shoutouts and affiliate links.
+- Partnerships: Establish genuine partnerships with ski resorts, instructors, professionals, and adjacent sports retailers.
 
 #### Phase 2: Engagement & Conversion (4-6 months post deployment)
 Goal: Turn visitors into customers and build loyalty.
-- Email Marketing: Welcome series, gear guides, discounts, and abandoned cart reminders.
-- Personalization: Recommend products based on browsing history and purchase behavior.
+- Email Marketing: Welcome emails, gear guides, updates on discounts, and abandoned cart reminders for those who leave a session without buying.
+- Personalization: Recommend products based on past purchase behavior.
 - Limited-Time Offers: Flash sales around ski season peaks and holidays. Required addition of new categorisation and modelling for products on sale.
-- Customer Reviews: Develop select, high quality reviews into formal testimonials and add functionality to allow users to post photos with branded hashtags as part of their review.
+- Review Functionality Development: Develop select, high quality reviews into formal testimonials and add functionality to allow users to post photos with branded hashtags as part of their review.
 
 #### Phase 3: Retention & Growth (Months 7–12)
 Goal: Retain customers, increase lifetime value, and encourage advocacy.
 - Loyalty Program: Points for purchases, referrals, and reviews (redeemable for discounts). Would require overhaul of the existing UserProfile model and profile area to track loyalty points, as well as updates to all product and payment related models to track and update loyalty point collections.
 - Seasonal Campaigns: Pre-season gear check promotions, off-season training gear, and end-of-season clearance.
 - Community Building: Online events, ski webinars, and sponsoring local ski clubs.
-- Referral Marketing: Incentivize customers to refer friends with “Give $10, Get $10” programs.
+- Referral Marketing: Incentivize customers to refer friends with “Give $10, Get $10” programs. 
 
 
 ## Key packages
@@ -871,7 +871,7 @@ Please note that these steps assume you have a verified Heroku account and an ec
 ### Concept
 The Boutique Ado e-commerce project within Code Institute's Portfolio Project 5 course materials was the main inspiration for this project and was helpful in developing the user stories and guiding the general structure of the site and models. My goal was to adapt the functionality and build a similarly responsive, efficient, and attractive site for an online ski shop, and to create additional features such as reviews.
 
-### AGILE Project Management 
+### Agile Project Management 
 Agile delivery was managed in GitHub using Projects and Issues. User stories were captured via reusable templates with clear acceptance criteria. MoSCoW-style labels (must/should/could) supported prioritization and sprint planning. A Kanban board tracked workflow across To do, In progress, and Done, enabling visibility, progress control, and continuous delivery. Regular management and updates ensured the transparency of the development process and helped to keep on track with the completion of user stories marking key milestones in the development cycle.
 
 ### Code 
