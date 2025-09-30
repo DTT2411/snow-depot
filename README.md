@@ -752,6 +752,9 @@ From an administrative perspective, wishlists could provide insights into custom
 ## Marketing
 
 ### Business Model
+Snow Depot positions itself as a trusted, performance-focused retailer delivering high-quality products with exceptional service. By combining curated product selection, customer-centric shopping experiences, and a diverse set of revenue streams, the business is well-placed to serve skiers worldwide while scaling sustainably through strategic partnerships and developing the various online features and functionality over the course of the proposed marketing plan.<br>
+
+Key aspects of the business model include:
 - **Value proposition:** curated, performance-focused ski equipment and apparel with expert guidance, transparent reviews, secure checkout (Stripe), fast shipping, and easy returns.
 - **Customer segments:** recreational and advanced skiers, seasonal travelers, gift buyers; secondary: international customers with strong brand preferences.
 - **Potential revenue streams:** product margins, bundles (e.g., skis + poles + bindings, would require development of additional functionality/categorisation), high-margin accessories/upsells, shipping upgrades, gift cards, seasonal clearance, affiliate partnerships.
