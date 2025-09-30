@@ -699,6 +699,18 @@ During deployed testing, I noticed that the categories within drop-down menus us
 **Dropdown menu colour result**<br>
 ![Dropdown menu colour result](readme_assets/img/drop-down-menu-colour-result.jpg)<br>
 
+### Unresolved bugs
+
+#### Major issue: Invalid payment details succeeding at checkout
+Close to project submission, with support from my mentor during our final review meeting, I identified an issue with the deployed version of the site whereby invalid payment details could be submitted (tested with declined payment card details from Stripe: https://docs.stripe.com/testing?locale=en-GB) and result in a successful order. Checking the Stripe dashboard confirmed with 200 responses that the PaymentIntents for the order had been processed without the intended failure. Due to the late discovery of this issue, there was insufficient time to conduct adequate troubleshooting to identify the source of the error. 
+
+Gaining an understanding and preparing a fix for this bug would be the top priority in future development of the project. Since the set-up of real transactions was beyond the intial intended scope of this project for the purposes of the CI course, it was deemed that the project could still achieve the minimum viable product as outlined by the user stories. 
+
+#### Major issue: Server crashing after deleting an item currently in the session basket
+Close to submission during late deployed testing, it was identified that adding an item to basket as an admin, then deleting it via the product list or product detail page, resulted in a Server Error 500 being displayed when subsequently trying to access any page.
+
+Clearing the browser session resolved this issue (since this clears the invalid entry from the basket), but this is a suboptimal fix and the issue should be addressed within the appropriate views. This would be another key priority to resolve provided more time for project development. 
+
 
 ## Features for future development
 While the project delivers a functional and user-friendly online ski shop, there are several opportunities for future development that would enhance scalability, efficiency, and overall user experience. These features are intended to refine the platform beyond its minimum viable product, addressing both customer-facing improvements and administrative interactions. 
@@ -803,23 +815,20 @@ Please note that these steps assume you have a verified Heroku account and an ec
 ### Post-deployment
 - Create a new superuser for the deployed database.
 - Add a Stripe webhook endpoint using the deployed project's checkout url to track paymentIntent webhooks, and set the webhook signing secret. Test that transactions succeed/fail as expected.
-- Verify emails send as expected.
+- Verify verification and confirmation emails send as expected.
 
 
 ## Credits
 
 ### Concept
-The Boutique Ado e-commerce project within Code Institute's Portfolio Project 5 course materials was the main inspiration for this project and was helpful in developing the user stories and guiding the general shape of the site.
+The Boutique Ado e-commerce project within Code Institute's Portfolio Project 5 course materials was the main inspiration for this project and was helpful in developing the user stories and guiding the general structure of the site and models. My goal was to adapt the functionality and build a similarly responsive, efficient, and attractive site for an online ski shop, and to create additional features such as reviews.
 
-### AGILE Project Management UPDATE
-Github project dashboard and issues were used for AGILE development, including: development of User Story templates; labels for prioritisation (must-have, should-have, could-have); and a dashboard for tracking User Story progress (to-do, in progress, done).
+### AGILE Project Management 
+Agile delivery was managed in GitHub using Projects and Issues. User stories were captured via reusable templates with clear acceptance criteria. MoSCoW-style labels (must/should/could) supported prioritization and sprint planning. A Kanban board tracked workflow across To do, In progress, and Done, enabling visibility, progress control, and continuous delivery. Regular management and updates ensured the transparency of the development process and helped to keep on track with the completion of user stories marking key milestones in the development cycle.
 
-### Code UPDATE
-- **Stack Overflow** was used extensively for general troubleshooting, and for specific fix with enforcing a positive number on Django model via `minValuValidator`: https://stackoverflow.com/questions/54858123/how-do-i-enforce-a-positive-number-on-my-python-django-model-field
+### Code 
 - **Bootstrap Documentation** for general troubleshooting on styling and classes, and a specific fix for right-aligning table items with the `flowreverse` class: https://getbootstrap.com/docs/4.0/utilities/flex/
 - **Django documentation** for general guidance on built-in Django functions and imports used extensively throughout the project: https://docs.djangoproject.com/en/5.2/.
-- Reutilisation of navbar and footer elements from previous Ski Trossachs project (my CI Portfolio Project 1): https://github.com/DTT2411/CI-Portfolio-Project-1.
-
 
 ### Deployment
 - **Heroku** - Cloud application platform used to host the project. Link to Heroku: https://www.heroku.com/.
@@ -827,7 +836,7 @@ Github project dashboard and issues were used for AGILE development, including: 
 ### Data Modelling
 - **Dbdiagram** (https://dbdiagram.io/) was used to help plan and visualise the models required for the functionality within the project. 
 
-### Content UPDATE
+### Content
 - **Bootstrap** classes were extensively applied in templates, enhancing responsive layouts and minimizing reliance on additional custom CSS styling. https://getbootstrap.com/docs/5.3/getting-started/introduction/.
 - **Google Fonts** for custom fonts used throughout site. Link to embed code used: https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lexend+Mega:wght@100..900&display=swap
 - **Coolors** (https://coolors.co/) was used to identify a suitable colour scheme for the site.
@@ -836,7 +845,6 @@ Github project dashboard and issues were used for AGILE development, including: 
 - **Amiresponsive** (https://ui.dev/amiresponsive) was used to generate the mock-up image for the readme.
 - **Balsamiq Wireframes** (https://balsamiq.com/) was used extensively during planning to guide the structure and layout of the website.
 - **WebAim Contrast checker** (https://webaim.org/resources/contrastchecker/) was used to check the viability of the colour scheme.
-- **Flaticon** was used to source the icon for the tab in browser. Attribution link: https://www.flaticon.com/free-icons/water-mill
 - **Font Awesome** for iconography, link to personal kit: https://kit.fontawesome.com/3af9805755.js
 
 ### Testing
@@ -845,4 +853,4 @@ Github project dashboard and issues were used for AGILE development, including: 
 - **JSHint Validator** (https://jshint.com/) was used for testing JavaScript.
 
 ### Special Thanks
-Special thanks to my mentor Cans and all of the amazing CI tutors for their unwavering support, quick responses, and kind encouragement. 
+Special thanks to my mentor Cans for his patience and guidance, and the new Code Institute Discord channels for all of the information and encouragement.
