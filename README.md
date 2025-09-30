@@ -701,7 +701,7 @@ During deployed testing, I noticed that the categories within drop-down menus us
 
 
 ## Features for future development
-While the project delivers a functional and user-friendly online ski shop, there are several opportunities for future development that would enhance scalability, efficiency, and overall user experience. These features are intended to refine the platform beyond its minimum viable product, addressing both customer-facing improvements and administrative workflows. Planned enhancements include improving the quality and consistency of product imagery, enabling live payment processing through Stripe, and introducing bulk product upload tools for faster catalog management. Together, these developments would strengthen the application’s professionalism, usability, and long-term sustainability as a fully operational e-commerce solution.
+While the project delivers a functional and user-friendly online ski shop, there are several opportunities for future development that would enhance scalability, efficiency, and overall user experience. These features are intended to refine the platform beyond its minimum viable product, addressing both customer-facing improvements and administrative interactions. 
 
 ### Improve product imagery 
 Currently, product images are limited due to the availability of suitable royalty-free resources. I have personally sourced images for products with consent from contributors, and have also utilised the limited available stock of free resources, however the quality, relevance and appeal of the product remains a current limitation of this project. This is the reason I have designated the status of the relevant user story (Relevant product images) as only partially complete.
@@ -720,42 +720,75 @@ Bulk image upload functionality could also be developed alongside this to pair p
 
 By reducing manual input and repetitive tasks, bulk upload features would improve scalability, save time for administrators, and ensure consistency across product entries.
 
-
 ### Wishlist
+A wishlist feature could allow registered users to save products for future reference without immediately adding them to their cart. This would improve the shopping experience by supporting product comparison, encouraging return visits, and increasing the likelihood of future purchases. 
 
+Items could be added via a star icon on product cards when browsing the catalog, and via a similar functionality when viewing product information pages. A small view to the user's wishlist could be included on the profile, and descriptive toast notifications would be send upon wishlist interactions. A corresponding Wishlist model would need to be created for this, linked to the UserProfile.
+
+From an administrative perspective, wishlists could provide insights into customer interests and popular items, helping guide stock management and marketing strategies. 
 
 
 
 ## Key packages
-- **Django==4.2.23**: The framework used to build the application.
-- **django-allauth==0.57.2**: Django application with pre-built templates for user registration and account management, including password protection.
-- **django-crispy-forms==2.4**: Django application used for conveniently styling and structuring the reservation form.
-- **django-summernote**: Django application for improving admin panel functionality for specific models and rich text editing.
-- **gunicorn==20.1.0**: Python WSGI server for running the application.
-- **psycopg2==2.9.10**: PostgreSQL database adaptor for python.
-- **whitenoise==5.3.0**: Used to conveniently serve static files prior to deployment with `collectstatic` command.
+- **Django==3.2.25** — High-level Python web framework powering models, views, templates, and admin.
+- **django-allauth==0.50.0** — Highly portable authentication framework with registration, login, email verification, and social providers.
+- **django-crispy-forms==1.14.0** — Improved form rendering and Bootstrap integration with templates.
+- **django-countries==7.2.1** — CountryField model, form widgets, validation utilities, and standardized country data.
+- **django-storages==1.14.6** — Flexible storage backends, including Amazon S3, for media and static files.
+- **boto3==1.40.21** — AWS SDK for Python used to interact with S3 and related services.
+- **stripe==12.4.0** — Stripe API client handling PaymentsIntents, confirmation, and secure checkout workflows.
+- **dj-database-url==0.5.0** — Parses DATABASE_URL into Django DATABASES settings for environment-based configuration.
+- **psycopg2==2.9.10** — PostgreSQL database adapter enabling Django ORM connections in production environments.
+- **gunicorn==20.1.0** — Production WSGI HTTP server to run Django applications reliably and efficiently.
+- **pillow==10.3.0** — Imaging library supporting ImageField uploads, resizing, formats, and basic processing.
+- **requests==2.32.4** — Simple HTTP client for outbound API requests, webhooks, and service integrations
 
 ## Django imports utilised
-- **django.contrib**: messages
-- **django.shortcuts**: render, redirect, get_object_or_404
-- **django.test**: TestCase
-- **django.urls**: path, reverse
-- **django.utils**: timezone
-- **django.views**: generic
-- **django.contrib.auth.decorators**: login_required
-- **django.contrib.auth.models**: User
-- **django.core.validators**: MaxValueValidator, MinValueValidator
+
+- **django.contrib:** admin, messages
+- **django.contrib.auth.decorators:** login_required 
+- **django.contrib.auth.models:** User
+- **django.contrib.sitemaps:** Sitemap
+- **django.contrib.sitemaps.views:** sitemap
+- **django.core.asgi:** get_asgi_application
+- **django.core.mail:** send_mail
+- **django.core.validators:** MinValueValidator, MaxValueValidator
+- **django.core.wsgi:** get_wsgi_application
+- **django.conf:** settings
+- **django.conf.urls.static:** static
+- **django.db:** models, migrations
+- **django.db.models:** Q, Sum
+- **django.db.models.functions:** Lower
+- **django.db.models.signals:** post_save, post_delete
+- **django.dispatch:** receiver
+- **django.http:** HttpResponse
+- **django.shortcuts:** render, redirect, reverse, get_object_or_404
+- **django.template.loader:** render_to_string
+- **django.test:** TestCase
+- **django.urls:** path, include, reverse, NoReverseMatch
+- **django.utils.translation:** gettext_lazy
+- **django.views.decorators.http:** require_POST
+- **django.views.decorators.csrf:** csrf_exempt
+- **django.views.generic:** TemplateView
 
 ## Deployment
 
 ### Pre-deployment Requirements
 - Ensure you have a GitHub repository set up for the project.
+- Ensure you have a Stripe account set up for managing payments.
+- Prepare a Postgres database and set the `DATABASE_URL` as a config var in Heroku settings.
+- Ensure you have a AWS account set up for the S3 bucket used to handle media and static files.
+- Configure a AWS IAM user with access and permissions for the bucket, and collect `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+- Prepare email credentials by setting environment variables on Heroku for `EMAIL_HOST_USER` and `EMAIL_HOST_PASS`
 - Set `debug` to `False` in `settings.py`
 - Ensure that `.herokuapp.com` is appended to the list of `ALLOWED_HOSTS` in `settings.py`
-- Ensure `whitenoise` is correctly installed use `python manage.py collectstatic` to update any changes to static files, then commit and push these files to the project repository before deployment.
 - Ensure `SECRET_KEY` is correctly set up as an environment variable and has been added as a config var to the Heroku app via Settings tab.
-- Create a "Procfile" with `web: gunicorn the_otter_mill.wsgi` to link the WSGI server for running the application.
+- Ensure `STRIPE_PUBLIC_KEY`, `STRIPE_SECRET_KEY` and `STRIPE_WH_SECRET` are set up as environment variables and have been added as config vars to the Heroki app via Settings tab. The public and secret keys can be found on the main page of your Stripe Dashboard.
+- Ensure `MEDIA_URL` and `STATIC_URL` are correctly set up in settings.
+- Create a "Procfile" with `web: gunicorn snow_depot.wsgi` to link the WSGI server for running the application.
 - Push any updated requirements to `requirements.txt`.
+- Ensure migrations are up to date and optional fixtures are ready to load.
+- Add, commit and push code in preparation for deployment. 
 
 ### Steps to deploy (via Heroku)
 Please note that these steps assume you have a verified Heroku account and an eco dynos subscription.
@@ -763,15 +796,20 @@ Please note that these steps assume you have a verified Heroku account and an ec
 - Create a new app with a unique name for the project.
 - On the "Deploy" tab, enable GitHub integration by clicking "Connect to GitHub".
 - Type in the name of your project repository you want the app to link to.
-- On the "Resources" tab, select the "Eco Dyno" container to run the project.
 - At the bottom of the deployment page, select the `main` branch and manually deploy.
-- Open the deployed application.
+- Optional - enable automatic deployments if you wish deployments to run after each push to GitHub.
+- Wait for the application to build, then open the deployed application.
+
+### Post-deployment
+- Create a new superuser for the deployed database.
+- Add a Stripe webhook endpoint using the deployed project's checkout url to track paymentIntent webhooks, and set the webhook signing secret. Test that transactions succeed/fail as expected.
+- Verify emails send as expected.
 
 
 ## Credits
 
 ### Concept
-The Boutique Ado e-commerce project within Code Institute's Portfolio Project 5 course materials was the main inspiration for this project.
+The Boutique Ado e-commerce project within Code Institute's Portfolio Project 5 course materials was the main inspiration for this project and was helpful in developing the user stories and guiding the general shape of the site.
 
 ### AGILE Project Management UPDATE
 Github project dashboard and issues were used for AGILE development, including: development of User Story templates; labels for prioritisation (must-have, should-have, could-have); and a dashboard for tracking User Story progress (to-do, in progress, done).
@@ -787,11 +825,11 @@ Github project dashboard and issues were used for AGILE development, including: 
 - **Heroku** - Cloud application platform used to host the project. Link to Heroku: https://www.heroku.com/.
 
 ### Data Modelling
-- **Dbdiagram** (https://dbdiagram.io/) was used to help plan and visualise the models required for the booking and menu apps within the project. 
+- **Dbdiagram** (https://dbdiagram.io/) was used to help plan and visualise the models required for the functionality within the project. 
 
 ### Content UPDATE
-- **Bootstrap** classes were used extensively throughout the templates to improve responsiveness of html elements and reduce the need for additional custom CSS styling. https://getbootstrap.com/docs/5.3/getting-started/introduction/.
-- **Google Fonts** for custom fonts used throughout site. Link to embed code used: https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Gudea:ital,wght@0,400;0,700;1,400&display=swap.
+- **Bootstrap** classes were extensively applied in templates, enhancing responsive layouts and minimizing reliance on additional custom CSS styling. https://getbootstrap.com/docs/5.3/getting-started/introduction/.
+- **Google Fonts** for custom fonts used throughout site. Link to embed code used: https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lexend+Mega:wght@100..900&display=swap
 - **Coolors** (https://coolors.co/) was used to identify a suitable colour scheme for the site.
 - **Pexels** was the source of the hero image which served as the background image (with a modified translucent filter) for the homepage and product list pages. Direct link to image: https://www.pexels.com/photo/snow-top-mountain-under-clear-sky-1054218/
 - **Pixabay** was used to source various royalty-free product images for the product cataglog: https://pixabay.com/
