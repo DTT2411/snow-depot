@@ -656,30 +656,70 @@ Example below:<br>
 ![Linter](readme_assets/img/flake8-error-example.jpg)<br>
 In the above instance, I was unable to amend the code to reduce the line length without breaking the behaviour. In future development I would target a fix for this issue - one option would be to instantiate the variables with long names (e.g. "profile.default_street_address") to a temporary variable with a smaller name within the webhook handler in which this code is executed.
 
-### Bug fixes during testing
+### Bug fixes during deployed testing
 
+#### Major issue: Deployed server throwing Server Error 500 after checkout
+During testing alongside the development of the checkout functionality, I noticed a critical error occurring when the user attempted to submit a checkout form whilst leaving the intendedly optional `county` and `street_address2` fields empty. The page immediately redirected to a Server Error 500 page, and the order was not saved to the database (confirmed by checking the order history on profile, and the Order model via Django admin). <br>
 
+By monitoring the responses in the Webhooks and Events lists on my Stripe dashboard, I was able to identify that the bug was being caused by the 2 fields mentioned above being incorrectly set to `null=False` on the Order model.<br>
 
-#### **Fixes & Improvements from manual testing**
-- Noticed that all icons in the footer were being targeted with a 200% size rule which had only been intended for the social media icons. Resolved by adding more specificity to the existing rule.
-- Identified a missing minimum value on the "number of guests" widget on the booking form, resolved by setting `'min': '1'` in the widget's attributes in `booking/forms.py`.
-- Identified a missing minimum value validation on the "duration" field of the Reservation model, resolved by adding `validators=[MinValueValidator(1)]` to the duration field and migrating the changes.
-- Multiple instances of redundancy within style rules e.g. applying color/background style to elements which have already inherited this from a lower specificity rule; applying styles already managed by Bootstrap class.
-- Resolved an issue causing the table assignment functionality to break using manual testing with terminal print statements added to the `create_reservation` view. 
+**Checkout bug**<br>
+![Checkout bug](readme_assets/img/bug-checkout.jpg)<br>
 
+The bug was resolved easily by updating the `null` values on the relevant fields to `True`, then migrating and redeploying. After the fix, the checkout process resumed normal operation and orders could be succesfully completed with empty data in the county and street address fields.
 
+Setting up comprehensive webhook handling prior to checkout form testing was integral to fixing this issue quickly.
+
+#### Major issue: Negative price inputable during add/update product process
+Whilst testing the add and update product functionalities available to administrators, specifically when attempting to add exceptional data to the form, I discovered that I was able to input a negative number in the price input box without the form throwing an error. This caused the negatively priced product to be displayed as expected on all product listings. The negatively priced item could then be added to the basket, which disrupted the calculation of the order total and resulted in payment failure at checkout.<br>
+
+**Adding negative price**<br>
+![Adding negative price 1](readme_assets/img/bug-negative-price-input-1.jpg)<br>
+
+**Resulting product page with negative price**<br>
+![Adding negative price 2](readme_assets/img/bug-negative-price-input-2.jpg)<br>
+
+**Basket updating with negative price**<br>
+![Adding negative price 3](readme_assets/img/bug-negative-price-input-3.jpg)<br>
+
+**Trying to enter negative price to form after solution implemented**<br>
+![Adding negative price 4](readme_assets/img/bug-negative-price-input-4.jpg)<br>
+
+The issue was resolved by amending the controls on the price widget to add a minimum limit of 0. I also added a maximum limit of 9999.99 for comprehensiveness, although this was already controled by the `max_digits = 6` on the Product model.
+
+#### Minor issue: Drop-down menu styling issues
+During deployed testing, I noticed that the categories within drop-down menus used throughout the site would highlight to Bootstrap's default blue colour when clicked and held, or focused via tabulation. I resolved this by adding custom style rules to make the category background colour consistent with the rest of the site.<br>
+
+**Dropdown menu colour bug**<br>
+![Dropdown menu colour bug](readme_assets/img/drop-down-menu-colour-bug.jpg)<br>
+
+**Dropdown menu colour fix**<br>
+![Dropdown menu colour fix](readme_assets/img/drop-down-menu-colour-fix.jpg)<br>
+
+**Dropdown menu colour result**<br>
+![Dropdown menu colour result](readme_assets/img/drop-down-menu-colour-result.jpg)<br>
 
 
 ## Features for future development
-The following features for future implementation are inspired by the "could have" user stories which are yet to be accomplished by the current version of the application. 
-
-I have focussed on the following 3 improvements as I believe these would be the most immediately impactful for the functionality and user experience.<br>
+While the project delivers a functional and user-friendly online ski shop, there are several opportunities for future development that would enhance scalability, efficiency, and overall user experience. These features are intended to refine the platform beyond its minimum viable product, addressing both customer-facing improvements and administrative workflows. Planned enhancements include improving the quality and consistency of product imagery, enabling live payment processing through Stripe, and introducing bulk product upload tools for faster catalog management. Together, these developments would strengthen the application’s professionalism, usability, and long-term sustainability as a fully operational e-commerce solution.
 
 ### Improve product imagery 
+Currently, product images are limited due to the availability of suitable royalty-free resources. I have personally sourced images for products with consent from contributors, and have also utilised the limited available stock of free resources, however the quality, relevance and appeal of the product remains a current limitation of this project. This is the reason I have designated the status of the relevant user story (Relevant product images) as only partially complete.
+
+Future development would focus on sourcing high-quality, consistent product imagery to enhance the visual appeal and professionalism of the store. This could involve using dedicated stock image libraries, purchasing licensed photographs, or generating custom images through photography or design tools. While beyond the scope of the current project, incorporating multiple angles, close-ups, and lifestyle shots would provide customers with a more engaging and informative browsing experience. Enhanced imagery would not only improve aesthetics but also build trust, aid purchasing decisions, and strengthen the overall brand identity of the online ski shop.
 
 ### Integrate real payments with Stripe
+The project currently integrates Stripe in test mode, allowing simulated payments to be processed during development. Future improvements would focus on moving from test payments to full production integration, enabling customers to make secure real-world transactions. This would involve configuring live API keys, updating webhook endpoints, and implementing additional security measures to ensure payment authenticity. 
+
+Further enhancements could include offering a wider range of payment options through Stripe, such as digital wallets or bank transfers, to improve flexibility for customers. Fully enabling live payments would transform the application from a demonstration project into a functional online store capable of securely handling real transactions worldwide.
 
 ### Bulk product upload
+At present, products must be added individually through the admin panel, which can be time-consuming for administrators managing a large catalog. Future development could introduce bulk upload functionality to streamline this process. One option would be to support CSV or Excel file imports, allowing product data to be entered in a spreadsheet and uploaded in a single action. 
+
+Bulk image upload functionality could also be developed alongside this to pair product data with corresponding images efficiently. 
+
+By reducing manual input and repetitive tasks, bulk upload features would improve scalability, save time for administrators, and ensure consistency across product entries.
+
 
 ### Wishlist
 
