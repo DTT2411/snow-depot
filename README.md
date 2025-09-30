@@ -739,6 +739,8 @@ Items could be added via a star icon on product cards when browsing the catalog,
 
 From an administrative perspective, wishlists could provide insights into customer interests and popular items, helping guide stock management and marketing strategies. 
 
+## Web Marketing
+
 
 
 ## Key packages
@@ -756,7 +758,6 @@ From an administrative perspective, wishlists could provide insights into custom
 - **requests==2.32.4** — Simple HTTP client for outbound API requests, webhooks, and service integrations
 
 ## Django imports utilised
-
 - **django.contrib:** admin, messages
 - **django.contrib.auth.decorators:** login_required 
 - **django.contrib.auth.models:** User
@@ -827,22 +828,27 @@ The Boutique Ado e-commerce project within Code Institute's Portfolio Project 5 
 Agile delivery was managed in GitHub using Projects and Issues. User stories were captured via reusable templates with clear acceptance criteria. MoSCoW-style labels (must/should/could) supported prioritization and sprint planning. A Kanban board tracked workflow across To do, In progress, and Done, enabling visibility, progress control, and continuous delivery. Regular management and updates ensured the transparency of the development process and helped to keep on track with the completion of user stories marking key milestones in the development cycle.
 
 ### Code 
-- **Bootstrap Documentation** for general troubleshooting on styling and classes, and a specific fix for right-aligning table items with the `flowreverse` class: https://getbootstrap.com/docs/4.0/utilities/flex/
+- **Bootstrap Documentation** for general troubleshooting on styling and classes: https://getbootstrap.com/docs/4.4/getting-started/introduction/
 - **Django documentation** for general guidance on built-in Django functions and imports used extensively throughout the project: https://docs.djangoproject.com/en/5.2/.
 
 ### Deployment
-- **Heroku** - Cloud application platform used to host the project. Link to Heroku: https://www.heroku.com/.
+- **Heroku** Cloud application platform used to host the project. Link to Heroku: https://www.heroku.com/.
+
+### Payment Handling
+- **Stripe** (https://dashboard.stripe.com/) was fully integrated within the project's payment flow, and webhooks and associated handlers were set up to validate succuessful payment and confirm order details were processed correctly. The Stripe developer dashboard for monitoring events and webhook endpoints was critical for troubleshooting payment issues during checkout, at both development and deployment phases.
 
 ### Data Modelling
 - **Dbdiagram** (https://dbdiagram.io/) was used to help plan and visualise the models required for the functionality within the project. 
 
+### Web Marketing
+- **Facebook** was used to set up a dedicated social media business page for the Snow Depot application. 
+
 ### Content
-- **Bootstrap** classes were extensively applied in templates, enhancing responsive layouts and minimizing reliance on additional custom CSS styling. https://getbootstrap.com/docs/5.3/getting-started/introduction/.
+- **Bootstrap** classes were extensively applied in templates, enhancing responsive layouts and minimizing reliance on additional custom CSS styling. 
 - **Google Fonts** for custom fonts used throughout site. Link to embed code used: https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lexend+Mega:wght@100..900&display=swap
 - **Coolors** (https://coolors.co/) was used to identify a suitable colour scheme for the site.
 - **Pexels** was the source of the hero image which served as the background image (with a modified translucent filter) for the homepage and product list pages. Direct link to image: https://www.pexels.com/photo/snow-top-mountain-under-clear-sky-1054218/
 - **Pixabay** was used to source various royalty-free product images for the product cataglog: https://pixabay.com/
-- **Amiresponsive** (https://ui.dev/amiresponsive) was used to generate the mock-up image for the readme.
 - **Balsamiq Wireframes** (https://balsamiq.com/) was used extensively during planning to guide the structure and layout of the website.
 - **WebAim Contrast checker** (https://webaim.org/resources/contrastchecker/) was used to check the viability of the colour scheme.
 - **Font Awesome** for iconography, link to personal kit: https://kit.fontawesome.com/3af9805755.js
