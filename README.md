@@ -211,6 +211,8 @@ The index page welcomes users with a full‑width hero image that sets an alpine
 
 A prominent Shop Now call‑to‑action drives visitors directly into the product catalog for a fast start to browsing. Below, the About section introduces the brand’s purpose and values. 
 
+FACEBOOK LINK AND NEWSLETTER SIGNUP
+
 The Our Partners area highlights a selection of trusted industry brands and services that Snow Depot collaborates with, showcasing the online skiwear ecosystem behind the store. 
 
 Together, these sections quickly communicate the identity of Snow Depot, inspire confidence, and streamline the path to shopping, on any device. Content is lightweight, responsive, and accessible for all users.
@@ -740,6 +742,9 @@ Items could be added via a star icon on product cards when browsing the catalog,
 From an administrative perspective, wishlists could provide insights into customer interests and popular items, helping guide stock management and marketing strategies. 
 
 ## Web Marketing
+A customised Facebook page for the Snow Depot store was created at the following link: https://www.facebook.com/profile.php?id=61581703524904<br>
+**Snow Depot Facebook page**<br>
+![Snow Depot Facebook page](readme_assets/img/facebook-page.jpg)<br>
 
 
 
@@ -847,7 +852,7 @@ Agile delivery was managed in GitHub using Projects and Issues. User stories wer
 - **Bootstrap** classes were extensively applied in templates, enhancing responsive layouts and minimizing reliance on additional custom CSS styling. 
 - **Google Fonts** for custom fonts used throughout site. Link to embed code used: https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lexend+Mega:wght@100..900&display=swap
 - **Coolors** (https://coolors.co/) was used to identify a suitable colour scheme for the site.
-- **Pexels** was the source of the hero image which served as the background image (with a modified translucent filter) for the homepage and product list pages. Direct link to image: https://www.pexels.com/photo/snow-top-mountain-under-clear-sky-1054218/
+- **Pexels** was the source of the hero image which served as the background image (with a modified translucent filter) for the homepage and product list pages, as well as the profile picture and background for the facebook page. Direct link to image: https://www.pexels.com/photo/snow-top-mountain-under-clear-sky-1054218/
 - **Pixabay** was used to source various royalty-free product images for the product cataglog: https://pixabay.com/
 - **Balsamiq Wireframes** (https://balsamiq.com/) was used extensively during planning to guide the structure and layout of the website.
 - **WebAim Contrast checker** (https://webaim.org/resources/contrastchecker/) was used to check the viability of the colour scheme.
