@@ -746,7 +746,7 @@ A customised Facebook page for the Snow Depot store was created at the following
 **Snow Depot Facebook page**<br>
 ![Snow Depot Facebook page](readme_assets/img/facebook-page.jpg)<br>
 
-
+A Mailchimp account was created and a related email subscription form was integrated on the homepage.
 
 ## Key packages
 - **Django==3.2.25** — High-level Python web framework powering models, views, templates, and admin.
