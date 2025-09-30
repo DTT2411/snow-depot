@@ -211,7 +211,7 @@ The index page welcomes users with a full‑width hero image that sets an alpine
 
 A prominent Shop Now call‑to‑action drives visitors directly into the product catalog for a fast start to browsing. Below, the About section introduces the brand’s purpose and values. 
 
-FACEBOOK LINK AND NEWSLETTER SIGNUP
+The homepage includes a social section with CTA text and a link to Snow Depot's Facebook page (https://www.facebook.com/profile.php?id=61581703524904). It also includes a newsletter subscription form which is linked to an integrated Mailchimp signup, allowing customers to stay in touch with Snow Depot, and offering opportunities to develop a curated email campaign for prospective customers.
 
 The Our Partners area highlights a selection of trusted industry brands and services that Snow Depot collaborates with, showcasing the online skiwear ecosystem behind the store. 
 
@@ -492,6 +492,8 @@ All manual testing detailed here was conducted both on a local server, as well a
 
 #### **Browsing Process**
 - Main homepage loads upon visiting the site index, and the CTA Shop Now button correctly redirects the user to the All Product list.
+- Manually tested that the Facebook page linked to the project is functional, complete with sufficient business details, and correctly links from and refers back to the project site.
+- Confirmed that the email newletter signup works as expected, with valid emails being confirmed on the Mailchimp list, and a Mailchimp troubleshooting page is opened in the browser if incorrect details are submitted.
 - Navigation elements were tested exhaustively on all screen sizes:
   - All nav element links return the correct url and page
   - Nav elements are consistently styled, and drop-down lists function as expected
@@ -713,7 +715,6 @@ Close to submission during late deployed testing, it was identified that adding 
 
 Clearing the browser session resolved this issue (since this clears the invalid entry from the basket), but this is a suboptimal fix and the issue should be addressed within the appropriate views. This would be another key priority to resolve provided more time for project development. 
 
-
 ## Features for future development
 While the project delivers a functional and user-friendly online ski shop, there are several opportunities for future development that would enhance scalability, efficiency, and overall user experience. These features are intended to refine the platform beyond its minimum viable product, addressing both customer-facing improvements and administrative interactions. 
 
@@ -734,6 +735,13 @@ Bulk image upload functionality could also be developed alongside this to pair p
 
 By reducing manual input and repetitive tasks, bulk upload features would improve scalability, save time for administrators, and ensure consistency across product entries.
 
+### Checks before product and review deletion
+Currently, admin users delete products using the delete links on product cards and product detail pages. While this functions correctly, it would be prudent to develop a confirmation check, perhaps using a pop-up modal on screen, to confirm whether the admin wishes to proceed with deleting a product. 
+
+The same functionality could also extend to both admins and users for reviews - similarly, there are currently no checks for deleting reviews.
+
+Adding this functionality for deletion would prevent accidental deletion of products or reviews which can be potentially very frustrating for any user.
+
 ### Wishlist
 A wishlist feature could allow registered users to save products for future reference without immediately adding them to their cart. This would improve the shopping experience by supporting product comparison, encouraging return visits, and increasing the likelihood of future purchases. 
 
@@ -741,12 +749,44 @@ Items could be added via a star icon on product cards when browsing the catalog,
 
 From an administrative perspective, wishlists could provide insights into customer interests and popular items, helping guide stock management and marketing strategies. 
 
-## Web Marketing
+## Marketing
+
+### Business Model
+- **Value proposition:** curated, performance-focused ski equipment and apparel with expert guidance, transparent reviews, secure checkout (Stripe), fast shipping, and easy returns.
+- **Customer segments:** recreational and advanced skiers, seasonal travelers, gift buyers; secondary: international customers with strong brand preferences.
+- **Potential revenue streams:** product margins, bundles (e.g., skis + poles + bindings, would require development of additional functionality/categorisation), high-margin accessories/upsells, shipping upgrades, gift cards, seasonal clearance, affiliate partnerships.
+- **Prospective partners:** brands/distributors, 3PL, Stripe, AWS, Heroku, affiliates/influencers, ski clubs/resorts.
+
+### Web Marketing
 A customised Facebook page for the Snow Depot store was created at the following link: https://www.facebook.com/profile.php?id=61581703524904<br>
 **Snow Depot Facebook page**<br>
 ![Snow Depot Facebook page](readme_assets/img/facebook-page.jpg)<br>
 
 A Mailchimp account was created and a related email subscription form was integrated on the homepage.
+
+### Marketing plan for future development
+
+#### Phase 1: Awareness & Attraction (1-3 months post-deployment)
+Goal: Build brand visibility and attract targeted traffic.
+- Content Marketing: Blog posts and guides on ski gear, destination tips, and “how to choose” articles optimized for SEO.
+- Social Media Campaigns: Leverage existing Facebook page and explore options to extend social media presence to other sites (e.g. Instagram, TikTok) for wider reach.
+- Paid Ads: Run seasonal Google Ads & Meta Ads targeting keywords like “buy skis online” and “ski gear near me.”
+- Partnerships: Establish genuine partnerships with ski resorts, instructors, and influencers for shoutouts and affiliate links.
+
+#### Phase 2: Engagement & Conversion (4-6 months post deployment)
+Goal: Turn visitors into customers and build loyalty.
+- Email Marketing: Welcome series, gear guides, discounts, and abandoned cart reminders.
+- Personalization: Recommend products based on browsing history and purchase behavior.
+- Limited-Time Offers: Flash sales around ski season peaks and holidays. Required addition of new categorisation and modelling for products on sale.
+- Customer Reviews: Develop select, high quality reviews into formal testimonials and add functionality to allow users to post photos with branded hashtags as part of their review.
+
+#### Phase 3: Retention & Growth (Months 7–12)
+Goal: Retain customers, increase lifetime value, and encourage advocacy.
+- Loyalty Program: Points for purchases, referrals, and reviews (redeemable for discounts). Would require overhaul of the existing UserProfile model and profile area to track loyalty points, as well as updates to all product and payment related models to track and update loyalty point collections.
+- Seasonal Campaigns: Pre-season gear check promotions, off-season training gear, and end-of-season clearance.
+- Community Building: Online events, ski webinars, and sponsoring local ski clubs.
+- Referral Marketing: Incentivize customers to refer friends with “Give $10, Get $10” programs.
+
 
 ## Key packages
 - **Django==3.2.25** — High-level Python web framework powering models, views, templates, and admin.
@@ -761,6 +801,7 @@ A Mailchimp account was created and a related email subscription form was integr
 - **gunicorn==20.1.0** — Production WSGI HTTP server to run Django applications reliably and efficiently.
 - **pillow==10.3.0** — Imaging library supporting ImageField uploads, resizing, formats, and basic processing.
 - **requests==2.32.4** — Simple HTTP client for outbound API requests, webhooks, and service integrations
+
 
 ## Django imports utilised
 - **django.contrib:** admin, messages
@@ -788,6 +829,7 @@ A Mailchimp account was created and a related email subscription form was integr
 - **django.views.decorators.http:** require_POST
 - **django.views.decorators.csrf:** csrf_exempt
 - **django.views.generic:** TemplateView
+
 
 ## Deployment
 
@@ -846,7 +888,8 @@ Agile delivery was managed in GitHub using Projects and Issues. User stories wer
 - **Dbdiagram** (https://dbdiagram.io/) was used to help plan and visualise the models required for the functionality within the project. 
 
 ### Web Marketing
-- **Facebook** was used to set up a dedicated social media business page for the Snow Depot application. 
+- **Facebook** was used to set up a dedicated social media business page for the Snow Depot application: https://www.facebook.com/profile.php?id=61581703524904
+- **Mailchimp** was used to set up a working newsletter for the site, with potential for development into a curated email marketing campaign.
 
 ### Content
 - **Bootstrap** classes were extensively applied in templates, enhancing responsive layouts and minimizing reliance on additional custom CSS styling. 
