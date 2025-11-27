@@ -751,6 +751,64 @@ During deployed testing, I noticed that the categories within drop-down menus us
 **Dropdown menu colour result**<br>
 ![Dropdown menu colour result](readme_assets/img/drop-down-menu-colour-result.jpg)<br>
 
+### Bug fixes for resubmission
+
+#### Major issue: Server 500 error thrown when registering an account
+One of the major issues in the submitted version of the project was that a Server 500 error was thrown when the user tried to register a new account. I had previously confirmed that this functionality was working in both the local and deployed versions of the project shortly before submission, so this development was a significant concern to me.
+
+During debugging, when I attempted to log into the gmail account I had set up for the project ("snowdepotteam@gmail.com"), I realised that the account had been flagged and deactivated as seen in the screenshot below. The date the account became unavailable was 3 October 2025 which is 3 days after my submission date (30 September 2025), hence why this error had not been detected prior to submission.
+
+**Warning received when logging in to original gmail account**<br>
+![Gmail Bug](readme_assets/img/gmail-bug.jpg)<br>
+
+This was causing a Server Error 500 error whenever an email was being sent at the point of registration. During debugging, I identified that this also occured at order completion since the confirmation email would not be sent, and when attempting to use the forgot password functionality.
+
+The bug was resolved with the following steps:
+- Created a new gmail account ("snowdepotinfo@gmail.com")
+- Enabled 2-factor authentication and acquired new app password
+- Updated config vars for `EMAIL_HOST_PASS` and `EMAIL_HOST_USER` in Heroku
+- Tested registration flow & functionality after fix
+
+I am concerned that this same issue could happen again if my business gmail account is closed after submission during testing. See below for evidence of this bug being fixed prior to my resubmission deadline:
+
+**Entering new account details**<br>
+![Gmail Bug Fix 1](readme_assets/img/gmail-bug-fix-1.jpg)<br>
+
+Prior to the implemented fix, a Server Error 500 message would be thrown after clicking "Sign Up".
+
+**Verification notification received**<br>
+![Gmail Bug Fix 2](readme_assets/img/gmail-bug-fix-2.jpg)<br>
+
+**Email received from correct address with link**<br>
+![Gmail Bug Fix 3](readme_assets/img/gmail-bug-fix-3.jpg)<br>
+
+**Link works, confirmation notification displayed**<br>
+![Gmail Bug Fix 4](readme_assets/img/gmail-bug-fix-4.jpg)<br>
+
+**Confirmed account success message and user redirected to sign in**<br>
+![Gmail Bug Fix 5](readme_assets/img/gmail-bug-fix-5.jpg)<br>
+
+**Signing in with the new account details**<br>
+![Gmail Bug Fix 6](readme_assets/img/gmail-bug-fix-6.jpg)<br>
+
+**Successful login and redirected to home page**<br>
+![Gmail Bug Fix 7](readme_assets/img/gmail-bug-fix-7.jpg)<br>
+
+#### Major issue: Broken newsletter signup form
+It was identified by reviewers after submission that my newsletter sign-up form was not working correctly as I had cancelled my Mailchimp subscription, so the mailing list the subscribe form was pointing to was no longer operational. This was easily resolved by creating a new Mailchimp account, creating another embedded form, and updating the form action attribute (index.html, line 63) accordingly. 
+
+Post-fix testing on both local and deployed versions of the project confirmed that the newsletter functionality was working correctly.
+
+**Adding email to newsletter subscription form**<br>
+![Subscribe Bug Fix 1](readme_assets/img/subscribe-fix-1.jpg)<br>
+
+**Resulting confirmation URL and message**<br>
+![Subscribe Bug Fix 2](readme_assets/img/subscribe-fix-2.jpg)<br>
+
+**User is redirected back to home page after clicking "Continue to website"**<br>
+![Subscribe Bug Fix 3](readme_assets/img/subscribe-fix-3.jpg)<br>
+
+
 ### Unresolved bugs
 
 #### Major issue: Invalid payment details succeeding at checkout
