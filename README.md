@@ -105,7 +105,55 @@ The site layout is built on a fluid, responsive grid with a consistent spacing s
 Imagery uses full-bleed hero banners, standardized product ratios, and subtle overlays. Accessibility is integral and considerations were taken to ensure sufficient color contrast, focus states, and keyboard support. The site's performance is reinforced through responsive images, lazy-loading, and SVG icons, ensuring a fast, polished experience across devices. 
 
 ### Wireframes
-Balsamiq wireframes were developed at the outset of the project as a visual guide to the structure and key features of the website. 
+Balsamiq wireframes were developed at the outset of the project as a visual guide to the structure and key features of the website. Wireframes were developed for all custom pages including: home page; appearance of drop-down menus with relevant categories; product lists; product detail pages; search results; basket; checkout; and system messages. 
+
+Wireframes for AllAuth pages were not developed since these would only require minor styling changes from the original templates to adhere to the overall site aesthetic.
+
+**Home page** <br>
+![Wireframe - Home](readme_assets/img/wireframe-home.jpg) 
+
+**Home page (mobile)** <br>
+![Wireframe - Home (mobile)](readme_assets/img/wireframe-home-mobile.jpg) 
+
+**Categories and drop-down menus** <br>
+![Wireframe - Categories and drop-down menus](readme_assets/img/wireframe-categories.jpg) 
+
+**Categories and drop-down menus (mobile)** <br>
+![Wireframe - Categories and drop-down menus (mobile)](readme_assets/img/wireframe-categories-mobile.jpg) 
+
+**Products** <br>
+![Wireframe - Products](readme_assets/img/wireframe-products.jpg) 
+
+**Products (mobile)** <br>
+![Wireframe - Products (mobile)](readme_assets/img/wireframe-products-mobile.jpg)  
+
+**Product Detail** <br>
+![Wireframe - Product Detail](readme_assets/img/wireframe-detail.jpg) 
+
+**Product Detail (mobile)** <br>
+![Wireframe - Product Detail (mobile)](readme_assets/img/wireframe-detail-mobile.jpg) 
+
+**Search** <br>
+![Wireframe - Search](readme_assets/img/wireframe-search.jpg) 
+
+**Search (mobile)** <br>
+![Wireframe - Search (mobile)](readme_assets/img/wireframe-search-mobile.jpg) 
+
+**Basket** <br>
+![Wireframe - Basket](readme_assets/img/wireframe-basket.jpg) 
+
+**Basket (mobile)** <br>
+![Wireframe - Basket (mobile)](readme_assets/img/wireframe-basket-mobile.jpg) 
+
+**Checkout** <br>
+![Wireframe - Checkout](readme_assets/img/wireframe-checkout.jpg) 
+
+**Checkout (mobile)** <br>
+![Wireframe - Checkout (mobile)](readme_assets/img/wireframe-checkout-mobile.jpg) 
+
+**Messages** <br>
+![Wireframe - Messages](readme_assets/img/wireframe-messages.jpg) 
+
 
 ### Colour Scheme
 Coolors was used to identify suitably contrasting colours for use across the site. A contrast checker was also utilised to ensure sufficient contrast between the primary colour and secondary & tertiary colours.
